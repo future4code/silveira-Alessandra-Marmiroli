@@ -1,0 +1,2 @@
+# Aprendizados da semana
+Nessa semana aprendi muito de Git e Github na Labenu, ainda preciso evoluir mais e utilizar as ferramentas de forma mais segura sem medo. Me senti incapaz por alguns momentos, eram tantas informações mas dentro de mim a vontade de **vencer** se tornou ainda maior e ja vejo como me aproximo dos meus objetivos e sonhos que vou realizar. 
