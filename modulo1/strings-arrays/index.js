@@ -26,7 +26,7 @@ console.log(frase.toUpperCase().replaceAll("A", "I"), frase.length)
 
 const nome = prompt("Qual seu Nome?")
 const emailDoUsuario = prompt("Qual seu E-mail?")
-console.log(`O e-mail ${emailDoUsuario} foi cadastrado com sucesso. Seja bem-vinda(o), ${nome}.`)**/
+console.log(`O e-mail ${emailDoUsuario} foi cadastrado com sucesso. Seja bem-vinda(o), ${nome}.`)
 
 const comidaFavoritas = ["Filé Parmegiana", "churrasco", "lasanha", "salada", "caldos"];
 console.log(comidaFavoritas[0], comidaFavoritas[1], comidaFavoritas[2], comidaFavoritas[3], comidaFavoritas[4] )
@@ -45,6 +45,16 @@ console.log(comidaFavoritas)
 let listaDeTarefas = []
 
 let tarefa1 = prompt ("Indique a primeira tarefa")
+listaDeTarefas.push (tarefa1)
 let tarefa2 = prompt ("Indique a primeira tarefa")
+listaDeTarefas.push (tarefa2)
 let tarefa3 = prompt ("Indique a primeira tarefa")
-/**PRETENDO TERMINAR O EXERCICIO E ENVIAR O RESTANTE DEPOIS */
+listaDeTarefas.push (tarefa3)
+
+console.log(listaDeTarefas)
+
+const usuarioIndice = Number (prompt ("Escolha sua tarefa: 0, 1 ou 2"))
+listaDeTarefas.splice(usuarioIndice, 1)
+console.log(listaDeTarefas)
+
+//exercício concluido!
