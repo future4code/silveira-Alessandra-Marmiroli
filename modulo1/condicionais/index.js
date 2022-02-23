@@ -1,4 +1,4 @@
-Exercícios de interpretação de código
+/*Exercícios de interpretação de código
 if (numero % 2 === 0) {// se o restante da divisão for igual a 0
   console.log("Passou no teste.")//imprime passou no teste 
 } else {//senão for 0 
@@ -106,12 +106,58 @@ function verFilme(){
   }
 }
 verFilme()
-
+*/
 function vendasIngresso(){
   const nome = prompt("Digite seu nome completo:")
-  const tipo = prompt("Digite o tipo de jogo: IN (internacional ou DO (doméstico)")
-  const etapa = prompt("Digite a etapa do jogo: ")
+  const tipo = prompt("Digite o tipo de jogo: IN (internacional) ou DO (doméstico)")
+  const etapa = prompt("Digite a etapa do jogo: SF (Semi-final), DT (Terceiro Lugar) ou FI (Final) ")
+  const categoria = Number (prompt("Categoria 1, 2, 3 ou 4"))
+  const quantidadeIngressos = Number(prompt("Coloque um número de ingressos")) 
+  if (etapa == "SF"){
+    if (categoria == 1){
+      precoFinal = quantidadeIngressos * 1320}
+    if (categoria == 2){
+      precoFinal = quantidadeIngressos * 880}
+    if (categoria == 3){
+      precoFinal = quantidadeIngressos * 550}
+    if (categoria == 4){
+      precoFinal = quantidadeIngressos * 220}
+  }
+  if (etapa == "DT"){
+    if (categoria == 1){
+      precoFinal = quantidadeIngressos * 660}
+    if (categoria == 2){
+      precoFinal = quantidadeIngressos * 440}
+    if (categoria == 3){
+      precoFinal = quantidadeIngressos * 330}
+    if (categoria == 4){
+      precoFinal = quantidadeIngressos * 170}
+  }
+  if (etapa == "FI"){
+    if (categoria == 1){
+      precoFinal = quantidadeIngressos * 1980}
+    if (categoria == 2){
+      precoFinal = quantidadeIngressos * 1320}
+    if (categoria == 3){
+      precoFinal = quantidadeIngressos * 880}
+    if (categoria == 4){
+      precoFinal = quantidadeIngressos * 330}
+  }
+  console.log("---Dados da Compra---")
+  console.log("Nome do cliente: " + nome)
+  console.log("Tipo do Jogo: " + tipo)
+  console.log("Etapa do jogo: " + etapa)
+  console.log("Categoria: " + categoria)
+  console.log("Quantidade de Ingressos: " + quantidadeIngressos)
+  console.log("---Valores--- ")
+  if (tipo == "DO"){
+    console.log("Valor do ingresso: " + (precoFinal/quantidadeIngressos))
+    console.log("Valor total: " + precoFinal)}
+  if (tipo == "IN"){
+    console.log("Valor do ingresso: " + ((precoFinal * 4.1)/quantidadeIngressos))
+    console.log("Valor total: " + (precoFinal * 4.1))}
 }
+vendasIngresso()
 
 
 
