@@ -1,4 +1,4 @@
-//Exercícios de interpretação de código
+/*Exercícios de interpretação de código
 console.log(filme.elenco[0])
 No console este comando busca dentro da variável filme e variável elenco a posição [0] "Matheus Nachtergaele"
 console.log(filme.elenco[filme.elenco.length - 1])
@@ -74,8 +74,6 @@ function cadastro (pessoa){
 console.log(cadastro(pessoa))
 console.log(cadastro(pessoa2))
 
-*/
-
 const carrinho = []
 
 const fruta1 = {
@@ -97,6 +95,78 @@ acrescentacarrinho(fruta1)
 acrescentacarrinho(fruta2)
 acrescentacarrinho(fruta3)
 console.log(carrinho)
+
+*******************DESAFIO*********************
+
+
+//Crie um função que pergunte ao usuário seu nome, sua idade e sua profissão e depois imprima no console um objeto com essas propriedades. Depois de imprimir o novo objeto, imprima também o tipo dele para garantir que é um objeto.
+
+function perfilUsuario (){
+	const pergunta1 = prompt("Qual seu nome?")
+	const pergunta2 = Number (prompt("Qual sua idade?"))
+	const pergunta3 = prompt("Qual sua profissão?")
+	const pessoa = {
+		nome: pergunta1,
+		idade: pergunta2,
+		profissao: pergunta3
+	}
+	console.log(typeof (pessoa))
+	console.log(pessoa)
+}
+perfilUsuario()
+
+//Crie uma função que receba dois objetos que representam filmes. Eles devem ter as propriedades: ano de lançamento e nome. A função deve retornar uma mensagem no seguinte modelo:
+//O primeiro filme foi lançado antes do segundo? false
+//O primeiro filme foi lançado no mesmo ano do segundo? true
+
+
+const hermanoteu = {
+	nome: 'Hermanoteu na terra de Godah',
+	lancamento: 2022,
+}
+const tarsilinha = {
+	nome: 'Tarsilinha',
+	lancamento: 2022,
+}
+function objeto (filme, filme2){//Criei uma função que vai comparar dois Objetos!
+	console.log(filme.lancamento < filme2.lancamento)
+	console.log(filme.lancamento === filme2.lancamento)
+}
+
+objeto(hermanoteu, tarsilinha)//Quando chamar a função deve-se passar o nome dos objetos que serão comparados!
+
+//Crie uma função a mais pro exercício 3 de escrita de código. Essa função vai auxiliar o controle de estoque do sacolão: ela deve receber por parâmetro uma das frutas e retornar esse mesmo objeto com a propriedade disponibilidade com o valor invertido. */
+
+const carrinho = []
+
+const fruta1 = {
+	nome: "Banana",
+	disponibilidade: true
+}	
+const fruta2 = {
+	nome: "Laranja",
+	disponibilidade: true
+}
+const fruta3 = {
+	nome: "Morango",
+	disponibilidade: true
+}
+function acrescentacarrinho (fruta){
+	carrinho.push(fruta)
+}
+function disponibilidade (fruta){
+	fruta.disponibilidade = false//Apenas passei a informação para a função que retorne como false. 
+}
+disponibilidade(fruta1)
+console.log(fruta1)
+
+
+
+
+
+
+
+
 
 
 
