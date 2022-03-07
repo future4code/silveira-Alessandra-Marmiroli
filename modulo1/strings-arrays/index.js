@@ -1,4 +1,4 @@
-//ATIVIDADE 16/02
+/*ATIVIDADE 16/02
 let array
 console.log('a. ', array)
 //variável não declarada undefined
@@ -22,7 +22,7 @@ const frase = prompt("Digite uma frase")
 //Usuario digite uma frase 
 console.log(frase.toUpperCase().replaceAll("A", "I"), frase.length)
 //SUBI NUM ONIBUS EM MIRROCOS - 5 ELEMENTOS 
-/**console imprime a frase com letras maiusculas, mude as letras A por I e diga por quantos elementos/palavras essa frase é formada. **/
+console imprime a frase com letras maiusculas, mude as letras A por I e diga por quantos elementos/palavras essa frase é formada. 
 
 const nome = prompt("Qual seu Nome?")
 const emailDoUsuario = prompt("Qual seu E-mail?")
@@ -58,3 +58,21 @@ listaDeTarefas.splice(usuarioIndice, 1)
 console.log(listaDeTarefas)
 
 //exercício concluido!
+//DESAFIO
+
+//Receba uma frase e retorne um array onde cada elemento é uma das palavras da frase, ignorando os espaços
+
+const frase = prompt("Digite uma frase")
+var array = frase.split(" ",)//O split vai dividir toda vez que ele encontrar um espaço entre as palavras, você pode limitar a quantidade de divisões passando um número após a vírgula, usar sem limites apenas com a vírgula. 
+
+console.log(array)
+*/
+//2. Dado o array `["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"]`, faça um programa que acha o índice da palavra Abacaxi e imprime tanto o índice quanto o tamanho do array
+
+const array = ["Banana", "Morango", "Abacaxi", "Laranja", "Ameixa"]
+for(let i = 0; i < array.length; i++){
+    const fruta = array[i]
+    if(fruta == "Abacaxi")
+        console.log("O índice é ", + i, "e o tamanho é ", array.length)
+
+}
