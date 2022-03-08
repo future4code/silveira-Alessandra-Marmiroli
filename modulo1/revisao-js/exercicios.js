@@ -61,7 +61,7 @@ function retornaNumerosParesElevadosADois(array) {
             arrayNovo.push(array[i] **2)
         }
     return arrayNovo 
-}*/
+}
 
 // EXERCÍCIO 06
 let array = [1, 5, 3, 7, 5, 2]
@@ -81,7 +81,14 @@ function retornaNPrimeirosPares(n) {
 }
 
 // EXERCÍCIO 09
+let escaleno = [1, 2, 4]
+let isosceles = [1, 2, 1]
+let equilatero = [5, 5, 5]
+
 function classificaTriangulo(ladoA, ladoB, ladoC) {
+   const calculo = ladoA * ladoB / ladoC
+    if (ladoA == ladoB && ladoB == ladoC) {
+        "Triangulo Equilátero"
 
 }
 
