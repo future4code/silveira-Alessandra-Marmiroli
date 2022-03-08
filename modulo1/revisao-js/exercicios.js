@@ -5,7 +5,7 @@
 
 // EXERCÍCIO 01
 
-const array = ["azul", "amarelo", "vermelho"]
+/*const array = ["azul", "amarelo", "vermelho"]
 
 function retornaTamanhoArray(array) {
     return array.length
@@ -15,31 +15,59 @@ console.log([array.length])
 
 // EXERCÍCIO 02
 
-const array2 = [1, 2, 3, 4, 5]
+const numeros = [0,8,23,16,10,15,41,12,13]
 
 function retornaArrayInvertido(array) {
-     const reverse(array2); 
+     return array.reverse();
 }
-console.log([array2.reverse()])
 
 // EXERCÍCIO 03
+
+let array = [36,12,56,7,3]
+function comparar(a, b) {
+    if (a < b) {
+      return -1;
+    }
+    if (a > b) {
+      return 1;
+    }
+    return 0;
+  }
 function retornaArrayOrdenado(array) {
-  
+    return array.sort(comparar);
 }
+
 
 // EXERCÍCIO 04
+let array = [1, 2, 3, 4, 5, 6, 7, 8]
+
 function retornaNumerosPares(array) {
-  
-}
+    let arrayNovo = []
+
+    for (var i = 0; i < 8; i++)
+        if (array[i] % 2 == 0){
+            arrayNovo.push(array[i])
+        }
+    return arrayNovo
+}   
 
 // EXERCÍCIO 05
+
+let array = [1, 2, 3, 4, 5, 6]
 function retornaNumerosParesElevadosADois(array) {
- 
-}
+    let arrayNovo = []
+    for (var i = 0; i < 6; i++)
+        if (array[i] % 2 == 0){
+            arrayNovo.push(array[i] **2)
+        }
+    return arrayNovo 
+}*/
 
 // EXERCÍCIO 06
+let array = [1, 5, 3, 7, 5, 2]
 function retornaMaiorNumero(array) {
-  
+    const max = Math. max(...array);
+    return max
 }
 
 // EXERCÍCIO 07
