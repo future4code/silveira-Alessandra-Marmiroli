@@ -5,7 +5,7 @@
 
 // EXERCÍCIO 01
 
-/*const array = ["azul", "amarelo", "vermelho"]
+const array = ["azul", "amarelo", "vermelho"]
 
 function retornaTamanhoArray(array) {
     return array.length
