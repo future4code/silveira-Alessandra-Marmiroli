@@ -1,0 +1,40 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-color: whitesmoke;
+    
+    
+}
+.titulo{
+    background-color: rgba(195, 195, 240, 0.884);
+    text-align: center;
+    
+    
+}
+#referencia{
+    display: inline;
+    font-size: 22px;
+}
+p{
+    font-size: 20px;
+    
+}
+.navegadores{
+    box-shadow: 8px 8px 12px rgba(195, 195, 240, 0.884);
+    border: 2px solid blueviolet;
+    margin-top: 25px;
+    font-size: 18px;
+    text-transform: uppercase;
+    display: inline-block;
+    
+    
+}
+#siga{
+    color: blueviolet;
+    font-weight: bold;
+    margin: 30px;
+
+}
+
