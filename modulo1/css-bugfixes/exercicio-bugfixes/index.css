@@ -96,10 +96,12 @@ div img {
 
 div:nth-child(2),
 div:last-child {
+    
     text-align: center;
 }
 
 table {
+    margin: auto;
     text-align: center;
     width: 60%;
 }
@@ -117,12 +119,10 @@ td button:hover{
 td button:active{
     color: white;
 }
-
 .container-do-search {
     margin-top: 20px;
     height: 100px;
 }
-
 
 #back-button {
     background-color: white;
