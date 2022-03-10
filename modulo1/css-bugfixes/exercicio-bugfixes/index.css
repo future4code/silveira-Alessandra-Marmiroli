@@ -100,6 +100,7 @@ div:last-child {
 }
 
 table {
+    text-align: center;
     width: 60%;
 }
 
