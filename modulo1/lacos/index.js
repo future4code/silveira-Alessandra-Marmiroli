@@ -6,9 +6,10 @@
 /*b) Se eu quisesse acessar o **índice** de cada elemento dessa lista, o `for...of...` é suficiente? Se sim, o que poderia ser usado para fazer isso?
 É possível desde que exista um array dentro da function [10, 20, 30] ou váriavel informando a posicao do numero e imprimindo no console sua posicao [0] = 10
 //03 - Este programa recebe um número do usuário verifica se a partir do numero atual sendo 0 a partida inicial a cada leitura ele aumenta de um em um até chegar no número do usuário a quantidade de asteriscos do for.  
+
 //Exercícios de escrita de código
 
-//Pergunte ao usuário quantos bichinhos de estimação ele tem e guarde esse dado em uma variável. 
+//1. Pergunte ao usuário quantos bichinhos de estimação ele tem e guarde esse dado em uma variável. 
 
 let bichos = Number(prompt ("Quantos bichinhos de estimação você tem?"))
     if (bichos == 0){
@@ -26,7 +27,9 @@ let bichos = Number(prompt ("Quantos bichinhos de estimação você tem?"))
     }
     console.log([array])
 
+//EXERCÍCIO 02
 
+LETRA A -
 function imprimeArray (){
     arrayOriginal = [10, 20, 30, 40, 50]
     let i = 0
@@ -36,6 +39,8 @@ function imprimeArray (){
     }
 }
 imprimeArray()
+
+LETRA B - 
 
 function dividePorDez (){
     arrayOriginal = [10, 20, 30, 40, 50]
@@ -47,7 +52,10 @@ function dividePorDez (){
     }
 }
 dividePorDez()
-*/
+
+
+LETRA C  - 
+
 function novoArray (){
     arrayOriginal = [ 5, 10, 15, 20, 25]
     arrayNovo = []
@@ -61,3 +69,43 @@ function novoArray (){
     console.log(arrayNovo)
 }
 novoArray()
+
+
+//LETRA D - 
+
+//d) Escreva um programa que crie um novo array contendo strings, da seguinte forma: "O elemento do índex i é: numero". Depois, imprima este novo array.
+
+function arrayStrings (){
+    arrayOriginal = [2, 4, 6, 8, 10]
+    arrayNovo = []
+    const index = "O elemento do índex é: "
+}
+console.log()*/
+
+const array = ["banana", "morango", "kiwi", "melancia", "abacaxi"]
+console.log (array [0])
+console.log (array [1])
+console.log (array [2])
+console.log (array [3])
+console.log (array [4])
+
+//for(let i=0; i<5; i++){
+//    console.log (array[i])
+//}
+for(let i=0; i<5; i++){
+if (array[i] === "abacaxi"){
+    console.log("Achou!")
+}
+else{
+    console.log("Não é")
+}
+}
+
+    
+
+    
+
+    
+
+
+
