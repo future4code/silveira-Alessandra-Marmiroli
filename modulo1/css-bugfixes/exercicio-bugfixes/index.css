@@ -34,7 +34,7 @@ div>p:first-child {
 }
 
 div img {
-    background: #ffaf43;
+    
 }
 
 .botao-amarelo{
@@ -119,10 +119,19 @@ td button:hover{
 td button:active{
     color: white;
 }
+input{
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+}
+.icone{
+    height: 15px;
+    width: 20px;
+}
 .container-do-search {
     margin-top: 20px;
     height: 100px;
-}
+    }
 
 #back-button {
     background-color: white;
@@ -136,4 +145,7 @@ td button:active{
 
 #back-button:hover {
     background-color: #635a3d
+}
+#back-button{
+    
 }
