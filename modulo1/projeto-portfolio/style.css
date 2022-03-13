@@ -11,6 +11,7 @@ h1{
     color: grey; 
 }
 .navegadores{
+    margin: 0 0 0 15px;
     position: absolute;
     top: 80px;
     background: rgb(88, 161, 163);
@@ -31,9 +32,9 @@ h1{
 }
 img{
     margin: auto;
-    display: block;
     box-shadow: 8px 8px rgb(88, 161, 163);
     margin-top: 30px;
+    padding: 0 0 0 10px;
        
 }
 p{  
@@ -55,4 +56,14 @@ li{
     padding-left: 20px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+/*ESTILIZAÇÃO PORTFÓLIO*/
+.image{
+   
+    
+}
+/*ESTILIZAÇÃO CONTATO*/
+#redesociais{
+
+}
+
 
