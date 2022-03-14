@@ -1,13 +1,13 @@
 *{
     margin: 0;
     padding: 0;
-    
 }
+/*ESTILIZAÇÃO HOME*/
 h1{
-    padding: 12px;
+    padding: 05px;
     background-color: rgb(175, 215, 216);
     text-align: center;
-    box-shadow: 8px 8px 12px rgb(88, 161, 163);
+    box-shadow: 8px 8px 10px rgb(88, 161, 163);
     color: grey; 
 }
 .navegadores{
@@ -31,6 +31,7 @@ h1{
  
 }
 img{
+    display: block;
     margin: auto;
     box-shadow: 8px 8px rgb(88, 161, 163);
     margin-top: 30px;
@@ -42,11 +43,10 @@ p{
     margin-right: 10px;
     margin-top: 12px;
     padding: 12px;
-    background-color: rgb(175, 215, 216);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 h2, h3{
-    
+
     color: grey;
     font-size: 25px;
     padding: 20px;
@@ -58,11 +58,76 @@ li{
 }
 /*ESTILIZAÇÃO PORTFÓLIO*/
 .image{
-   
+      
+    
+}
+/*ESTILIZAÇÃO TECNOLOGIA*/
+#tecnologia{
+    background-color: whitesmoke;
+    
+}
+#foto{
+    margin-right: 20px;
+    display: inline-block;
+    box-shadow: 8px 8px rgb(88, 161, 163);
+    padding-top: 30px;
+    margin-top: 60px;
+    padding: 0 0 0 10px;
+    
     
 }
 /*ESTILIZAÇÃO CONTATO*/
 #redesociais{
+    margin: 50px;
+    width: 20%;
+    color: grey;
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+    background: whitesmoke;
+    box-shadow: 5px 5px rgb(88, 161, 163);
+}
+main{
+    padding: 20px;
+    
+}
+form{
+    margin: 40px 0;
+}
+form label, form legend{
+    display: block;
+    font-size: 20px;
+    margin: 0 0 10px;
+}
+.input-padrao{
+    display: block;
+    margin: 0 0 20px;
+    padding: 10px 25px;
+    width: 50%;
+}
+.checkbox{
+    margin: 20px 0;
+
+}
+.enviar{
+    display: block;
+    width: 30%;
+    padding: 10px 0;
+    background-color: rgb(88, 161, 163);
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    transition: 1s;
+    cursor:pointer;
+}
+.enviar:hover{
+    background-color: rgb(88, 161, 163);
+    transform: scale(1.2);
+}
+table{
+    margin: 20px 0 40px; 
 
 }
 
