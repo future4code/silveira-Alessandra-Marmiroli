@@ -173,7 +173,7 @@ const usuarios = [
     {
         nome: "Artur",
         ano: 2000,
-        nacionalidae: "brasileiro",
+        nacionalidade: "brasileiro",
         senha: "123456",
         vacina: "pfizer",
         imunizacao: "incompleta"
@@ -181,7 +181,7 @@ const usuarios = [
     {
         nome: "Bárbara",
         ano: 1984,
-        nacionalidae: "brasileira",
+        nacionalidade: "brasileira",
         senha: "labenu",
         vacina: "astrazenica",
         imunizacao: "completa"
@@ -189,7 +189,7 @@ const usuarios = [
     {
         nome: "Carlos",
         ano: 2000,
-        nacionalidae: "brasileiro",
+        nacionalidade: "brasileiro",
         senha: "123456",
         vacina: "coronavac",
         imunizacao: "incompleta"
@@ -197,25 +197,52 @@ const usuarios = [
 
 ]
 
-const cadastroDesafio = (objetoUsuarios) => {
-    const nome = prompt ("Qual seu nome?")
+const cadastroDesafio = (usuarios) => {
+    //let novaPessoa = new Object();
+    let nome = prompt ("Qual seu nome?")
     let ano = prompt ("Qual ano?")
-    const nacionalidade = prompt("Qual sua nacionalidade")
-    const vacina = prompt ("Qual vacina tomou?")
-    const imunizacao = prompt ("Vacinação completa ou incompleta?")
-
-    const objetoUsuarios = {nome, ano, nacionalidade, vacina, imunizacao}
-
+    let nacionalidade = prompt("Qual sua nacionalidade")
+    let senha = prompt("Qual sua senha")
+    //let vacina = prompt ("Qual vacina tomou?")
+    //let imunizacao = prompt ("Vacinação completa ou incompleta?")
+    let novaPessoa = {
+        nome: nome,
+        ano: ano,
+        nacionalidade: nacionalidade,
+        senha: senha
+        
+    }
     
-}
-console.log(cadastroDesafio(objetoUsuarios));
+    usuarios.push(novaPessoa)
+    return usuarios
+} 
+console.log(cadastroDesafio(usuarios));
 
-const loginDesafio = () => {
-    //  Sua lógica aqui
+
+const loginDesafio = (usuarios) => {
+    const senhaUsuario = prompt ("Digite sua senha")
+    let mensagem 
+    for (let i = 0; i < usuarios.length; i++){
+        if(usuarios[i].senha === senhaUsuario){
+            mensagem = `Acesso liberado`
+            return mensagem
+        }
+    if(mensagem === undefined){
+        console.log(`Senha inválida`)
+    }
 }
-console.log(loginDesafio());
+
+loginDesafio(usuarios);
 
 const primeiraDoseDesafio = () => {
+    let vacina = prompt("Qual vacina você tomou?")
+    //let imunizacao = "incompleta"
+
+    usuarios[usuarios.length -1] = {
+        ...usuarios[usuarios.length -1], 
+        vacina: vacina,
+        imunizacao: imunizacao
+    }
 //  Sua lógica aqui
 }
 console.log(primeiraDoseDesafio())
