@@ -1,5 +1,5 @@
 
-// COMPARADORES
+/* COMPARADORES
 // Exercício 1------------------------------------------------------------------------------------
 
 // a-)Comparador de desigualdade a!==b 
@@ -93,7 +93,7 @@ function primeiraDose () {
             case "coronavac":
                 tempo = 28
                 break   
-            case "astrazenica":
+            case "anistrazeca":
                 tempo = 90
                 break
             case "pfizer":
@@ -119,11 +119,13 @@ function primeiraDose () {
         }else {return `Vacina não encontrada`}
         
             
-    //  Sua lógica aqui*/
+    //  Sua lógica aqui
 
 
 }
 console.log(primeiraDose())
+
+
 
 
 // LOOP+CONDICIONAL
@@ -136,10 +138,12 @@ const segundaDose = (nomeDoUsuario) => {
         { nome: "Barbara", imunizacao: "incompleta" },
         { nome: "Carlos", imunizacao: "incompleta" }
     ]
-
-    //  Sua lógica aqui
-
-
+    for (var i = 0; i < usuarios.length; i++){
+        if (usuarios[i].nome == "Barbara"){ 
+            usuarios[i].imunizacao = "completa"
+        }  
+    }
+    return usuarios      
 }
 console.log(segundaDose("Barbara"));
 
@@ -151,14 +155,19 @@ const avisoAosAtrasados = () => {
         { nome: "Barbara", imunizacao: "completa" },
         { nome: "Carlos", imunizacao: "incompleta" }
     ]
-
+    for (var i = 0; i < usuarios.length; i++){
+        if (usuarios[i].imunizacao == "incompleta"){ 
+            console.log (`Olá ${usuarios[i].nome}! Sua imunização está incompleta, por favor volte ao postinho para tomar a segunda dose.`)
+        }  
+    }
+      
     //  Sua lógica aqui
 
 }
 console.log(avisoAosAtrasados());
 
 
-// DESAFIO------------------------------------------------------------------------------------------
+// DESAFIO------------------------------------------------------------------------------------------*/
 
 const usuarios = [
     {
@@ -188,10 +197,18 @@ const usuarios = [
 
 ]
 
-const cadastroDesafio = () => {
-    //  Sua lógica aqui
+const cadastroDesafio = (objetoUsuarios) => {
+    const nome = prompt ("Qual seu nome?")
+    let ano = prompt ("Qual ano?")
+    const nacionalidade = prompt("Qual sua nacionalidade")
+    const vacina = prompt ("Qual vacina tomou?")
+    const imunizacao = prompt ("Vacinação completa ou incompleta?")
+
+    const objetoUsuarios = {nome, ano, nacionalidade, vacina, imunizacao}
+
+    
 }
-console.log(cadastroDesafio());
+console.log(cadastroDesafio(objetoUsuarios));
 
 const loginDesafio = () => {
     //  Sua lógica aqui
