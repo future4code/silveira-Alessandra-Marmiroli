@@ -155,8 +155,8 @@ const avisoAosAtrasados = () => {
         { nome: "Barbara", imunizacao: "completa" },
         { nome: "Carlos", imunizacao: "incompleta" }
     ]
-    for (var i = 0; i < usuarios.length; i++){
-        if (usuarios[i].imunizacao == "incompleta"){ 
+    for (let i = 0; i < usuarios.length; i++){
+        if (usuarios[i].imunizacao === "incompleta"){ 
             console.log (`Olá ${usuarios[i].nome}! Sua imunização está incompleta, por favor volte ao postinho para tomar a segunda dose.`)
         }  
     }
@@ -259,29 +259,21 @@ const segundaDoseDesafio = (nomeDoUsuario) => {
 }
 console.log(segundaDoseDesafio("Carlos"));
 
+
 const avisoAosAtrasadosDesafio = () => {
-    let data  = new Date
-    for (let i = 0; i < usuarios.length; i++) {//USAR SWITCH
-        /*if (usuarios[i].imunizacao == "incompleta"){
-            if (usuarios[i].vacina == "coronavac"){
-                tempo = 28
-                data.setDate(data.getDate() + tempo)
-                const dataFormatada = data.toLocaleDateString()
-                console.log(usuarios[i].nome + " a data de vacina é " + dataFormatada )
-            }
-            if (usuarios[i].vacina == "astrazenica"){
-                tempo = 90
-                data.setDate(data.getDate() + tempo)
-                const dataFormatada = data.toLocaleDateString()
-                console.log(usuarios[i].nome + " a data de vacina é " + dataFormatada )
-            }
-            if (usuarios[i].vacina == "pfizer"){
-                tempo = 90
-                data.setDate(data.getDate() + tempo)
-                const dataFormatada = data.toLocaleDateString()
-                console.log(usuarios[i].nome + " a data de vacina é " + dataFormatada )
-            }
-        }
-    }  
+    const usuarios = [
+        { nome: "Artur", imunizacao: "incompleta" },
+        { nome: "Barbara", imunizacao: "completa" },
+        { nome: "Carlos", imunizacao: "incompleta" }
+    ]
+    const vacinaIncompleta = usuarios.filter((pessoa)=>{
+        return pessoa.imunizacao === "incompleta"
+    })
+
+    const mensagemIncompleta = vacinaIncompleta.map((pessoa)=>{
+        return `Olá ${pessoa.nome}! Sua imunização está incompleta, por favor volte ao postinho para tomar a segunda dose.`
+    })
+    return mensagemIncompleta
 }
-avisoAosAtrasadosDesafio()*/
+console.log(avisoAosAtrasadosDesafio(usuarios)) 
+
