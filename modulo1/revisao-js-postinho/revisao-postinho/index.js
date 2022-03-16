@@ -209,34 +209,36 @@ const cadastroDesafio = (usuarios) => {
         nome: nome,
         ano: ano,
         nacionalidade: nacionalidade,
-        senha: senha
-        
+        senha: senha 
     }
-    
     usuarios.push(novaPessoa)
     return usuarios
 } 
 console.log(cadastroDesafio(usuarios));
 
 
-const loginDesafio = (usuarios) => {
-    const senhaUsuario = prompt ("Digite sua senha")
-    let mensagem 
-    for (let i = 0; i < usuarios.length; i++){
-        if(usuarios[i].senha === senhaUsuario){
-            mensagem = `Acesso liberado`
-            return mensagem
-        }
-    if(mensagem === undefined){
-        console.log(`Senha inválida`)
+const loginDesafio = () => {
+    let senhaUsuario = prompt ("Digite sua senha")
+    //let mensagem = ''
+    //for (let i = 0; i < usuarios.length; i++){
+        //if(usuarios[i].senha === senhaUsuario){
+            //console.log("Acesso liberado")
+        //}
+    //}
+    let senhaSalva = usuarios[usuarios.length -1].senha
+    if (senhaSalva === senhaUsuario){
+        console.log('Acesso liberado')
+    }
+    else{
+        console.log('Senha Inválida')
     }
 }
 
-loginDesafio(usuarios);
+loginDesafio()
 
 const primeiraDoseDesafio = () => {
-    let vacina = prompt("Qual vacina você tomou?")
-    //let imunizacao = "incompleta"
+    let vacina = prompt("Digite qual vacina tomou")
+    let imunizacao = "incompleta"
 
     usuarios[usuarios.length -1] = {
         ...usuarios[usuarios.length -1], 
@@ -245,13 +247,41 @@ const primeiraDoseDesafio = () => {
     }
 //  Sua lógica aqui
 }
-console.log(primeiraDoseDesafio())
+primeiraDoseDesafio()
+//console.log(usuarios)
+
 const segundaDoseDesafio = (nomeDoUsuario) => {
-    //  Sua lógica aqui
+    for (let i = 0; i < usuarios.length; i++)
+        if(nomeDoUsuario === usuarios[i].nome){
+            usuarios[i].imunizacao = "completa"
+        }
+    return usuarios
 }
-console.log(segundaDoseDesafio("ALGUM NOME AQUI"));
+console.log(segundaDoseDesafio("Carlos"));
 
 const avisoAosAtrasadosDesafio = () => {
-    //  Sua lógica aqui
+    let data  = new Date
+    for (let i = 0; i < usuarios.length; i++) {//USAR SWITCH
+        /*if (usuarios[i].imunizacao == "incompleta"){
+            if (usuarios[i].vacina == "coronavac"){
+                tempo = 28
+                data.setDate(data.getDate() + tempo)
+                const dataFormatada = data.toLocaleDateString()
+                console.log(usuarios[i].nome + " a data de vacina é " + dataFormatada )
+            }
+            if (usuarios[i].vacina == "astrazenica"){
+                tempo = 90
+                data.setDate(data.getDate() + tempo)
+                const dataFormatada = data.toLocaleDateString()
+                console.log(usuarios[i].nome + " a data de vacina é " + dataFormatada )
+            }
+            if (usuarios[i].vacina == "pfizer"){
+                tempo = 90
+                data.setDate(data.getDate() + tempo)
+                const dataFormatada = data.toLocaleDateString()
+                console.log(usuarios[i].nome + " a data de vacina é " + dataFormatada )
+            }
+        }
+    }  
 }
-console.log(avisoAosAtrasadosDesafio());
+avisoAosAtrasadosDesafio()*/
