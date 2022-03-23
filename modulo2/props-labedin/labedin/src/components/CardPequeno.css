@@ -2,19 +2,19 @@
     display: flex;
     align-items: center;
     border: 1px solid black;
-    padding: 0px 50px;
+    padding: 20px 20px;
     margin-bottom: 10px;
-    height: 80px;
+    height: 60px;
 }
 
 .pequenocard-container > img {
-    width: 200px;
-    margin-right: 10px;
+    width: 40px;
+    margin-right: 50px;
     border-radius: 50%;
 }
 
 .pequenocard-container h4 {
-    margin-bottom: 15px;
+    margin-bottom: 5px;
 }
 
 .pequenocard-container > div {

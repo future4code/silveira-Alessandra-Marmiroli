@@ -4,6 +4,8 @@ import CardGrande from './components/CardGrande/CardGrande';
 import CardPequeno from './components/CardPequeno';
 import ImagemButton from './components/ImagemButton/ImagemButton';
 import ImagemAlessandra from './img/ale.jpg';
+import ImagemEmail from './img/Email.ico';
+import ImagemLocal from './img/local.ico';
 
 
 function App() {
@@ -23,10 +25,14 @@ function App() {
         />
       </div>
       
-      <CardPequeno info="E-mail: alessandramarmiroli@gmail.com" className="pequenocard-container">
+      <CardPequeno 
+      imagem={ImagemEmail} 
+      info="E-mail: alessandramarmiroli@gmail.com" className="pequenocard-container">
       </CardPequeno>
 
-      <CardPequeno info="Rua Guadalajara, 185"
+      <CardPequeno
+      imagem={ImagemLocal}
+      info="Rua Guadalajara, 185"
       className="pequenocard-container">
       </CardPequeno>
 

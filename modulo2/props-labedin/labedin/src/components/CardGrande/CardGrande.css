@@ -4,11 +4,11 @@
     border: 1px solid black;
     padding: 20px 10px;
     margin-bottom: 10px;
-    height: 200px;
+    height: 250px;
 }
 
 .bigcard-container > img {
-    width: 70px;
+    width: 60px;
     margin-right: 10px;
     border-radius: 50%;
 }
