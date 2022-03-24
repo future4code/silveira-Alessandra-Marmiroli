@@ -13,11 +13,21 @@ const MainContainer = styled.div`
   align-items: center;
 `
 
-class App extends React.Component {
-  render() {
+export default class App extends React.Component {
+    state = {
+      usuario: [
+      {nomeUsuario: "paulinha", fotoUsuario: "https://picsum.photos/50/50", fotoPost: "https://picsum.photos/200/150"},
+      {nomeUsuario: "alessandra", fotoUsuario: "MinhaFoto", fotoPost:"https://picsum.photos/200/151"},
+      {nomeUsuario:"casanova", fotoUsuario: "https://picsum.photos/50/50", fotoPost: "https://picsum.photos/200/152"}
+      ],
+    }
+    render(){
+      const componentesUsuario = this.state.usuario.map((usuario) =>{
+      })
+
     return (
       <MainContainer>
-        <Post
+        {/* <Post
           nomeUsuario={'paulinha'}
           fotoUsuario={'https://picsum.photos/50/50'}
           fotoPost={'https://picsum.photos/200/150'}
@@ -31,11 +41,12 @@ class App extends React.Component {
           nomeUsuario={'casanova'}
           fotoUsuario={'https://picsum.photos/50/50'}
           fotoPost={'https://picsum.photos/200/152'}
-        />
+        /> */}
       </MainContainer>
-    );
+    )
+    }
   }
-}
-export default App;
+
+
 
 
