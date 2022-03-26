@@ -1,70 +1,94 @@
 
 import React from "react"
-import logo from './logo.svg';
 import './App.css';
 import styled from "styled-components";
+import imagem from './img/florazul.jpg';
 
 
+const Main = styled.main`
+  border: 1px solid black;
+  height: 100vh;
+  width: 46%;
+  margin: 0 30%;
+  display: grid;
+  grid-template: column;
+  grid-template-rows: 96.5fr 3.5fr;
+  align-items: flex-end;
+  background-color:#87CEEB;
 
-// const telaGrande = styled.div`
-//   width: 50px;
-//   height: 50px;
-// `
+`
 
+const ContainerArea = styled.div`
+  width: 100wh;
+  padding: 0 3%;
+  margin: 10px;
+
+`
+const divContainer = styled.div`
+  color: blue;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-around;
+`
 
 
 export default class App extends React.Component {
   state = {
-    usuarioWhats:[
-    {usuarioNome: "", usuarioMensagem:""}
-    ]
+    whatsMensagem:[{
+    NomeDoUsuario: "",
+    MensagemDoUsuario:""
+  }],
+    inputDoUsuario:"",
+    inputDaMensagem:""
   }
-  onChangeUsuarioNome = (event) => {
-    this.setState({
-      usuarioNome: event.target.value
-    });
-  };
-  onChangeUsuarioMensagem = (event) => {
-    this.setState({
-      usuarioMensagem: event.target.value
-    });
-}
-usuario = () =>{
-  let usuario = {
-    usuarioNome: this.state.usuarioNome,
-    usuarioMensagem: this.state.usuarioMensagem
+  
+  onChangeNomeDoUsuario = (event) => {
+    this.setState({inputDoUsuario: event.target.value})
   }
-  const mensagemNova = [...this.state.usuarioWhats, usuario];
-      this.setState({
-        usuarioWhats: mensagemNova,
-        usuarioNome:"",
-        usuarioMensagem:"",
-        
-      })
+  onChangeMensagemDoUsuario = (event) => {
+    this.setState({inputDaMensagem: event.target.value})
+  }
+  
+  usuario = () =>{
+    const usuario1 = {
+      NomeDoUsuario: this.state.inputDoUsuario,
+      MensagemDoUsuario: this.state.inputDaMensagem
+    }
+    const mensagemNova = [...this.state.whatsMensagem, usuario1];
+        this.setState({
+          whatsMensagem: mensagemNova,
+          inputDaMensagem:"",
+          
+        })
 }
 render(){
-return(
-<main>
-  
-    <div>  
+  const infoMensagem = this.state.whatsMensagem.map((msg)=>{
+    return (
       <div>
-          <input
-          placeholder="Usuario"
-          value={this.state.usuarioNome}
-          onChange={this.onChangeUsuarioNome}/>
+        <p>{msg.NomeDoUsuario}: {msg.MensagemDoUsuario}</p>
       </div>
+    );
+  });
 
-      <div>
-          <input
-          placeholder="Mensagem"
-          value={this.state.usuarioMensagem}
-          onChange={this.onChangeUsuarioMensagem}/>
-      </div>  
-    </div>
-    <div>
-      <button onClick={this.usuario}>Adicionar</button>
-    </div>
+return(
+  <Main>
+        <ContainerArea>
+          {infoMensagem}
+        </ContainerArea>
 
-  
-</main>
+          <divContainer>
+              <input
+              placeholder="Usuario"
+              value={this.state.inputDoUsuario}
+              onChange={this.onChangeNomeDoUsuario}/>
+          
+              <input
+              placeholder="Mensagem"
+              value={this.state.inputDaMensagem}
+              onChange={this.onChangeMensagemDoUsuario}/>
+            
+          <button onClick={this.usuario}>Adicionar</button>
+        </divContainer>
+  </Main>
 )}}
