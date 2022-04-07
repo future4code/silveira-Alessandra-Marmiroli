@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import styled from 'styled-components'
+import styled from 'styled-components';
 import TelaCadastro from "./components/TelaCadastro";
 import TelaListaUsuarios from "./components/TelaListaUsuarios";
 
