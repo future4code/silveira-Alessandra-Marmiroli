@@ -12,11 +12,11 @@ export default class App extends React.Component {
   escolherTela = () => {
     switch (this.state.tela){
       case "criarPlaylist":
-        return <VejaPlaylist />
+        return <criarPlaylist  />
       case "VejaPlaylist":
-        return <criarPlaylist />
+        return <VejaPlaylist />
         default:
-          return <criarPlaylist />
+          return alert (`Erro!`)
     }
   }
 
@@ -80,6 +80,7 @@ export default class App extends React.Component {
         <input value={this.state.nomePlaylist} onChange={this.onChangeName}placeholder={"Nome da sua Playlist"}/>
         <button onClick={this.criarUsuario}>Criar</button>
         <button onClick={() => this.mudarTela("VejaPlaylist")}>Lista da Playlist</button>
+        {this.escolherTela()}
       </div>
       
     )
