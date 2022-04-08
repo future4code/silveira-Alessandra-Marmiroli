@@ -5,7 +5,8 @@ import styled from "styled-components"
 
 export default class VejaPlaylist extends React.Component {
     state = {
-        playlist: []
+        playlist: [],
+               
     };
 
     componentDidMount(){
@@ -13,24 +14,26 @@ export default class VejaPlaylist extends React.Component {
     }
     
     verPlaylist = () =>{
-    const url = "https://us-central1-labenu-apis.cloudfunctions.net/labenusers/users";
+    const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists";
    
     axios.get (url, {
       headers: {
         Authorization: "alessandra-sandeski-silveira"
     }})
     .then((res) => {
-        console.log(res.data.result.list)
-        this.state.verPlaylist
+        this.setState({playlist: res.data.result.list})
     })
-    .catch((err)=> console.log(err.response))
+    .catch((err)=> console.log(err.response.data))
     }        
     render(){
         const listaDePlaylist = this.state.playlist.map((playlist)=>{
-           return<li>{playlist}</li>;
+           return<li>{playlist.name}</li>;
         })
         return(
-            <ul>{listaDePlaylist}</ul>
+            <div>
+              <ul>{listaDePlaylist}</ul>
+            </div>
+            
         )
     }
         
