@@ -11,7 +11,7 @@ export default class App extends React.Component {
         tela:"criarPlaylist",
         
   }
-  escolherTela = () => {
+  escolherTela = () => {/**Essa função escolhe a tela baseada no estado */
     switch (this.state.tela){
       case "criarPlaylist":
         return <CriarPlaylist valueInput={this.state.nomePlaylist} onChangeCriarPlaylist={this.onChangeName} onClickCriarUsuario={this.criarUsuario}/>
@@ -49,6 +49,7 @@ export default class App extends React.Component {
       alert ("Erro! Tente novamente")
     })
   }
+  
   
   render(){
     return(

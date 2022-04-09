@@ -24,11 +24,37 @@ export default class VejaPlaylist extends React.Component {
         this.setState({playlist: res.data.result.list})
     })
     .catch((err)=> console.log(err.response.data))
+    }
+
+    deletaItemDaPlaylist = (id) => {
+
+        if (window.confirm(`Tem certeza que deseja deletar?`)){
+            const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`
+            axios.delete(url,{
+                headers:{
+                    Authorization: "alessandra-sandeski-silveira"
+                }
+            })
+            .then((res) =>{
+                alert("Usuário(a) deletado(a) com sucesso!")
+            }) 
+            .catch((err)=>{
+                alert("Erro! Tente novamente")
+            })
+        }else{
+            alert(`Usuário não deletado`)
+        }
+
+
     }        
+
+    
     render(){
         const listaDePlaylist = this.state.playlist.map((playlist)=>{
-           return<li>{playlist.name}</li>;
+           return<li>{playlist.name}</li>
+         
         })
+
         return(
             <div>
               <ul>{listaDePlaylist}</ul>
@@ -36,7 +62,7 @@ export default class VejaPlaylist extends React.Component {
             
         )
     }
-        
+    
    
 }
     
