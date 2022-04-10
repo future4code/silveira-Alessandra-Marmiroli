@@ -10,31 +10,36 @@ import DetalhePlaylist from "./components/DetalhePlaylist"
 export default class App extends React.Component {
   state = {
         nomePlaylist: "",
-        tela:"criarPlaylist",
+        tela:"CriarPlaylist",/**Aqui declaramos a página inicial */
         
+  }
+  mudarTela = (nomeTela) => {
+    this.setState({tela: nomeTela})
+   
   }
   escolherTela = () => {/**Essa função escolhe a tela baseada no estado */
     switch (this.state.tela){
-      case "criarPlaylist":
+      case "CriarPlaylist":
         return <CriarPlaylist />
       case "VejaPlaylist":
         return <VejaPlaylist />
       case "AdicionarMusica":
         return <AdicionarMusica />
-        default:
-          return alert (`Erro!`)
+      case "DetalhePlaylist":
+        return <DetalhePlaylist />
+        default: 
+          return <CriarPlaylist />
     }
   }
 
-  mudarTela = (nomeTela) => {
-    this.setState({tela: nomeTela })
-    console.log(nomeTela)
-  }
+  
 
   render(){
     return(
       <div>
-        <button onClick={() => this.mudarTela("VejaPlaylist")}>Lista da Playlist</button>
+        
+        <button onClick={() => this.mudarTela("VejaPlaylist")}>Lista Playlist</button>
+        <button onClick={() => this.mudarTela("AdicionarMusica")}>Adicionar Musica</button>
         {this.escolherTela()}
       </div>
       

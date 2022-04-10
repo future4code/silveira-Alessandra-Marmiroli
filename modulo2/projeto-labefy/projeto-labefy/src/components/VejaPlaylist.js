@@ -3,8 +3,10 @@ import axios from "axios";
 import styled from "styled-components";
 
 
+
 const CardPlaylist = styled.div`
-  border: 1px solid black;
+  border: 2px solid black;
+  background-color: #DCDCDC;
   padding: 10px;
   margin: 10px;
   width: 300px;
@@ -12,15 +14,22 @@ const CardPlaylist = styled.div`
   justify-content: space-between;
 `;
 
+
+const CardDeletar = styled.button`
+  background-color:#F07862;`
+
 export default class VejaPlaylist extends React.Component {
   state = {
     playlist: [],
+    
   };
+
 
   componentDidMount() {
     this.verPlaylist();
     
 }
+
   verPlaylist = () => {
     const url =
       "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists";
@@ -38,6 +47,8 @@ export default class VejaPlaylist extends React.Component {
         alert("Ocorreu um erro tente novamente");
       });
   };
+
+
   deletaItemDaPlaylist = (id) => {
     if (window.confirm(`Tem certeza que deseja deletar?`)) {
       const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${id}`
@@ -59,16 +70,15 @@ export default class VejaPlaylist extends React.Component {
     }
   };
 
+  
   render() {
     const listaDePlaylist = this.state.playlist.map((playlist) => {
       return (
         <CardPlaylist key={playlist.id}>
           {playlist.name}
-          
-              
+           
 
-
-          <button onClick={()=> this.deletaItemDaPlaylist(playlist.id)}>X</button>
+          <CardDeletar onClick={()=> this.deletaItemDaPlaylist(playlist.id)}>X</CardDeletar>
         </CardPlaylist>
       );
     });
@@ -76,6 +86,7 @@ export default class VejaPlaylist extends React.Component {
     return (
       <div>
         <ul>{listaDePlaylist}</ul>
+        
       </div>
     );
   }
