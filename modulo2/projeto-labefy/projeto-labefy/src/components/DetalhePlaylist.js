@@ -7,33 +7,30 @@ export default class DetalhePlaylist extends React.Component{
         detalheDaPlaylist: [],
         nomeDaMusica: "",
         nomeDoArtista: "",
-        url: ""
+        urlLink: ""
 
     }
     componentDidMount () {
-        this.detalhesPlaylist();
+    this.detalhesDaPlaylist();
     }
     onChangeNome = (event) => {
-        this.setState({
-            nomeDaMusica: event.target.value
-        })
+        this.setState({nomeDaMusica: event.target.value})
     }
+
     onChangeArtista = (event) => {
-        this.setState({
-            nomeDoArtista: event.target.value
-        })
+        this.setState({nomeDoArtista: event.target.value})
     }
+
     onChangeUrl = (event) => {
-        this.setState({
-            url: event.target.value
-        })
+        this.setState({url: event.target.value})
     }
-    adicioneUmaMusica = () => {
+    
+    adicionandoUmaMusica = () => {
         const url = `https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists/${this.props.playlistId}/tracks`
         const body = {
             name: this.state.nomeDaMusica,
             artist: this.state.nomeDoArtista,
-            url: this.state.url
+            url: this.state.urlLink
         }
         axios.post(url, body, {
             headers: {
@@ -41,21 +38,16 @@ export default class DetalhePlaylist extends React.Component{
             }
         })
             .then((res) => {
-                alert("Você acaba de adicionar uma música!")
+                alert("Sua música foi adicionada!")
                 this.detalhesPlaylist();
             })
             .catch((err) => {
-                alert("Não foi possível adicionar tenten novamente")
+                alert("Erro! Tente novamente.")
             })         
     }
-
-
-    
     render(){
         return(
-            <div>
-                <button onClick={this.}>Deletar</button>
-            </div>
+            <div></div>
         )
     }
 }

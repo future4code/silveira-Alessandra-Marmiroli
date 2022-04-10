@@ -3,6 +3,8 @@ import axios from "axios"
 import styled from "styled-components"
 import VejaPlaylist from "./components/VejaPlaylist"
 import CriarPlaylist from "./components/CriarPlaylist"
+import AdicionarMusica from "./components/AdicionarMusica"
+import DetalhePlaylist from "./components/DetalhePlaylist"
 
 
 export default class App extends React.Component {
@@ -14,9 +16,11 @@ export default class App extends React.Component {
   escolherTela = () => {/**Essa função escolhe a tela baseada no estado */
     switch (this.state.tela){
       case "criarPlaylist":
-        return <CriarPlaylist valueInput={this.state.nomePlaylist} onChangeCriarPlaylist={this.onChangeName} onClickCriarUsuario={this.criarUsuario}/>
+        return <CriarPlaylist />
       case "VejaPlaylist":
         return <VejaPlaylist />
+      case "AdicionarMusica":
+        return <AdicionarMusica />
         default:
           return alert (`Erro!`)
     }
@@ -27,30 +31,6 @@ export default class App extends React.Component {
     console.log(nomeTela)
   }
 
-  onChangeName = (event)=>{
-    this.setState({})
-  }
-  onChangeLista = (event)=>{
-    this.setState({})
-  }
-  criarUsuario = () => {
-    const url = "https://us-central1-labenu-apis.cloudfunctions.net/labefy/playlists"
-    const body = {
-      name: this.state.nomePlaylist,
-   }
-    axios.post (url, body,{
-      headers: {
-        Authorization: "alessandra-sandeski-silveira"
-      }
-    }).then((res) => {
-      alert("Sucesso")
-    }).catch((err)=>{
-      console.log(err.response.data)
-      alert ("Erro! Tente novamente")
-    })
-  }
-  
-  
   render(){
     return(
       <div>
