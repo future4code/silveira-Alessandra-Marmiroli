@@ -1,7 +1,7 @@
 import React from "react"
 import axios from "axios"
 import styled from "styled-components"
-import { toHaveDisplayValue } from "@testing-library/jest-dom/dist/matchers"
+
 
 export default class CriarPlaylist extends React.Component {
     state = {
@@ -32,11 +32,11 @@ export default class CriarPlaylist extends React.Component {
       }
     render(){
         return(
-            <div> <p>Projeto Labefy</p>
+            <div> <h1>Projeto Labefy</h1>
             <input placeholder={"Nome da sua Playlist"}
             value={this.state.nomePlaylist}
             onChange={this.onChangeNome}/>
-            <button onClick={this.criandoUmaPlaylist}>Criar</button>
+            <button onClick={this.criandoUmaPlaylist}>Criar Playlist</button>
             </div>
         )
     }
