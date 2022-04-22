@@ -3,7 +3,6 @@ import axios from "axios";
 import styled from "styled-components";
 import Logo from "../img/astromatch.png";
 
-
 const MatchesContainer = styled.div`
     width: 400px;
     height: 600px;
@@ -63,7 +62,6 @@ border: 1px ridge black;
 padding: 0px 8px;
 margin-top: 15px;
 `
-
 const url =
   "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/alessandra-marmiroli-silveira/matches";
 
@@ -86,7 +84,7 @@ export default function TelaMatches(props) {
   };
   const matchesList = matches.map((match) => {
     return (
-   <CardMatch key={match.id}>
+      <CardMatch key={match.id}>
         <MatchesImg src={match.photo} alt={match.name} />
         <p>{match.name}</p>
       </CardMatch>

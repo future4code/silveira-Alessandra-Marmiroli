@@ -21,10 +21,10 @@ export default function App() {
     switch (tela) {
       case "TelaHome":
         return (
-          <TelaHome proximaPagina={proximaPagina} paginaAnterior={paginaAnterior}resetar={zerarApp}></TelaHome>
+          <TelaHome proximaPagina={proximaPagina} paginaAnterior={paginaAnterior} resetar={zerarApp}/>
         );
       case "TelaMatches":
-        return <TelaMatches paginaAnterior={paginaAnterior} proximaPagina={proximaPagina}></TelaMatches>;
+        return <TelaMatches paginaAnterior={paginaAnterior} proximaPagina={proximaPagina}/>
       default:
         return <TelaHome></TelaHome>;
     }
@@ -56,9 +56,9 @@ export default function App() {
   };
 
   return (
-    <AppContainer>
-    {mudarTela()}
-    <Button onClick={() => { zerarApp()}}>Limpar Matches</Button>
-  </AppContainer>
-);
+      <AppContainer>
+        {mudarTela()}
+        <Button onClick={() => { zerarApp()}}>Limpar Matches</Button>
+      </AppContainer>
+  );
 }

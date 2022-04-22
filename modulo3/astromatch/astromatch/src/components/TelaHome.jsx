@@ -7,7 +7,10 @@ import { createGlobalStyle } from "styled-components";
 import Coracao from '../img/coracao.png'
 import botaox from '../img/botaox.png'
 
-const logo2 = "https://get.pxhere.com/photo/network-people-business-icon-social-friend-technology-concept-management-net-leader-corporation-marketing-community-society-team-connection-organization-communication-networking-crowd-company-connect-line-art-line-circle-clip-art-symbol-graphics-1625055.jpg"; 
+
+const logo2 =
+  "https://get.pxhere.com/photo/network-people-business-icon-social-friend-technology-concept-management-net-leader-corporation-marketing-community-society-team-connection-organization-communication-networking-crowd-company-connect-line-art-line-circle-clip-art-symbol-graphics-1625055.jpg";
+
 
 const GlobalStyle = createGlobalStyle`
 * {
@@ -49,36 +52,35 @@ const BoxContainer = styled.div`
 `;
 
 const BoxTexto = styled.div`
-display: flex;
-justify-content: space-evenly;
-align-items: center;
-margin-top: 10px;
-font-size: 23px;
-`
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 23px;
+`;
 const BoxBio = styled.div`
-display: flex;
-justify-content: center;
-align-items: center;
-margin-top: 5px;
-border-top: 2px solid #000;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5px;
+  border-top: 2px solid #000;
+`;
 const ImagemMatch = styled.img`
-height: 400px;
-width: 380px;
-margin-top: 10px;
-margin-left: 8px;
-box-shadow: 2px 2px 1px 3px darkgray;
-transition: transform .5s ease;
-   :hover {
-   -webkit-transform: scale(1.1);
-   transform: scale(1.1);}
-`
+  height: 400px;
+  width: 380px;
+  margin-top: 10px;
+  margin-left: 8px;
+  box-shadow: 2px 2px 1px 2px darkgray;
+  transition: transform 0.5s ease;
+  :hover {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+`;
 const Button = styled.div`
 display: flex;
 justify-content: space-evenly;
 align-items: center;
-margin-top: 10px;
-font-size: 23px;
 margin: 5px;
 margin-bottom: 15px;
 `
@@ -114,8 +116,6 @@ margin-bottom: -10px;
    -webkit-transform: scale(1.1);
    transform: scale(1.1);}
 `
-
-
 const url =
   "https://us-central1-missao-newton.cloudfunctions.net/astroMatch/alessandra-marmiroli-silveira/person"; /**Perfil */
 const url2 =
@@ -125,42 +125,42 @@ export default function TelaHome(props) {
   const [perfil, setPerfil] = useState({});
 
   useEffect(() => {
-      getEscolhaUmPerfil()
-  }, [])
+    getEscolhaUmPerfil();
+  }, []);
 
   const getEscolhaUmPerfil = () => {
-      axios
-          .get(url)
-          .then((res) => {
-              setPerfil(res.data.profile)
-          })
-          .catch((err) => {
-              alert("Erro!")
-          })
-  }
+    axios
+      .get(url)
+      .then((res) => {
+        setPerfil(res.data.profile);
+      })
+      .catch((err) => {
+        alert("Erro!");
+      });
+  };
 
   const escolhePerfil = (boolean) => {
-      const headers = {
-          "Content-Type": "application/json"
-      }
-      const body =
-      {
-          "id": perfil.id,
-          "choice": boolean
-      }
-      axios
-          .post(url2, body, headers)
-          .then((res) => {
-             getEscolhaUmPerfil()
-          })
-          .catch((err) => {
-              alert("Puxa! Erro...")
-          })
-
-  }
+    const headers = {
+      "Content-Type": "application/json",
+    };
+    const body = {
+      id: perfil.id,
+      choice: boolean,
+    };
+    axios
+      .post(url2, body, headers)
+      .then((res) => {
+        getEscolhaUmPerfil();
+        
+      })
+      .catch((err) => {
+        alert("Puxa! Erro...");
+      });
+  };
 
   return (
     <BoxContainer>
+      <GlobalStyle />
       <Container>
         <Div>
           <img src={Logo} alt="Logo Astromatch" />
