@@ -9,6 +9,13 @@ const AppContainer = styled.div`
    box-sizing: border-box;
 `;
 
+const Button = styled.button`
+    position: fixed;
+    bottom: 5px;
+    right: 5px;
+ 
+`
+
 export default function App() {
   const [tela, setTela] = useState("TelaHome");
 
@@ -16,20 +23,20 @@ export default function App() {
     switch (tela) {
       case "TelaHome":
         return (
-          <TelaHome proximaPagina={proximaPagina} resetar={zerarApp}></TelaHome>
+          <TelaHome proximaPagina={proximaPagina} paginaAnterior={paginaAnterior} resetar={zerarApp}/>
         );
       case "TelaMatches":
-        return <TelaMatches paginaAnterior={paginaAnterior}></TelaMatches>;
+        return <TelaMatches paginaAnterior={paginaAnterior} proximaPagina={proximaPagina}/>
       default:
         return <TelaHome></TelaHome>;
     }
   };
   const proximaPagina = () => {
-    setTela("TelaHome");
+    setTela("TelaMatches");
   };
 
   const paginaAnterior = () => {
-    setTela("TelaMatches");
+    setTela("TelaHome");
   };
 
   const zerarApp = async () => {
@@ -53,6 +60,7 @@ export default function App() {
   return (
       <AppContainer>
         {mudarTela()}
+        <Button onClick={() => { zerarApp()}}>Limpar Matches</Button>
       </AppContainer>
   );
 }
