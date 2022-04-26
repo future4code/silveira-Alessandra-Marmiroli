@@ -1,11 +1,22 @@
 import React from 'react';
-// import axios from 'axios';
-import styled from "styled-components"
+import { useNavigate } from 'react-router-dom';
 
 export default function ListTripPage() {
+  const navigate = useNavigate()
+
+  const goBack = () => {
+    navigate (-1)
+  }
+
+  const goToApplicationFormPage = () =>{
+    navigate ("/ApplicationFormPage")
+  }
+
     return (
       <div>
-        <h1>Página Lista</h1>
+        <h1>Lista De Viagens</h1>
+        <button onClick={goBack}>Voltar</button>
+        <button onClick={goToApplicationFormPage}>Inscrever-se</button>
       </div>
     );
   }

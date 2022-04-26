@@ -1,7 +1,7 @@
 import React from 'react';
-// import axios from 'axios';
 import styled from 'styled-components';
 import { createGlobalStyle } from "styled-components";
+import { useNavigate } from 'react-router-dom';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -36,7 +36,7 @@ padding: 0px 8px;
 margin-top: 60px;
 border-radius: 15px;
 padding: 10px 40px;
-margin-left: 45%`
+margin-left: 45%;`
 
 const Div = styled.div`
     background-image: url("https://c.pxhere.com/photos/4b/ca/fantasy_mac_irxsiempre-741629.jpg!d");
@@ -44,14 +44,23 @@ const Div = styled.div`
     height: 100vh;
 `;
 
-
 export default function HomePage() {
+  const navigate = useNavigate()
+
+  const goToListTripsPage = () =>{
+    navigate ("/ListTripsPage")
+  }
+
+  const goToLoginPage = () =>{
+    navigate ("/LoginPage")
+  }
+
     return (
       <Div>
           <GlobalStyle />
           <H1>LabeX</H1>
-        <Button>Ver Viagens</Button>
-        <Button>Área de Admin</Button>
+        <Button onClick={goToListTripsPage}>Ver Viagens</Button>
+        <Button onClick={goToLoginPage}>Área de Admin</Button>
       </Div>
     );
   }
