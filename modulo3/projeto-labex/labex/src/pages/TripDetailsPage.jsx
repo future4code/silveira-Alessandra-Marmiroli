@@ -5,9 +5,10 @@ import axios from 'axios';
 
 export default function TripDetailsPage() {
   useEffect (()=> {
-    axios.get("https://us-central1-labenu-apis.cloudfunctions.net/labeX/alessandra-marmiroli-silveira/trip/8bblvTc9IRXqMb5YELPQ",{
+    const token = localStorage.getItem ('token')
+    axios.get(`https://us-central1-labenu-apis.cloudfunctions.net/labeX/alessandra-marmiroli-silveira/trip/{params.id}`, {
       headers: {
-        auth: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IkNmbjZPd0YyOVU5TDJSYzV0UWo1IiwiZW1haWwiOiJhc3Ryb2RldkBnbWFpbC5jb20uYnIiLCJpYXQiOjE1NzMxNDM4Njh9.mmOrfGKlXpE3pIDUZfS3xV5ZwttOI2Exmoci9Sdsxjs'
+        auth: token
       }
     })
       .then((response)=>{
