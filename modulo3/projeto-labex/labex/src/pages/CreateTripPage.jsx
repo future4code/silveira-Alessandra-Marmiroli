@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useProtectedPage } from "./hooks/useProtectedPage";
+import { useEffect, useState } from "react";
+import axios from 'axios'; 
+import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const Div = styled.div`

@@ -16,6 +16,14 @@ const Button = styled.button`
   background-color: purple;
   min-width: 100px;
 `;
+
+const Btn = styled.div`
+  display: flex;
+    justify-content: space-around;
+    width: 500px;
+    margin: 10px 0px;
+    align-items: center;
+`
 const H1 = styled.h1`
   display: block;
   font-size: 2em;
@@ -31,6 +39,7 @@ const Div = styled.div`
   flex-direction: column;
   justify-content: center;
   width: 500px;
+  align-items: center;
 `;
 
 const Body = styled.body`
@@ -44,6 +53,19 @@ const Body = styled.body`
   -webkit-box-align: center;
   align-items: center;
 `;
+
+const Boxtrip = styled.div`
+    display: flex;
+    box-shadow: rgb(0 0 0 / 30%) 0px 4px 8px 0px;
+    padding: 10px 20px;
+    border-radius: 4px;
+    margin: 10px 0px;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+    width: 460px;`
+
 export default function AdminHomePage() {
  const [tripsPage, setTripsPage] = useState([]);
 
@@ -110,21 +132,21 @@ export default function AdminHomePage() {
     tripsPage &&
     tripsPage.map((trip) => {
       return (
-        <div
-          Key={trip.id}
-          onClick={() => {
-            goToTripDetailsPage(trip.id);
-          }}
-        >
-          <p>{trip.name}</p>
-          <button
-            onClick={() => {
-              deletarTrip(trip.id);
-            }}
-          >
-            Excluir
-          </button>
-        </div>
+            <div
+              Key={trip.id}
+              onClick={() => {
+                goToTripDetailsPage(trip.id);
+              }}
+            >
+              <p>{trip.name}</p>
+              <Button
+                onClick={() => {
+                  deletarTrip(trip.id);
+                }}
+              >
+                Excluir
+              </Button>
+            </div>
       );
     });
 
@@ -138,7 +160,7 @@ export default function AdminHomePage() {
     <Div>
       <H1>Painel Administrativo</H1>
 
-      <div>{tripsList}</div>
+      <Boxtrip>{tripsList}</Boxtrip>
       
         <Button onClick={goBack}>Voltar</Button>
         <Button onClick={goToCreateTripPage}>Criar Viagem</Button>
