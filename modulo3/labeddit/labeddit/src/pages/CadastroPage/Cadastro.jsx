@@ -1,18 +1,65 @@
-import React from "react"
+import { Button, TextField } from "@material-ui/core";
+import React from "react";
+import { ButtonContainer, InputsContainer, ScreenContainer } from "./styled";
+import useForm from "../../hooks/useForm";
 
-const Cadastro = ()=>{
-    return (
-        <div>
-            <h1>Olá, boas vindas ao LabEddit</h1>
-            <input placeholder="Nome de usuário"></input>
-            <input placeholder="E-mail"></input>
-            <input placeholder="Senha"></input>
-            <p>Ao continuar, você concorda com o nosso Contrato de usuário e nossa Política de Privacidade</p>
-            <input type="checkbox"></input>
-            <p>Eu concordo em receber emails sobre coisas legais no Labeddit</p>
-            <button>Cadastrar</button>
-        </div>
-    )
-}
+const Cadastro = () => {
+  const [form, onChange, clear] = useForm({ name:"", email: "", password: "" });
 
-export default Cadastro 
+  const onSubmitForm = (event) => {
+    event.preventDefault();
+  };
+  return (
+    <ScreenContainer>
+      <h1>Olá, boas vindas ao LabEddit</h1>
+      <InputsContainer>
+        <form onSubmit={onSubmitForm}>
+        <TextField
+            name={"Nome do Usuário"}
+            value={form.name}
+            onChange={onChange}
+            label={"Nome do Usuário"}
+            variant={"outlined"}
+            fullWidth
+            margin={"normal"}
+            required
+            type={"name"}
+          />
+          <TextField
+            name={"email"}
+            value={form.email}
+            onChange={onChange}
+            label={"E-mail"}
+            variant={"outlined"}
+            fullWidth
+            margin={"normal"}
+            required
+            type={"email"}
+          />
+          <TextField
+            name={"password"}
+            value={form.password}
+            onChange={onChange}
+            label={"Senha"}
+            variant={"outlined"}
+            fullWidth
+            margin={"normal"}
+            required
+            type={"password"}
+          />
+        </form>
+        <ButtonContainer
+          type={"submit"}
+          fullWidth
+          variant={"contained"}
+          color={"primary"}
+        >
+          Fazer Login
+        </ButtonContainer>
+      </InputsContainer>
+      <Button>Cadastrar</Button>
+    </ScreenContainer>
+  );
+};
+
+export default Cadastro;

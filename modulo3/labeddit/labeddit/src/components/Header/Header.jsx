@@ -8,7 +8,7 @@ const Header = () => {
   return (
       <AppBar position="static">
         <StyledToolbar>
-          <Button color="inherit" variant="h6">
+          <Button color="primary" variant="contained">
             LabeEddit
           </Button>
           <Button color="inherit">Login</Button>
