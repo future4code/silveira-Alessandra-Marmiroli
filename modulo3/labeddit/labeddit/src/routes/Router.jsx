@@ -7,14 +7,14 @@ import ErrorPage from "../pages/PaginaErro/ErrorPage"
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Header from "../components/Header/Header"
 
-const Router = () =>{
+const Router = ({buttonHeader, setButtonHeader}) =>{
     return (
         <BrowserRouter>
-            <Header />
+            <Header buttonHeader={buttonHeader} setButtonHeader={setButtonHeader}/>
             <Routes>
-                <Route index element = {<Login />} />
+                <Route index element = {<Login buttonHeader={buttonHeader} setButtonHeader={setButtonHeader}/>} />
                 <Route path="/cadastro" element={<Cadastro />}/>
-                <Route path="/feed" element={<Feed />}/>
+                <Route path="/feed" element={<Feed buttonHeader={buttonHeader} setButtonHeader={setButtonHeader}/>}/>
                 <Route path="/post/:id" element={<Post />}/>
                 <Route path="/erro" element={<ErrorPage />} />
             </Routes>

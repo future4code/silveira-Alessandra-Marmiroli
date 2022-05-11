@@ -20,7 +20,7 @@ export const ButtonContainer = styled.button`
 `
 export const LogoImage = styled.img`
     width: 70vw;
-    max-width: 350px;
+    max-width: 450px;
     padding-top: 6px;
 `
 export const Text = styled.p`

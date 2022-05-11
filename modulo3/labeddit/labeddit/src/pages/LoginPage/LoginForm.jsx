@@ -1,27 +1,29 @@
-import { TextField } from "@material-ui/core";
+import { Button, TextField } from "@material-ui/core";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-import {InputsContainer } from "./styled";
+import { login } from "../../services/users";
+import { InputsContainer } from "./styled";
 
-
-const LoginForm = () => {
-  const [form, onChange, clear] = useForm({ name: "", password: "" });
+const LoginForm = ({buttonHeader, setButtonHeader}) => {
+  const [form, onChange, clear] = useForm({ email: "", password: "" });
+  const navigate = useNavigate();
 
   const onSubmitForm = (event) => {
-    console.log(form)
     event.preventDefault();
+    console.log(form);
+    login(form, clear, navigate, setButtonHeader);
+
   };
 
-  const navigate = useNavigate();
   return (
     <InputsContainer>
       <form onSubmit={onSubmitForm}>
         <TextField
-          name={"Nome do Usuário"}
-          value={form.name}
+          name={"email"}
+          value={form.email}
           onChange={onChange}
-          label={"Nome do Usuário"}
+          label={"E-mail"}
           variant={"outlined"}
           fullWidth
           margin={"normal"}
@@ -39,6 +41,9 @@ const LoginForm = () => {
           required
           type={"password"}
         />
+        <Button type="submit" variant={"text"}>
+          Continuar
+        </Button>
       </form>
     </InputsContainer>
   );
