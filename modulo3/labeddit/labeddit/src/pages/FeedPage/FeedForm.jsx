@@ -1,74 +1,83 @@
-import { TextField } from "@material-ui/icons";
+import {
+  Button,
+  Input,
+  TextareaAutosize,
+  TextField,
+  InputAdornment,
+} from "@material-ui/core";
 import axios from "axios";
-import React from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from "react";
 import { BASE_URL } from "../../constants/urls";
+import useForm from "../../hooks/useForm";
+import styled from "styled-components";
+import { ButtonB, Form } from "./styled";
 
 const FeedForm = () => {
-  const navigate = useNavigate();
-  const [loading, setLoading] = useState(false);
-  const [form, onChange, clear] = useForm({ title: "", description: "" });
+  const [form, onChange, clear] = useForm({ title: "", body: "" });
 
   const creatCommentsFeed = () => {
     axios
-      .post(`${BASE_URL}`, {
+      .post(`${BASE_URL}posts`, form, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
       })
-      .then((res) => console.log(res))
-    //   alert (res.data.message)
-    //   clear()
-      alert ("Post criado com sucesso!")
-      .catch((err) => console.log(err));
-      alert(err.response.message)
-      alert("Erro, tente novamente")
+      .then((res) => {
+        console.log();
+        clear();
+        alert("Post adicionado com sucesso!");
+      })
+      .catch((err) => {
+        console.log();
+        clear();
+        alert("Erro, tente novamente");
+      });
   };
-
   const onSubmitForm = (event) => {
     event.preventDefault();
     console.log(form);
     creatCommentsFeed();
-    // clear();
+    clear();
   };
 
   return (
-    <InputsContainer>
-      <form onSubmit={onSubmitForm}>
-        <TextField
-          name={"title"}
-          value={form.title}
-          onChange={onChange}
-          label={"Título"}
-          variant={"outlined"}
-          fullWidth
-          required
-          autoFocus
-          margin={"normal"}
-        />
-        <TextField
-          name={"description"}
-          value={form.description}
-          onChange={onChange}
-          label={"Descrição"}
-          variant={"outlined"}
-          fullWidth
-          margin={"normal"}
-          required
-        />
-
-        <Button
-          type="submit"
-          variant={"contained"}
-          align={"center"}
-          color={"primary"}
-          fullWidth
-        >
-          Adicionar Comentário
-        </Button>
-      </form>
-    </InputsContainer>
+    <>
+          <Form onSubmit={onSubmitForm}>
+            <TextField
+              name={"title"}
+              value={form.title}
+              onChange={onChange}
+              label={"Título"}
+              variant={"outlined"}
+              fullWidth
+              required
+              autoFocus
+              margin={"normal"}
+            />
+            <TextField
+              name={"body"}
+              value={form.body}
+              onChange={onChange}
+              label={"Descrição"}
+              variant={"outlined"}
+              fullWidth
+              margin={"normal"}
+              required
+            />
+            <Button
+              type="submit"
+              variant={"contained"}
+              align={"center"}
+              color={"primary"}
+              fullWidth
+            >
+              Adicionar Comentário
+            </Button>
+          </Form>
+      
+   
+    </>
   );
 };
 
-export default creatCommentsFeed;
+export default FeedForm;

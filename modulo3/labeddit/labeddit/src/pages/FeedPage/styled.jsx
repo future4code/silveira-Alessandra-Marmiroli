@@ -12,6 +12,7 @@ export const ListContainer = styled.div`
 export const ContainerListPost = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 
 export const ButtonList = styled(Fab)`
@@ -19,4 +20,9 @@ export const ButtonList = styled(Fab)`
   right: 20px;
   bottom: 20px;
   z-index: 3;
+`;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
 `;
