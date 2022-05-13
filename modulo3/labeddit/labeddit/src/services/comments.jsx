@@ -1,26 +1,17 @@
 import axios from "axios"
 import { BASE_URL } from "../constants/urls";
-import { goToFeed } from "../routes/coordinator";
+import { goTo } from "../routes/coordinator";
 
-export const posts = () =>{
-    axios.post (`${BASE_URL}posts`)
+export const createCommentVote = (id) =>{
+//     HEADERS
+// Authorization
+// {{token}}
+// BODYraw
+// {
+// 	"direction": 1
+// }
+    axios.post (`${BASE_URL}comments/:id/votes`, body)
     .then((res)=>{
-    // localStorage.setItem("token", res.data.token)
-    clear()
-    // goToFeed(navigate)   
-    })
-    .catch((err)=>{
-        console.log(err)
-    // alert(err.response.data.message)
-    })
-}
-
-export const commentsPosts = (body, clear, navigate) =>{
-    axios.post (`${BASE_URL}posts/:id/comments`, body)
-    .then((res)=>{
-    localStorage.setItem("token", res.data.token)
-    clear()
-    goToFeed(navigate)   
     })
     .catch((err)=>{
         console.log(err)
@@ -28,12 +19,15 @@ export const commentsPosts = (body, clear, navigate) =>{
     })
 }
 
-export const creatPost = (body, clear, navigate) =>{
-    axios.post (`${BASE_URL}posts`, body)
+export const changeCommentVote = (id) =>{
+//     HEADERS
+// Authorization {{token}}
+// BODYraw
+// {
+// 	"direction": -1
+// }
+    axios.put (`${BASE_URL}comments/:id/votes`, body)
     .then((res)=>{
-    localStorage.setItem("token", res.data.token)
-    clear()
-    goToFeed(navigate)   
     })
     .catch((err)=>{
         console.log(err)
@@ -41,15 +35,15 @@ export const creatPost = (body, clear, navigate) =>{
     })
 }
 
-export const createComments = (body, clear, navigate) =>{
-    axios.post (`${BASE_URL}posts/:id/comments`, body)
+export const deletePostVote = (id) =>{
+    // HEADERS
+    // Authorization {{token}}
+    axios.del (`${BASE_URL}posts/:id/votes`, body)
     .then((res)=>{
-    localStorage.setItem("token", res.data.token)
-    clear()
-    goToFeed(navigate)   
     })
     .catch((err)=>{
         console.log(err)
     alert(err.response.data.message)
     })
 }
+

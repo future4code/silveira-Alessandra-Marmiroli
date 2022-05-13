@@ -19,7 +19,7 @@ const Login = ({buttonHeader, setButtonHeader}) => {
       <Text>O projeto de rede social da Labenu</Text>
       <LoginForm buttonHeader={buttonHeader} setButtonHeader={setButtonHeader}/>
      
-      <Button onClick={() => goToCadastro(navigate)}>Crie uma conta!</Button>
+      <Button variant={"contained"} color={"primary"} onClick={() => goToCadastro(navigate)}>Crie uma conta!</Button>
       <LogoImage src={Logo2} />
     </ScreenContainer>
   );

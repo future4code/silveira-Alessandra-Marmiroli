@@ -12,6 +12,7 @@ const Router = ({buttonHeader, setButtonHeader}) =>{
         <BrowserRouter>
             <Header buttonHeader={buttonHeader} setButtonHeader={setButtonHeader}/>
             <Routes>
+                
                 <Route index element = {<Login buttonHeader={buttonHeader} setButtonHeader={setButtonHeader}/>} />
                 <Route path="/cadastro" element={<Cadastro />}/>
                 <Route path="/feed" element={<Feed buttonHeader={buttonHeader} setButtonHeader={setButtonHeader}/>}/>

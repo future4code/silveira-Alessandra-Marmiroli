@@ -6,7 +6,7 @@ import Logo2 from "../../Assets/fundo4.jpg";
 import useUnprotectedPage from "../../hooks/useUnprotectedPage";
 
 const Cadastro = () => {
-  useUnprotectedPage()
+ 
   return (
     <ScreenContainer>
       <LogoImage src={Logo} />

@@ -1,33 +1,38 @@
-import React from "react"
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
+import React from "react";
+import useProtectedPage from "../../hooks/useProtectedPage";
+import { ContainerFeed } from "./styled";
+import { Button, Card, CardActions, Typography } from "@material-ui/core";
 
-const FeedCard = () => {
+
+const FeedCard = (props) => {
+  useProtectedPage();
+  const { title, body, username, userVote, commentCount, voteSum, id } =
+    props.post;
   return (
-    <Card sx={{ maxWidth: 345 }}>
-        {/* onClick={props.onClick} */}
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height={"150px"}
-          image={[]}
-          title={[]}
-         
-        />
-        <CardContent>
-          <Typography align={'center'}>
-            {/* {props.title.toUpperCase()} */}
-          </Typography>
-          {/* <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography> */}
-        </CardContent>
-      </CardActionArea>
-    </Card>
+    <ContainerFeed align={"center"}>
+      <Card sx={{ maxWidth: 345 }}>
+        <Typography variant="h5" align={"center"}>
+          {title.toUpperCase()}
+        </Typography>
+        <Typography variant="body2" align={"center"}>
+          {username.toUpperCase()}
+        </Typography>
+        <Typography variant="body2" align={"center"}>
+          {body}
+        </Typography>
+
+        <CardActions>
+          <Button color={"primary"} variant={"contained"}>Like</Button>
+          <Button  color={"primary"} variant={"contained"}>Deslike</Button>
+          <Button
+            variant={"contained"}
+            onClick={() => props.onClickDetalhes(id)}
+          >
+           Comentários
+          </Button>
+        </CardActions>
+      </Card>
+    </ContainerFeed>
   );
-}
-export default FeedCard
+};
+export default FeedCard;

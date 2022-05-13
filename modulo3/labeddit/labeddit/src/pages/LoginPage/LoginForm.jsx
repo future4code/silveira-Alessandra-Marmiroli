@@ -5,7 +5,7 @@ import useForm from "../../hooks/useForm";
 import { login } from "../../services/users";
 import { InputsContainer } from "./styled";
 
-const LoginForm = ({buttonHeader, setButtonHeader}) => {
+const LoginForm = ({ buttonHeader, setButtonHeader }) => {
   const [form, onChange, clear] = useForm({ email: "", password: "" });
   const navigate = useNavigate();
 
@@ -13,7 +13,6 @@ const LoginForm = ({buttonHeader, setButtonHeader}) => {
     event.preventDefault();
     console.log(form);
     login(form, clear, navigate, setButtonHeader);
-
   };
 
   return (
@@ -41,7 +40,7 @@ const LoginForm = ({buttonHeader, setButtonHeader}) => {
           required
           type={"password"}
         />
-        <Button type="submit" variant={"text"}>
+        <Button type="submit" variant={"contained"} align={"center"}>
           Continuar
         </Button>
       </form>
