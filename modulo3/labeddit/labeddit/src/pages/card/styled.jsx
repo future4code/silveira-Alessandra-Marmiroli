@@ -38,4 +38,6 @@ export const ContainerFeed = styled.div`
     margin: 20px;
     display: flex;
     flex-direction: column;
+    padding: 0px 332px;
+    align-items: center;
 `

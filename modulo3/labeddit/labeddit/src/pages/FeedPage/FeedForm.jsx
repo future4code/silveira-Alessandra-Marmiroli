@@ -4,6 +4,7 @@ import {
   TextareaAutosize,
   TextField,
   InputAdornment,
+  Typography,
 } from "@material-ui/core";
 import axios from "axios";
 import React, { useState } from "react";
@@ -41,42 +42,43 @@ const FeedForm = () => {
   };
 
   return (
-    <>
-          <Form onSubmit={onSubmitForm}>
-            <TextField
-              name={"title"}
-              value={form.title}
-              onChange={onChange}
-              label={"Título"}
-              variant={"outlined"}
-              fullWidth
-              required
-              autoFocus
-              margin={"normal"}
-            />
-            <TextField
-              name={"body"}
-              value={form.body}
-              onChange={onChange}
-              label={"Descrição"}
-              variant={"outlined"}
-              fullWidth
-              margin={"normal"}
-              required
-            />
-            <Button
-              type="submit"
-              variant={"contained"}
-              align={"center"}
-              color={"primary"}
-              fullWidth
-            >
-              Adicionar Comentário
-            </Button>
-          </Form>
-      
-   
-    </>
+    <div>
+      <Typography color={"primary"}  variant={"overline"}>
+        Crie aqui seu Comentário!
+      </Typography>
+      <Form onSubmit={onSubmitForm}>
+        <TextField
+          name={"title"}
+          value={form.title}
+          onChange={onChange}
+          label={"Título"}
+          variant={"outlined"}
+          fullWidth
+          required
+          autoFocus
+          margin={"normal"}
+        />
+        <TextField
+          name={"body"}
+          value={form.body}
+          onChange={onChange}
+          label={"Descrição"}
+          variant={"outlined"}
+          fullWidth
+          margin={"normal"}
+          required
+        />
+        <Button
+          type="submit"
+          variant={"contained"}
+          align={"center"}
+          color={"primary"}
+          fullWidth
+        >
+          Adicionar Comentário
+        </Button>
+      </Form>
+    </div>
   );
 };
 

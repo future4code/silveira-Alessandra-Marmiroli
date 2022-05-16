@@ -6,7 +6,7 @@ export const ListContainer = styled.div`
   flex-direction: row;
   flex-wrap: wrap;
   margin: 30;
-  padding: 10px;
+  padding: 100px;
 `;
 
 export const ContainerListPost = styled.div`

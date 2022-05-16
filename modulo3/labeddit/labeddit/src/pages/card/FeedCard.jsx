@@ -6,6 +6,7 @@ import { goToPost } from "../../routes/coordinator";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { BASE_URL } from "../../constants/urls";
+import useForm from "../../hooks/useForm";
 
 const FeedCard = (props) => {
   useProtectedPage();
@@ -13,10 +14,13 @@ const FeedCard = (props) => {
     props.post;
   console.log(props);
   const navigate = useNavigate();
+  const [like, onChange, clear] = useForm({ direction: "" });
+  // const [deslike, onChange, clear] = useForm({ direction: "" });
+
 
   //função + API de Like
 
-  const like = async () => {
+  const insertLike = async () => {
     const body = { direction: 1 };
     await axios
       .post(`${BASE_URL}posts/${id}/votes`, body, {
@@ -26,7 +30,7 @@ const FeedCard = (props) => {
       })
       .then((res) => {
         console.log();
-        alert("Post adicionado com sucesso!");
+        alert("Like adicionado!");
       })
       .catch((err) => {
         console.log();
@@ -34,17 +38,17 @@ const FeedCard = (props) => {
       });
   };
 
-  const deslike = async () => {
-    const body = { direction: - 1 };
+  const insertDeslike = async () => {
+    const body = { direction: -1 };
     await axios
-      .post(`${BASE_URL}posts/${id}/votes`, body, {
+      .put(`${BASE_URL}posts/${id}/votes`, body, {
         headers: {
           Authorization: localStorage.getItem("token"),
         },
       })
       .then((res) => {
         console.log();
-        alert("Post adicionado com sucesso!");
+        alert("Acaba de dar deslike!");
       })
       .catch((err) => {
         console.log();
@@ -52,10 +56,9 @@ const FeedCard = (props) => {
       });
   };
 
-  
   return (
     <ContainerFeed align={"center"} onClick={() => goToPost(navigate, id)}>
-      <Card >
+      <Card>
         <Typography variant="h5" align={"center"}>
           {title.toUpperCase()}
         </Typography>
@@ -65,23 +68,40 @@ const FeedCard = (props) => {
         <Typography variant="body2" align={"center"}>
           {body}
         </Typography>
+        <Card>
+          <Typography variant="body2" align={"center"}>
+            {userVote}
+          </Typography>
+        </Card>
 
         <CardActions>
           <Button
             color={"primary"}
             variant={"contained"}
-            onClick={() => like()}
+            onClick={() => insertLike()}
           >
             Like
           </Button>
-          <Button 
-          color={"primary"} 
-          variant={"contained"}
-          onClick={() => deslike()}
+          <Button variant="body2" align={"center"}>
+            {voteSum}
+          </Button>
+          <Button
+            color={"primary"}
+            variant={"contained"}
+            onClick={() => insertDeslike}
           >
             Deslike
           </Button>
         </CardActions>
+        <Button
+          variant="body2"
+          align={"center"}
+          color={"secondary"}
+          label={"Comentários"}
+        >
+          Comentários: {commentCount}
+        </Button>
+        <CardActions></CardActions>
       </Card>
     </ContainerFeed>
   );
