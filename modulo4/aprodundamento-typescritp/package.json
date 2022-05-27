@@ -11,7 +11,8 @@
     "start2": "tsc && node ./build/index2.js",
     "start3": "tsc && node ./build/index3.js",
     "start4": "tsc && node ./build/index4.js",
-    "start5": "tsc && node ./build/index5.js"
+    "start5": "tsc && node ./build/index5.js",
+    "start6": "tsc && node ./build/index6.js"
   },
   "keywords": [],
   "author": "",
