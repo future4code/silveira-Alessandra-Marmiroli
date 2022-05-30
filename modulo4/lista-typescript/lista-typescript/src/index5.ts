@@ -1,3 +1,5 @@
+import { idText } from "typescript"
+
 type Usuario = {
     name:string,
     email:string,
@@ -24,3 +26,10 @@ function dadosDoUsuario (dadosLogin:Array<Usuario>){
 }   
 
 console.log(dadosDoUsuario(dadosLogin))
+
+
+
+
+
+
+  
