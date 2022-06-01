@@ -1,7 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
 
-
 const app = express();
 
 app.use(express.json());
@@ -44,18 +43,7 @@ const titleUsers: Array<Users> =
 //EXERCICIO 04 
 
 app.get("/users", (request: Request, response: Response) => {
-    // let completed: string | boolean = request.params.completed
-    // console.log(completed)
-
-    // if (completed === "true") {
-    //     completed = true
-
-    // } else if (completed === "false") {
-    //     completed = false
-    // }else{
-    //     response.status(400).send('Preciso que passe os valores de true ou false')
-    // }
-
+   
     const returnCompleted = titleUsers.filter((title) => {
         if (title.completed === true) {
             return title
@@ -69,3 +57,27 @@ app.get("/users", (request: Request, response: Response) => {
 app.listen(3003, () => {
     console.log("Server is running in http://localhost:3003")
 });
+
+//Exercicio 05 
+
+app.post("/creatUser", (req:Request, res:Response) =>{
+
+    const userAuthorization = req.headers.authorization
+    const crieiUser = req.body.user
+    
+      console.log("Create user!")
+    
+    const query = req.body.user;
+      console.table({userAuthorization,crieiUser})
+    
+    
+      const title = {
+        userId: Date.now().toString(),
+        id:query,
+        title: [],
+        completed: Boolean, 
+      }
+          
+      
+      res.send({userAuthorization, crieiUser})
+  })

@@ -25,12 +25,27 @@ const titleUsers = [
 ];
 app.get("/users", (request, response) => {
     const returnCompleted = titleUsers.filter((title) => {
-        if (title.completed === true)
+        if (title.completed === true) {
             return title;
+        }
     });
     response.status(200).send(returnCompleted);
 });
 app.listen(3003, () => {
     console.log("Server is running in http://localhost:3003");
+});
+app.post("/creatUser", (req, res) => {
+    const userAuthorization = req.headers.authorization;
+    const crieiUser = req.body.user;
+    console.log("Create user!");
+    const query = req.body.user;
+    console.table({ userAuthorization, crieiUser });
+    const title = {
+        userId: Date.now().toString(),
+        id: query,
+        title: [],
+        completed: Boolean,
+    };
+    res.send({ userAuthorization, crieiUser });
 });
 //# sourceMappingURL=index.js.map
