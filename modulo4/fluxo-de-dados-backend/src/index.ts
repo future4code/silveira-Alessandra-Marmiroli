@@ -72,31 +72,35 @@ app.delete("/deletaProduto/:id", (request: Request, response: Response) => {
         
     }) 
 
-    response.status(200).send({deleteProduct})
+    response.status(200).send({message:'Seu produto foi deletado com Sucesso', deleteProduct})
 })
 
 
 app.post("/criaProduto2", (req: Request, res: Response) => {
-    const authorization = req.headers.authorization;
     const namePostman = String (req.body.name)
-    const pricePostman = Number (req.body.price)
+    const pricePostman = req.body.price
+
+    if (namePostman === "" || pricePostman === NaN ){
+        res.status(400).send("Todos os campos devem ser preenchidos")
+    }
+    const newPricePostman = Number (req.body.price)
 
     const criandoProduto = 
     {id:Date.now().toString(), name:namePostman, price:pricePostman} 
     products.push(criandoProduto)
 
-    if (namePostman !== "string" && pricePostman <= 0){//Se o usuário digitar o nome do produto no postman push na função
-        // products.push(criandoProduto)
-        // res.status(201).send({products})
-        res.status(400).send("Insira uma string e um numero acima de 0")
-    }
+    // if (namePostman !== "string" && pricePostman <= 0){//Se o usuário digitar o nome do produto no postman push na função
+    //     // products.push(criandoProduto)
+    //     // res.status(201).send({products})
+    //     res.status(400).send("Insira uma string e um numero acima de 0")
+    // }
     // if (pricePostman <= 0){
     //     res.status(400).send("Insira um número acima de 0")
     // }
 
        
-     // console.table(criandoProduto);
-    // res.status(200).send(products)
+    console.table(criandoProduto);
+    res.status(200).send(products)
 })
 
 

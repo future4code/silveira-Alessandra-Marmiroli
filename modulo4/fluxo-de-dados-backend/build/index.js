@@ -13,7 +13,6 @@ app.get("/test", (request, response) => {
     response.status(200).send("Testando a API!");
 });
 app.post("/criaProduto", (req, res) => {
-    const authorization = req.headers.authorization;
     const namePostman = String(req.body.name);
     const pricePostman = Number(req.body.price);
     const criandoProduto = { id: Date.now().toString(), name: namePostman, price: pricePostman };
@@ -43,17 +42,19 @@ app.delete("/deletaProduto/:id", (request, response) => {
             return product;
         }
     });
-    response.status(200).send({ deleteProduct });
+    response.status(200).send({ message: 'Seu produto foi deletado com Sucesso', deleteProduct });
 });
 app.post("/criaProduto2", (req, res) => {
-    const authorization = req.headers.authorization;
     const namePostman = String(req.body.name);
-    const pricePostman = Number(req.body.price);
+    const pricePostman = req.body.price;
+    if (namePostman === "" || pricePostman === NaN) {
+        res.status(400).send("Todos os campos devem ser preenchidos");
+    }
+    const newPricePostman = Number(req.body.price);
     const criandoProduto = { id: Date.now().toString(), name: namePostman, price: pricePostman };
     data_1.products.push(criandoProduto);
-    if (namePostman !== "string" && pricePostman <= 0) {
-        res.status(400).send("Insira uma string e um numero acima de 0");
-    }
+    console.table(criandoProduto);
+    res.status(200).send(data_1.products);
 });
 app.listen(3003, () => {
     console.log("Server is running in http://localhost:3003");
