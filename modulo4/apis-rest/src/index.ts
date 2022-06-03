@@ -11,14 +11,19 @@ app.use(cors());
 
 app.get("/users", (req: Request, res: Response) => {
     let codeError: number = 400;
-
+    
     try {
-        if (users) {
-            res.status(200).send(users)
-        } else {
+        if (!users) {
             codeError = 404
             throw new Error('Lista de usuário não encontrada')
+            
         }
+        // if (users) {
+           
+        //     // codeError = 404
+        //     // throw new Error('Lista de usuário não encontrada')
+        // }
+        res.status(200).send(users)
 
     } catch (error: any) {
         res.status(codeError).send({ message: error.message })
