@@ -30,7 +30,7 @@ export let usersBank: UsersBank[] = [
         name: "Alessandra",
         cpf: "22222222222",
         dataDeNascimento: new Date ("1987-02-14"),
-        saldoExtrato: 0,
+        saldoExtrato: 2000,
         movimentacao: [{
             valor: 200,
             data: new Date ("2022-06-22"),
