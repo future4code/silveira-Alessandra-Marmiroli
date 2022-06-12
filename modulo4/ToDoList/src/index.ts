@@ -32,22 +32,30 @@ app.post("/users", async (req: Request, res: Response) => {
 
 app.get("/users/:id", async (req: Request, res: Response) => {
     try {
-        const usuario = await connection("Users")
-        .where("id", req.params.id)
-        res.status(200).send({usuario})
+        const user = await connection ("Users")
+        .select("name", "nickname")
+        .where ({ id:req.params.id })
+        if (user.length === 0) {
+            throw new Error("Por gentileza informe o campo ID!")
+        }
+        res.status(200).send({ user })
     } catch (error: any) {
         console.log(error.message)
         res.status(500).send(error.message)
     }
 })
-//FAZER A VALIDAÇÃO 
+
 
 app.put("/users/edit/:id", async (req: Request, res: Response) => {
     try {
+        if (!req.body.name || !req.body.nickname || !req.body.email) {
+            throw new Error("Por gentileza informe os campos acima corretamente!")
+        }
         const editaUsuario = await connection(`Users`)
             .update({
                 name: req.body.name,
-                nickname: req.body.nickname
+                nickname: req.body.nickname,
+                email: req.body.email
             })
             .where({ id: req.params.id })
 
@@ -58,20 +66,24 @@ app.put("/users/edit/:id", async (req: Request, res: Response) => {
     }
 })
 
-//FAZER A VALIDACAO 
-
 app.post("/task", async (req: Request, res: Response) => {
     try {
-        if (!req.body.title || !req.body.description || !req.body.limitDate || !req.body.createUserId || !req.body.createNickname) {
-            throw new Error("Por gentileza preencha os campos acima!")
+
+        if (!req.body.title || !req.body.description || !req.body.limitDate || !req.body.status || !req.body.createUserId || !req.body.createNickname) {
+            throw new Error("Por gentileza preencha os campos acima corretamente!")
         }
+        const { taskId, title, description, limitDate, status, createUserId, createNickname } = req.body
+        let estruturaData: string = limitDate.split('/').reverse().join('-');
+
         await connection("Tarefas")
             .insert({
+                taskId: Date.now().toString(),
                 title: req.body.title,
                 description: req.body.description,
-                limitDate: req.body.limitDate,
-                createUserId: Date.now(),
-                createNickname:req.body.createNickname
+                limitDate: estruturaData,
+                status: req.body.status,
+                createUserId: req.body.createUserId,
+                createNickname: req.body.createNickname
 
             });
 
@@ -82,16 +94,20 @@ app.post("/task", async (req: Request, res: Response) => {
 });
 
 
-
-
-
-
-
-
-
-
-
-
+app.get("/task/:id", async (req: Request, res: Response) => {
+    try {
+        const taskId = req.params.id
+        if (taskId.length === 0) {
+            throw new Error("Por gentileza informe o campo ID!")
+        }
+        const tarefaId = await connection("Tarefas")
+            .where("taskId", req.params.id)
+        res.status(200).send({ tarefaId })
+    } catch (error: any) {
+        console.log(error.message)
+        res.status(500).send(error.message)
+    }
+})
 
 
 app.listen(3003, () => {
