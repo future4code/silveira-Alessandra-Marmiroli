@@ -1,0 +1,23 @@
+GET http://localhost:3003/users?name=Amanda
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/users/CX
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/usersorder?name=&sort=id&order=DESC
+Content-Type: application/json
+
+###
+
+GET http://localhost:3003/userspage?page=
+Content-Type: application/json
+
+
+
+
+
+
