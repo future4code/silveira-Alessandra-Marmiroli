@@ -112,6 +112,45 @@ app.get("/userspage", async (req: Request, res: Response): Promise<void> => {
 
 //EXERCÍCIO 04 
 
+app.get("/usersend", async (req: Request, res: Response): Promise<void> => {
+    try {
+        const table = "aula49_exercicio"
+        let page = Number (req.query.page)
+        let sort = req.query.sort as string
+        let order = req.query.order as string
+        let name = req.query.name 
+
+       if(!name){
+        name="%"
+       }
+       if(!sort){
+        sort = "name"
+       }
+       if(!order){
+        order = "DESC"
+       }
+       
+        if(page <1 || isNaN(page)){
+            page = 1
+        }
+        let size = 5 
+        let offset = size * (page - 1)
+        
+        const result = await connection(table)
+            .where("name", "LIKE", `${name}`)
+            .orderBy (sort, order)
+            .offset(offset)
+
+        res.status(200).send(result)        
+    } catch (error:any) {
+        res.status(500).send(error.sqlMessage)
+    }
+
+
+})
+
+
+
 
 
 
