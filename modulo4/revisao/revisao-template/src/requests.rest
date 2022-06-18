@@ -1,0 +1,14 @@
+GET http://localhost:3003/character
+
+###
+
+PUT http://localhost:3003/character
+Content-Type: application/json
+
+{
+    "name": "Juggernault",
+    "gender": "MALE",
+    "description": "O irmão do Prof X!!!"
+}
+
+
