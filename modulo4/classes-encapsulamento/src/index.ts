@@ -16,20 +16,42 @@ class UserAccount {
     private age: number;
     private balance: number = 0;
     private transactions: Transaction[] = [];
-
-    constructor(
-        cpf: string,
-        name: string,
-        age: number,
-    ) {
+    
+    constructor(cpf: string,name: string,age: number) {
         console.log("Chamando o construtor da classe UserAccount")
         this.cpf = cpf;
         this.name = name;
         this.age = age;
     }
 
+    public getCpf(): void {
+        console.log(this.cpf)
+    }
+
+    public getName(): void {
+        console.log(this.name)
+    }
+
+    public getAge(): void {
+        console.log(this.age)
+    }
+    public getBalance(): void {
+        console.log(this.balance)
+    }
+
+    public getTransactions(): void {
+        console.log(this.transactions)
+    }
+    public setTransaction(
+        newTransaction: Transaction
+    ){
+        this.transactions.push(newTransaction)
+    }
+
+
 }
-const alessandra = new UserAccount("22233322211", "Alessandra", 35)
+const alessandra = new UserAccount("22233352211", "alessandra", 32)
+const MariaEduarda = new UserAccount("22233322211", "Maria Eduarda", 30)
 
 
 // Resposta b) Foi impresso uma vez "Chamando o construtor da classe User". 
@@ -43,10 +65,10 @@ class Transaction {
     private value: number
     private date: string
 
-    constructor(novaDescription: string, novoValue: number, novaDate: string) {
-        this.description = novaDescription
-        this.value = novoValue
-        this.date = novaDate
+    constructor(description: string, value: number, date: string) {
+        this.description = description
+        this.value = value
+        this.date = date
     }
 
     public pegarDescription(): void {
@@ -64,9 +86,10 @@ class Transaction {
 
 }
 
-const MariaEduarda = new UserAccount("22233322211", "Alessandra", 35)
+
 const novaConta = new UserAccount("123456789", "alessandra", 35)
 const novaCompra = new Transaction("20/06/2022", 500, "roupas")
+novaConta.setTransaction(novaCompra)
 console.log(novaConta, novaCompra)
 
 
