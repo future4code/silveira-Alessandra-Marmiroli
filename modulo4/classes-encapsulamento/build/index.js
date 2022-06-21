@@ -49,4 +49,10 @@ const novaConta = new UserAccount("123456789", "alessandra", 35);
 const novaCompra = new Transaction("20/06/2022", 500, "roupas");
 novaConta.setTransaction(novaCompra);
 console.log(novaConta, novaCompra);
+class Bank {
+    constructor(accounts) {
+        this.accounts = accounts;
+    }
+}
+const laBank = new Bank([]);
 //# sourceMappingURL=index.js.map
