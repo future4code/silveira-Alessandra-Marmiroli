@@ -5,11 +5,10 @@ import { authenticator } from "../services/authenticator";
 
 export default async function login(req: Request, res: Response): Promise<void> {
     try {
-
         if (!req.body.email || req.body.email.indexOf("@") === -1) {
-            throw new Error("Invalid email");
+        throw new Error("Invalid email");
         }
-        if (!req.body.password || req.body.password.length < 6) {
+        if (!req.body.password || req.body.password.length <= 6) {
             throw new Error("Invalid password");
           }
 

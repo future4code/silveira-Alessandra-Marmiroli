@@ -10,7 +10,8 @@ export default async function Profile(req: Request, res: Response) {
         const token = req.headers.authorization as string;
 
 
-        const authenticationData = getData(token);
+        const authenticationData = getTokenData(token);
+        
 
         const newAthentication = new authenticator().getTokenData(token)
 
