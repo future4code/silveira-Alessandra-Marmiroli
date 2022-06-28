@@ -1,3 +1,4 @@
+import { compare } from "bcryptjs";
 import { Request, Response } from "express";
 import { getUserByEmail } from "../data/getUserByEmail";
 import { authenticator } from "../services/authenticator";
@@ -6,21 +7,24 @@ import { authenticator } from "../services/authenticator";
 export default async function login(req: Request, res: Response): Promise<void> {
     try {
         if (!req.body.email || req.body.email.indexOf("@") === -1) {
-        throw new Error("Invalid email");
+            throw new Error("Invalid email");
         }
         if (!req.body.password || req.body.password.length < 6) {
             throw new Error("Invalid password");
-          }
-
+        }
         const userData = {
             email: req.body.email,
-            password: req.body.password,
+            password: req.body.password
         };
-
 
         const user = await getUserByEmail(userData.email);
 
-        if (user.password !== userData.password) {
+        const compareResult = await compare(
+            userData.password,
+            user.password
+          );
+
+        if (!compareResult) {
             throw new Error("Invalid password");
         }
 
@@ -30,7 +34,7 @@ export default async function login(req: Request, res: Response): Promise<void> 
             id: user.id,
         });
 
-        
+
         res.status(200).send({
             token,
         });

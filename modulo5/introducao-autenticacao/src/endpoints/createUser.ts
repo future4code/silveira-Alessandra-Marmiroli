@@ -3,12 +3,18 @@ import { connection } from "../data/connection";
 import { AuthenticationData, user } from "../types";
 import { IdGenerator } from '../services/generateId';
 import { authenticator } from "../services/authenticator";
+import { HashManagers } from "../services/HashManager";
 
 
 
 export default async function createUser(req: Request, res: Response): Promise<void> {
     try {
-        const { email, password } = req.body
+        const {email, password} = req.body
+
+        const userData = {
+            email: req.body.email, 
+            password: req.body.password
+        };
 
         if (email.indexOf("@") === -1 || !email) {
             res.statusCode = 422
@@ -27,8 +33,13 @@ export default async function createUser(req: Request, res: Response): Promise<v
         }
 
         const id: string = new IdGenerator().generateId()
-
-        const newUser: user = { id, email, password }
+        //criou uma instacia da classe hashManager
+        const hashManager: HashManagers = new HashManagers()
+        //chamamos o método hash que vai criptografar o password
+        const senhaCriptografada = hashManager.hash(password)
+        //agora ao inves de enviar o password como veio enviamos a 
+        //senha criptografada para o banco de dados 
+        const newUser: user = { id, email, password:senhaCriptografada }
 
         await connection('User')
             .insert(newUser)

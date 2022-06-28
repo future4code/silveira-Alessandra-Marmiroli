@@ -4,7 +4,7 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "email": "fofo@fofo.com" ,
+   "email": "dede@dede.com" ,
    "password": "111111"
 }
 
@@ -14,7 +14,7 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "fofo@fofo.com" ,
+   "email": "dede@dede.com" ,
    "password": "111111"
 }
 
@@ -24,6 +24,6 @@ Content-Type: application/json
 
 GET http://localhost:3003/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYTA4ZWQ3LWMxOTYtNDM3Yi1iMTZmLWE4OGIyODczMjY3OSIsImlhdCI6MTY1NjQ0NTIzNiwiZXhwIjoxNjU2NDQ1NTM2fQ.fm4VNCQtEy9oz0jouqPQ1IkFkQKQ7cSeLb9_r5anpGg
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1MjVkZGJmLThjNWItNDdhZS04YTkxLWQyNjEzNGYyZWRjZCIsImlhdCI6MTY1NjQ1NDQ2MywiZXhwIjoxNjU2NDU0NzYzfQ.uL9gRxaBH2cCuAQ3zNydIYJpQHRbb3hAiB7O4d8fTns
 ###
 
