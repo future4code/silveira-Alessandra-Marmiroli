@@ -4,19 +4,17 @@ import { authenticator } from "../services/authenticator";
 
 
 
-export default async function Profile(req: Request, res: Response) {
+export default async function profile(req: Request, res: Response) {
     try {
-        
+
         const token = req.headers.authorization as string;
 
 
-        const authenticationData = getTokenData(token);
-        
-
-        const newAthentication = new authenticator().getTokenData(token)
+        const authenticatorNew = new authenticator()
+        const tokenAutheticator = authenticatorNew.getTokenData(token)
 
 
-        const user = await getUserById(authenticationData.id);
+        const user = await getUserById(tokenAutheticator.id)
 
         res.status(200).send({
             id: user.id,

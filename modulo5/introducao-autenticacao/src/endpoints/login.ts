@@ -8,7 +8,7 @@ export default async function login(req: Request, res: Response): Promise<void> 
         if (!req.body.email || req.body.email.indexOf("@") === -1) {
         throw new Error("Invalid email");
         }
-        if (!req.body.password || req.body.password.length <= 6) {
+        if (!req.body.password || req.body.password.length < 6) {
             throw new Error("Invalid password");
           }
 
@@ -30,11 +30,12 @@ export default async function login(req: Request, res: Response): Promise<void> 
             id: user.id,
         });
 
-
+        
         res.status(200).send({
             token,
         });
     } catch (err: any) {
+        console.log(err)
         res.status(400).send({
             message: err.message,
         });

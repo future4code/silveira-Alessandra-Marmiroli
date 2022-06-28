@@ -1,6 +1,6 @@
 import { connection } from "./connection";
 
-export const getUserById = async (id: string): Promise<any> {
+export const getUserById = async (id: string): Promise<any> => {
     const result = await connection
         .select("*")
         .from("User")

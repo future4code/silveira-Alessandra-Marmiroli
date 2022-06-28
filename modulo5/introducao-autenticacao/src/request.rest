@@ -4,20 +4,18 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "email": "duda@du.com" ,
-   "password": "222222"
+   "email": "fofo@fofo.com" ,
+   "password": "111111"
 }
 
 ###
-
-# @name login
 
 POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "dudadu.com" ,
-   "password": "222222"
+   "email": "fofo@fofo.com" ,
+   "password": "111111"
 }
 
 ###
@@ -26,6 +24,6 @@ Content-Type: application/json
 
 GET http://localhost:3003/user/profile
 Content-Type: application/json
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjJhYTA4ZWQ3LWMxOTYtNDM3Yi1iMTZmLWE4OGIyODczMjY3OSIsImlhdCI6MTY1NjQ0NTIzNiwiZXhwIjoxNjU2NDQ1NTM2fQ.fm4VNCQtEy9oz0jouqPQ1IkFkQKQ7cSeLb9_r5anpGg
 ###
 

@@ -1,4 +1,4 @@
-import { profile } from "console"
+import  profile  from './endpoints/profile'
 import { app } from "./app"
 import createUser from "./endpoints/createUser"
 import login from "./endpoints/login"

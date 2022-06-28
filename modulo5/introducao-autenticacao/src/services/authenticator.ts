@@ -6,9 +6,9 @@ const expiresIn = "5min"
 
 export class authenticator {
      generateToken = (payload: AuthenticationData): string => {
-        const token = jwt.sign({
+        const token = jwt.sign(
             payload
-        },
+        ,
             process.env.JWT_KEY as string,
             {
                 expiresIn
@@ -22,7 +22,7 @@ export class authenticator {
         const tokenData = jwt.verify(
             token, process.env.JWT_KEY as string
         )
-        return tokenData
+        return tokenData as AuthenticationData
     }
 }
 
