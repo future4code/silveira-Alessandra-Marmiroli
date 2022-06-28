@@ -10,10 +10,13 @@ export default async function createUser(req: Request, res: Response): Promise<v
     try {
         const { email, password } = req.body
 
-        if (!email || !password) {
+        if (email.indexOf("@") === -1 || !email) {
             res.statusCode = 422
             throw new Error("Preencha os campos corretamente os campos acima")
         }
+        if (!password || password.length < 6) {
+            throw new Error("Invalid password");
+          }
 
         const [user] = await connection('User')
             .where({ email, password })

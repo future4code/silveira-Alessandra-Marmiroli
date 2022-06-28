@@ -35,5 +35,11 @@ Exercício 03
 
 a) A linha as string é uma forma de "garantir" que os dados que serão recebido através do process.env.JWT_KEY (token) seja uma string, pois esse código será uma mistura de letras e números.  
 
+Exercício 07 
+
+a) Acredito que essa propriedade ANY recebe qualquer valor de resposta então ela poderia receber qualquer informação de numeros e letras vindo do token. 
+
+
+
 
 

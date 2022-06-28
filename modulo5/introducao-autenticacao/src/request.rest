@@ -4,6 +4,28 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "email": "mu@mu.com" ,
-   "password": "123456"
+   "email": "duda@du.com" ,
+   "password": "222222"
 }
+
+###
+
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "dudadu.com" ,
+   "password": "222222"
+}
+
+###
+
+# @name profile
+
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+
+###
+

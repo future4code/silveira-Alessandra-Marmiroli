@@ -25,3 +25,4 @@ const createUser = async (id: string, email: string, password: string) => {
     })
     .into(userTableName)
 };
+
