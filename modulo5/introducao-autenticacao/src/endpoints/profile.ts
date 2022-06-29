@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { getUserById } from "../data/getUserById";
 import { authenticator } from "../services/authenticator";
+import { AuthenticationData } from '../types'
 
 
 
@@ -11,7 +12,12 @@ export default async function profile(req: Request, res: Response) {
 
 
         const authenticatorNew = new authenticator()
+        
         const tokenAutheticator = authenticatorNew.getTokenData(token)
+
+        if (tokenAutheticator.role !== "NORMAL") {
+            throw new Error("Only a normal user can access this funcionality");
+          }
 
 
         const user = await getUserById(tokenAutheticator.id)

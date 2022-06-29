@@ -4,8 +4,9 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {
-   "email": "dede@dede.com" ,
-   "password": "111111"
+   "email": "ana@ana.com" ,
+   "password": "111111",
+   "role": "ADMIN"
 }
 
 ###
@@ -14,8 +15,10 @@ POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "dede@dede.com" ,
-   "password": "111111"
+   "email": "ana@ana.com" ,
+   "password": "111111",
+   "role": "ADMIN"
+
 }
 
 ###
@@ -24,6 +27,6 @@ Content-Type: application/json
 
 GET http://localhost:3003/user/profile
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjA1MjVkZGJmLThjNWItNDdhZS04YTkxLWQyNjEzNGYyZWRjZCIsImlhdCI6MTY1NjQ1NDQ2MywiZXhwIjoxNjU2NDU0NzYzfQ.uL9gRxaBH2cCuAQ3zNydIYJpQHRbb3hAiB7O4d8fTns
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImE3YTAwZWNlLTJkZWMtNGQ3ZS05ZjJmLTVkZmFiNDMzMGJhNiIsInJvbGUiOiJBRE1JTiIsImlhdCI6MTY1NjUwMzQyNCwiZXhwIjoxNjU2NTAzNzI0fQ.lG1p8i6T6waIB0dL5a84QS92BFOy0vuAHCYD09Qk0jA
 ###
 

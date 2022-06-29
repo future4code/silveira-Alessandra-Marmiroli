@@ -2,6 +2,7 @@ import { compare } from "bcryptjs";
 import { Request, Response } from "express";
 import { getUserByEmail } from "../data/getUserByEmail";
 import { authenticator } from "../services/authenticator";
+import { USER_ROLES } from "../types";
 
 
 export default async function login(req: Request, res: Response): Promise<void> {
@@ -32,6 +33,7 @@ export default async function login(req: Request, res: Response): Promise<void> 
 
         const token = pegarToken.generateToken({
             id: user.id,
+            role: user.role
         });
 
 

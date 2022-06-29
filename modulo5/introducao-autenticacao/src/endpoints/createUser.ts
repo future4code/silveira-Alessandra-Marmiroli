@@ -9,12 +9,16 @@ import { HashManagers } from "../services/HashManager";
 
 export default async function createUser(req: Request, res: Response): Promise<void> {
     try {
-        const {email, password} = req.body
+        const {email, password, role} = req.body
 
         const userData = {
             email: req.body.email, 
             password: req.body.password
         };
+        if (!role){
+            res.statusCode = 422
+            throw new Error("Role Invalid");
+        }
 
         if (email.indexOf("@") === -1 || !email) {
             res.statusCode = 422
@@ -25,7 +29,7 @@ export default async function createUser(req: Request, res: Response): Promise<v
           }
 
         const [user] = await connection('User')
-            .where({ email, password })
+            .where({ email, password, role })
 
         if (user) {
             res.statusCode = 409
@@ -39,13 +43,14 @@ export default async function createUser(req: Request, res: Response): Promise<v
         const senhaCriptografada = hashManager.hash(password)
         //agora ao inves de enviar o password como veio enviamos a 
         //senha criptografada para o banco de dados 
-        const newUser: user = { id, email, password:senhaCriptografada }
+        const newUser: user = { id, email, password:senhaCriptografada, role }
 
         await connection('User')
             .insert(newUser)
         
         const payload:AuthenticationData = {
-            id: newUser.id
+            id: newUser.id,
+            role: role
         }
         const token = new authenticator().generateToken(payload)
 
