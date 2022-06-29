@@ -4,7 +4,7 @@ import { User } from "../model/User"
 import { Authenticator } from "../services/Authenticator";
 import { HashManagers } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
-import { authenticationData, USER_ROLE } from "../services/types";
+import { authenticationData} from "../services/types";
 
 
 

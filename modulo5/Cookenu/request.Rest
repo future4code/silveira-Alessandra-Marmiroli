@@ -4,10 +4,23 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {	
-	"email": "sandra@sandra.com.br",
-    "name": "Sandra",
-	"password": "123456",
-	"role": "ADMIN"
+	"email": "mariaE@mariaE.com.br",
+    "name": "Maria Eduarda",
+	"password": "2222222",
+	"role": "NORMAL"
 }
 
 ###
+
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "mariaE@mariaE.com.br",
+   "password": "2222222"
+}
+
+###
+
