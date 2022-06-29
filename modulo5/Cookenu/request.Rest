@@ -1,0 +1,13 @@
+# @name criandoUsuario
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{	
+	"email": "sandra@sandra.com.br",
+    "name": "Sandra",
+	"password": "123456",
+	"role": "ADMIN"
+}
+
+###
