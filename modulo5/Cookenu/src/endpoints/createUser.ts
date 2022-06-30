@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { UserDataBase } from "../data/UserDataBase"
 import { User } from "../model/User"
-import { Authenticator } from "../services/Authenticator";
+import { Authenticator } from "../services/authenticator";
 import { HashManagers } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { authenticationData} from "../services/types";
@@ -14,9 +14,9 @@ export default async function createUser(req: Request, res: Response): Promise<v
         const {email, name, password, role } = req.body
         
         const userData = {
-            email: req.body.email,
-            name: req.body.name,
-            password: req.body.password
+            email,
+            name,
+            password
         };
         
 

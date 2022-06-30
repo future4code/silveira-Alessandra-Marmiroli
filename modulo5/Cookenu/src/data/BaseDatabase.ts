@@ -3,6 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
+const table = "UserCookenu"
+
 export class BaseDatabase {
  static connection:Knex = knex({
     client: "mysql",

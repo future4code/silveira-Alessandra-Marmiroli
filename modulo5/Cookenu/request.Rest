@@ -4,23 +4,55 @@ POST http://localhost:3003/user/signup
 Content-Type: application/json
 
 {	
-	"email": "mariaE@mariaE.com.br",
-    "name": "Maria Eduarda",
-	"password": "2222222",
+	"email": "Mary@Mary.com.br",
+    "name": "Mary",
+	"password": "123456",
 	"role": "NORMAL"
 }
 
 ###
-
 # @name login
 
 POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-   "email": "mariaE@mariaE.com.br",
-   "password": "2222222"
+   "email": "Mary@Mary.com.br",
+   "password": "123456"
 }
+###
+
+@token = {{login.response.body.token}}
+
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: {{token}}
 
 ###
+
+@token = {{login.response.body.token}}
+
+GET http://localhost:3003/user/068db790-1b2f-4d83-84a0-8b2d17435aa8
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+# @name criandoReceita
+
+POST http://localhost:3003/recipe
+Authorization:  {{token}}
+Content-Type: application/json
+
+
+{	
+	
+    "titulo": "Risoto",
+	"descricao": "Legumes",
+	"modo_de_preparo": "Faça o caldo de legumes em uma panela de pressão, cozinhe o arroz arbóreo com esse caldo quando estiver cozido adicione 400 gramas de queijo parmesão, sirva com um belo filé de salmão grelhado!"
+    
+}
+
+
+
+
 
