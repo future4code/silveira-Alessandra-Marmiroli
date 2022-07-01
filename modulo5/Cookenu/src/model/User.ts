@@ -7,8 +7,12 @@ export class User {
         private name: string,
         private password: string,
         private role: USER_ROLE
+        
       
     ) {}
+    static toUserModel = (data: any): User => {
+        return new User(data.id, data.email, data.name, data.password, data.role.USER_ROLE)
+    }
     public getId(): string {
         return this.id;
     }
@@ -24,7 +28,7 @@ export class User {
     public getPassword(): string {
         return this.password;
     }
-    public getRole(): string {
+    public getRole(){
         return this.role;
     }
 

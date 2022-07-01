@@ -1,6 +1,6 @@
 import { Request, Response } from "express"
 import { UserDataBase } from "../data/UserDataBase"
-import { Authenticator } from "../services/authenticator"
+import { Authenticator } from "../services/Authenticator"
 import { authenticationData } from "../services/types"
 
 export default async function profile(req: Request, res: Response): Promise<void> {

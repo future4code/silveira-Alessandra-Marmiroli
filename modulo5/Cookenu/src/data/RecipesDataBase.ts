@@ -1,4 +1,4 @@
-import { Recipes } from "../model/Recipes";
+import { recipes } from "../services/types";
 import { BaseDatabase } from "./BaseDatabase";
 
 
@@ -6,16 +6,21 @@ export class RecipesDataBase extends BaseDatabase {
 
     private static tableName = "RecipesCookenu";
 
-    public recipe = async (recipes: Recipes): Promise<void> => {
-        await BaseDatabase.connection()
-            .insert({
-                id: recipes.getId(),
-                titulo: recipes.getTitulo(),
-                descricao: recipes.getDescricao(),
-                modo_de_preparo: recipes.getModoDePreparo(),
-                data_de_criacao: recipes.getDataDeCriacao()
+    public async createRecipe(recipes: recipes): Promise<void> {
+        try {
+            console.log(recipes)
+            await BaseDatabase.connection("RecipesCookenu")
+                .insert(recipes)
+        } catch (error) {
+            console.log(error)
+        }
 
-            })
-            .into(RecipesDataBase.tableName)
-
-}}
+    }
+    public getByRecipe = async (id: string): Promise<any> => {
+        const result = await BaseDatabase.connection()
+            .select("*")
+            .from("RecipesCookenu")
+            .where({ id });
+        return result[0]
+    }
+}

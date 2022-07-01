@@ -1,7 +1,7 @@
 import { Request, Response } from "express"
 import { UserDataBase } from "../data/UserDataBase"
 import { User } from "../model/User"
-import { Authenticator } from "../services/authenticator";
+import { Authenticator } from "../services/Authenticator";
 import { HashManagers } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
 import { authenticationData} from "../services/types";

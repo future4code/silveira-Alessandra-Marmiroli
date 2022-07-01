@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
 import { UserDataBase } from "../data/UserDataBase";
-import { Authenticator } from "../services/authenticator";
+import { Authenticator } from "../services/Authenticator";
 import { HashManagers } from "../services/HashManager";
+import { USER_ROLE } from "../services/types";
 
 
 
@@ -36,9 +37,9 @@ export default async function login(req: Request, res: Response): Promise<void> 
 
         const token = pegarToken.generateToken({
             id: user.id,
-            role:user.role
+            role:user.role.USER_ROLE
         });
-
+        console.log(token)
 
         res.status(200).send({
             token,

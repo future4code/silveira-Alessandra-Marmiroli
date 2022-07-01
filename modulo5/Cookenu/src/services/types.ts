@@ -13,5 +13,6 @@ export type recipes = {
     titulo: string
     descricao: string
     modo_de_preparo: string
-    data_de_preparacao: string
+    data_de_criacao: Date
+    criadorID: string
 }
