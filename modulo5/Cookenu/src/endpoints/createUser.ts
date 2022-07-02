@@ -16,7 +16,8 @@ export default async function createUser(req: Request, res: Response): Promise<v
         const userData = {
             email,
             name,
-            password
+            password, 
+            role
         };
         
 
@@ -38,7 +39,7 @@ export default async function createUser(req: Request, res: Response): Promise<v
 
         const hashManager: HashManagers = new HashManagers()
 
-        const senhaCriptografada = hashManager.hash(password)
+        const senhaCriptografada = hashManager.hash(userData.password)
         
         const userNew = new User(id, email, name, senhaCriptografada, role)
         const userDB = new UserDataBase()
