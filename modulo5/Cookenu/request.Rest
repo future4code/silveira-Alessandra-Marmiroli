@@ -21,6 +21,7 @@ Content-Type: application/json
    "password": "123456"
 }
 ###
+# @name perfilUsuario
 
 @token = {{login.response.body.token}}
 
@@ -29,6 +30,7 @@ Content-Type: application/json
 Authorization: {{token}}
 
 ###
+# @name PerfilPorID
 
 @token = {{login.response.body.token}}
 
@@ -50,6 +52,7 @@ Content-Type: application/json
 }
 
 ###
+# @name VerReceita
 
 @token = {{login.response.body.token}}
 
