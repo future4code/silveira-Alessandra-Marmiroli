@@ -1,0 +1,23 @@
+# @name createUser
+
+POST http://localhost:3003/user/signUp
+Content-Type: application/json
+
+{	
+	"name": "Alessandra",
+    "email": "alessandra@sandra.com.br",
+	"password": "123456",
+	"role": "ADMIN"
+}
+
+###
+# @name login
+POST http://localhost:3003/login
+Content-Type: application/json
+
+{
+    "email": "alessandra@sandra.com.br",
+    "password": "123456"
+}
+
+###
