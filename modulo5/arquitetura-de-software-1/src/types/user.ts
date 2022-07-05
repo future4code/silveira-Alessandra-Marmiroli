@@ -15,9 +15,7 @@ export type user = {
     role: USER_ROLES
 }
 
-export type InputUser = {
-    name: string,
+export type UserLogin = {
     email: string,
-    password: string,
-    role: string
-}
+    password: string
+} 

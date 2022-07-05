@@ -4,19 +4,19 @@ POST http://localhost:3003/user/signUp
 Content-Type: application/json
 
 {	
-	"name": "Alessandra",
-    "email": "alessandra@sandra.com.br",
+	"name": "Matteo",
+    "email": "matteo@gmail.com.br",
 	"password": "123456",
 	"role": "ADMIN"
 }
 
 ###
 # @name login
-POST http://localhost:3003/login
+POST http://localhost:3003/user/login
 Content-Type: application/json
 
 {
-    "email": "alessandra@sandra.com.br",
+    "email": "matteo@gmail.com.br",
     "password": "123456"
 }
 
