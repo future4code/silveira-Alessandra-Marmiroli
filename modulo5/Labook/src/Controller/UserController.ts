@@ -4,7 +4,7 @@ import { signupInput } from "../types/signInput";
 
 export default class UserController {
     constructor(
-        private userBusiness: UserBusiness
+        private UserBusiness: UserBusiness
     ) { }
     //O método constructor obriga quem chamar o UserController há criar a instância
 
@@ -23,16 +23,32 @@ export default class UserController {
         //signupInput é um objeto que vai tranferir informações dentro do código entre as camadas. 
         //UserController precisa do UserBusiness vai usar UserData
         try {
-            const token = await this.userBusiness.signup(input)
+            const token = await this.UserBusiness.signup(input)
 
             res.status(201).send({ message: "Usuário criado com sucesso!", token })
 
         } catch (error: any) {
-            if(error instanceof Error){
+            if (error instanceof Error) {
                 return res.status(400).send(error.message)
             }
             res.status(500).send("Erro no signup")
         }
     }
+
+    
+    login = async (req: Request, res: Response) => {
+
+        const { email, password } = req.body
+
+        const login = {
+            email,
+            password
+        }
+
+        const token = await this.UserBusiness.login(login)
+
+        res.status(201).send({ message: "Login realizado com sucesso!", token })
+    }
+
 
 }

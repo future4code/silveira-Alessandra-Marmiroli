@@ -11,3 +11,31 @@ Content-Type: application/json
 }
 
 ###
+# @name Login 
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "Alessandra@hotmail.com",
+    "password": "123456"
+}
+
+###
+
+# @name CriandoPost 
+
+POST http://localhost:3003/post/create
+Content-Type: application/json
+Authorization: 
+
+{
+    "photo": "",
+    "description": "",
+    "creationDate": "",
+    "type": ""
+}
+
+
+
+

@@ -17,6 +17,7 @@ export default class UserData extends BaseDatabase {
 
 
     findByEmail = async (email: string) => {
+
         try {
             const queryResult: FindByEmailResponse = await UserData
                 .connection(this.tableName)
@@ -30,6 +31,7 @@ export default class UserData extends BaseDatabase {
 
         }
     }
+    
 
 
 }

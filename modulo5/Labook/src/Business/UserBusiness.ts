@@ -1,9 +1,10 @@
 import UserData from "../Data/UserData";
 import User from "../model/User";
-import Authenticator from "../Services/authenticator";
+import Authenticator from "../Services/Authenticator";
 import { HashManager } from "../Services/hashManager";
-import { IdGenerator } from "../Services/idGenerator";
+import { IdGenerator } from "../Services/IdGenerator";
 import { signupInput } from "../types/signInput";
+import { loginType } from "../types/loginType";
 
 
 export default class UserBusiness {
@@ -31,6 +32,7 @@ export default class UserBusiness {
         }
         // CONFERIR SE O USUÁRIO EXISTE: 
         const userEmail = await this.userData.findByEmail(email)
+
         if(userEmail){
             throw new Error("O email informado já existe!")
         }
@@ -57,5 +59,37 @@ export default class UserBusiness {
         return token
 
     }
+    login = async (login:loginType) => {
+        
+        const { email, password } = login
+        
+        //VALIDAÇÃO DE EMAIL E PASSWORD 
+        if (!email || !password) {
+            throw new Error("O campo 'email' e senha' são obrigatórios!")
+        }
+        //COMPARA A SENHA 
+        const userData = { 
+            email:login.email, 
+            password:login.password
+        } 
+          
+        const loginUser = await this.userData.findByEmail(email);
+        
+
+        const compareResult = this.hashManager.compareHash(
+            userData.password,
+            loginUser.password
+        );
+        if (!compareResult) {
+            throw new Error("Atenção sua senha não é válida!");
+        }
+
+        const token = this.authenticator.generateToken({
+            id:loginUser.id
+        })
+        return token
+            
+    }
+    
 
 }
