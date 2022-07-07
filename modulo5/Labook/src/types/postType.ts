@@ -1,6 +1,9 @@
+import { POST_ROLE } from "../model/Post"
 
 
 export type postType = {
-    email: string,
-    password: string
+   photo:string
+   description:string
+   creationDate:Date
+   type:POST_ROLE
 }  

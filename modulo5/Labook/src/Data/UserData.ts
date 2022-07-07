@@ -31,6 +31,17 @@ export default class UserData extends BaseDatabase {
 
         }
     }
+    userId = async (id:string) => {
+        try {
+            const Data = await UserData
+                .connection(this.tableName)
+                .select(`*`)
+                .where({ id });
+            return Data [0]
+        } catch (error: any) {
+            throw new Error("Erro ao buscar usuário por id!")
+        }
+    }
     
 
 

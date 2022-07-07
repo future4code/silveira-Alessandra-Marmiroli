@@ -23,13 +23,6 @@ app.post("/user/signup", userController.signup)
 app.post("/user/login", userController.login)
 
 //Entidade Post 
-const postController = new PostController(
-//         new UserBusiness(
-//         new UserData,
-//         new IdGenerator(),
-//         new HashManager(), 
-//         new Authenticator()
-//     )
-// );
-
-// app.post("/post/create", postController.post)
+const postController = new PostController()
+app.post("/post/create", postController.post)
+app.get("/post", postController.postId)
