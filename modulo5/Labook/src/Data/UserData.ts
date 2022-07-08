@@ -42,7 +42,4 @@ export default class UserData extends BaseDatabase {
             throw new Error("Erro ao buscar usuário por id!")
         }
     }
-    
-
-
 }

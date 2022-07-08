@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import { PostBusiness } from "../Business/PostBusiness";
-import Post from "../model/Post";
 import Authenticator from "../Services/Authenticator";
 import { postType } from "../types/postType";
 import PostData from "../Data/PostData"
