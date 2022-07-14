@@ -5,5 +5,5 @@ import UserController from "../Controller/UserController";
 
 export const userRouter = express.Router();
 
-userRouter.post("/signup", UserController.signup)
+userRouter.get("/signup", UserController.signup)
 

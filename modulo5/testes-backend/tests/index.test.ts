@@ -1,4 +1,5 @@
-import { getUserByIdMocks } from "./Users.Mock"
+import { getUserByIdMocks } from "../src/mocks/Users.Mock"
+
 
 describe("Testando o id do User", ()=>{
     test("Testando ID", async() =>{
