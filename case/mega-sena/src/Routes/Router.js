@@ -4,8 +4,11 @@ import MegaSena from "../Pages/MegaSena";
 const Router = () => {
   return (
     <BrowserRouter>
-      <Routes> <Route index element = {MegaSena}/></Routes>
+      <Routes>
+        <Route index element={<MegaSena />} />
+      </Routes>
     </BrowserRouter>
-  )
-}
+  );
+};
 
+export default Router;

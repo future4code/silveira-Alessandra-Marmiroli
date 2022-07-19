@@ -1,9 +1,12 @@
-import Router from "./Routes/Router";
+import CardNumber from "./Components/CardNumbers";
+import MegaSena from "./Pages/MegaSena";
+
 
 function App() {
   return (
     <div>
-      <Router />
+      <MegaSena/>
+      <CardNumber/>
     </div>
   );
 }
