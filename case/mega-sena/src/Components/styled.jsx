@@ -16,3 +16,5 @@ export const CardStyledNumber = styled.div `
     font-size: 1.688rem;
     line-height: 33px;
 `
+//background: radial-gradient(130% 260% at right, #efefef 50%, #6befa3 50.1%);
+//Verificar o CSS

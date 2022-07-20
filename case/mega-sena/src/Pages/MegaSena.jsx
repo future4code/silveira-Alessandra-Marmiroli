@@ -2,68 +2,90 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../Constants/url";
 import CardNumbers from "../Components/CardNumbers";
+import imagem from "../Assets/imagem.jpg";
+import { Img } from "../Assets/styled";
 
 const ConcursoLoterias = () => {
   const [result, setResult] = useState([]);
+  const [concursos, setConcursos] = useState([]);
+  const [concursosId, setConcursosId] = useState([]);
+  const [valueSelect, setValueSelect] = useState([]);
 
-  //Crio uma função de uma requisição API que será responsável por coletar os números que serão informados na tela.
-  //Incluir o async e await
-  const getLoterias = () => {
-    axios
+  const getLoterias = async () => {
+    await axios
       .get(`${BASE_URL}/loterias`)
       .then((res) => {
         setResult(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const getDetalhesLoterias = () => {
-    axios
+  const getDetalhesLoterias = async () => {
+    await axios
       .get(`${BASE_URL}/loterias-concursos`)
       .then((res) => {
-        setResult(res.data);
-        console.log(res.data);
+        setConcursos(res.data);
+       
       })
       .catch((err) => {
         console.log(err);
       });
   };
-  const gelAllNumbers = () =>{
-    axios 
-    .get (`${BASE_URL}/concursos{id}`)
-    .then((res) => {
-        setResult(res.data);
-        console.log(res.data);
+  
+  const getlAllNumbers = async (id) => {
+    const filterConcursos = concursos.length >0 && concursos.filter((concurso)=>{
+      return concurso.loteriaId === Number(valueSelect)
     })
-    .catch((err) => {
-        console.log(err)
-    });
+    if(filterConcursos[0]){
+      await axios
+      .get(`${BASE_URL}/concursos/${Number(filterConcursos[0].concursoId)}`)
+      .then((res) => {
+        setConcursosId(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    }
+   
   };
+  console.log(concursosId)
 
-  //Usando UseEffect invocando a função GetNumbers acima
   useEffect(() => {
     getLoterias();
     getDetalhesLoterias();
-    gelAllNumbers();
+   
   }, []);
 
-  // Aqui faço uma função que recebe o resultado usando o método Map passando como parâmetro loteria que imprime a loteria.id
-  const newLoterias = result.map((loteria) => {
-    return <option>{loteria.nome}</option>;
-  });
-  //Esse map traz o resultado dos nomes de cada concurso
+  useEffect(()=>{
+    getlAllNumbers();
+  },[valueSelect])
+    
 
-  const newNumber = result.map((concurso) => {
-    return <div>{concurso.Id}</div>
-  });
-  //Esse mao traz o concurso pelo ID. 
+  const newLoterias = result.length > 0 && result.map((loteria) => {
+      return (
+        <option key={loteria.id} value={loteria.id}>
+          {loteria.nome}
+        </option>
+      );
+    });
+
+  const onChangeHandler = (event) => {
+    setValueSelect(event.target.value);
+  };
+ 
 
   return (
     <div>
-      Consurso Loteria
-      <select>{newLoterias}</select>
+      <Img src={imagem} />
+      <p>Concurso Loteria</p>
+      <select name="valueSelect" onChange={onChangeHandler} value={valueSelect}>
+        <option value="" disabled>
+          Escolha um concurso:
+        </option>
+        {newLoterias}
+      </select>
+
       <div>
         <CardNumbers />
       </div>

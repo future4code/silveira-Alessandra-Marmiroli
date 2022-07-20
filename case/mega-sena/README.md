@@ -1,6 +1,6 @@
 ![header](https://www.oliberal.com/image/contentid/policy:1.530531:1653362556/Milionaria.png?f=2x1&$p$f=3fc07aa&w=1500&$w=f075b93)
 
-## [https://cdn-icons-png.flaticon.com/512/6986/6986759.png] Projeto Concurso Loteria
+## Projeto *Concurso Loteria*
 
 Este projeto foi inspirado em um Concurso de Loteria, este projeto possibilita através de um seletor acima da página você acessar as informações de cada concurso. 
 
@@ -11,7 +11,7 @@ Este projeto foi inspirado em um Concurso de Loteria, este projeto possibilita a
 + CSS
 + HTML
 
-## [https://cdn-icons-png.flaticon.com/512/6986/6986759.png] Como foi Desenvolvido: 
+## Como foi Desenvolvido: 
 
 Criei o projeto e suas respectivas pastas nomeadas referente à sua responsabilidade. 
 Instalei as bibliotecas axios, react-router-dom@6, de extrema importancia para que o mesmo rode. 
