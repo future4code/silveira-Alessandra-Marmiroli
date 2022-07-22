@@ -2,7 +2,7 @@
 
 ## Projeto *Concurso Loteria*
 
-Este projeto foi inspirado em um Concurso de Loteria, este projeto possibilita através de um seletor acima da página você acessar as informações de cada concurso. 
+Este projeto foi inspirado em um Concurso de Loteria, possibilita através de um seletor na página inicial onde o usuário acessa as informações de cada concurso. Cada concurso retorna na tela o número do concurso, o nome do concurso e os números sorteados.
 
 ### Tecnologias utilizadas: 
 <tr>
@@ -14,9 +14,9 @@ Este projeto foi inspirado em um Concurso de Loteria, este projeto possibilita a
 ## Como foi Desenvolvido: 
 
 Criei o projeto e suas respectivas pastas nomeadas referente à sua responsabilidade. 
-Instalei as bibliotecas axios, react-router-dom@6, de extrema importancia para que o mesmo rode. 
+Instalei as bibliotecas axios, react-router-dom@6, de extrema importância para que o mesmo rode. 
 Analisei os Endpoints: GET /loterias responsável por retornar todos os nomes dos concursos da loteria, GET /loterias-concursos responsável pela relação de ID´s entre loterias e concursos e 
-GET /consursos/{id} responsável por retornar os dados do concurso. 
+GET /consursos/{id} responsável por retornar os dados do concurso pelo id. Me preocupei também com responsividade utilizando @media queries para possibilibar o uso do App para desktop e celulares.
 
 ### Realizado Por: Alessandra Sandeski Marmiroli
 

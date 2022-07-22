@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../Constants/url";
 import CardNumbers from "../Components/CardNumbers";
-import { ContainerConcurso, ContainerNumbers, Div, DivCard, P, Select } from "./styled";
+import { ContainerConcurso, ContainerNumbers, Div, DivCard, Img, NumberConcurso, NumberId, P, Select, Text } from "./styled";
+
 
 
 const ConcursoLoterias = () => {
@@ -22,6 +23,7 @@ const ConcursoLoterias = () => {
         console.log(err);
       });
   };
+  console.log(result)
   const getDetalhesLoterias = async () => {
     //endpoint responsável por pegar os detalhes de loterias e concursos
     await axios
@@ -84,6 +86,15 @@ const ConcursoLoterias = () => {
       <CardNumbers key={index} number={number}></CardNumbers>
     )
   });
+
+  const numberConcurso = result.map((loteria)=>{
+    if(Number(valueSelect) === loteria.id && concursosId !=null){
+      //Se numero === loteria.id e concursoId for diferente de !null
+      // retorna uma tag com o nome da loteria (no endpoint (result) o primeiro concurso é iniciado em zero=megasena)
+      return <P key={loteria.id}>{loteria.nome}</P>
+    }
+
+  })
  
 
     return (
@@ -91,18 +102,19 @@ const ConcursoLoterias = () => {
       <ContainerConcurso loteria={valueSelect}>
       <P>Concurso Loteria</P>
       <Select name="valueSelect" onChange={onChangeHandler} value={valueSelect}>
-        <option value="" disabled>
-          Escolha um concurso:
-        </option>
+        <option value="" disabled>Escolha uma loteria:</option>
         {newLoterias} 
-       </Select>
-       <p>{concursosId.id}</p>
+      </Select>
+      <Img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEEAAABACAYAAABFqxrgAAAABmJLR0QA/wD/AP+gvaeTAAAFEElEQVR4nO2bS2wVVRjHf98tpbRFjICigNqqECMLWbAwaNSoqAhIoonGF8ZEZesjMUYJkrjAxwI0LghGg4hvVETUAIHqBqrRBSGgqJAaLFSD5SGvttC/i3PnOr29tfeemc5pir+kycxtvv/5n+/OmXvmO2eMFJFUDUwAxgGHgRYzO5mC5kXAWKAd2JtUc0CQNEvSx5JOqicnJH0habaH5nRJH0o6UqR5WtIGSfdJqhqI/lRqdLyktSqPzZLOL0NzpKT3y9TcIunyLPral9mJklrKNBuxV9Jl/6E5RtK2CjUPSroyy75HZusk7azQbMROSaNKaA6TtMlTs03ShKyTsMjTbMQLJTTnJ9R8y7c/5pGAs4FWoN63UeAEMNHM2vOaOeA3YGICzW5gipn9VGlgzqOxGSRLAEAtMCt2Pp1kCQDXlzm+gZVyvU9DJbimj+Mk3OAT5JOEMT4NlSB+IxufkuZonyCfJIzwaagEZ8WOkw6vCC9vPkn41aehjPDyNqzUh5JqgbtwY/UKoAY4CPwADPc0mAUdkp4DrgLOBU4BPwPNwLtmdqhfBUkm6TFJfyX8zS6Hb2LtvpFBe8ckLZZUU9zvXMxIPbAeWILnDWaQUwc8DTSr6BkmB4XH1Y9wc4ChzlTgK7lJH/DvlfA4MDOIpTBMBV6MTnKSxgLPhvMTjIclTQF3JdwJ9HqqOwOoAh4Al4TbwnoJymxwSWgMbCQkjeCScE5gIyGpkzQ8B/wR2klADplZZw7YFdpJQHaBGw6fBDYSktXgkrAO2BfWSxCOA6sAcmbWAcwP6ycIC82sDfLTZjNbh3twOlP4FFganRSeIs3sCWAxrmo7lHkbuNvMTkcf9KgsmdkzuELKloyNZcEOYI6ZzTOzrvg/elWWzGwrcLXcctktuFnVBNxcO01+jB1/T8+aYxoI2A+0AE1mti1l/f8ZcpRchpNkuHvDrcDFuE0XabM9fzNG0pP5ttKmHbe81wRsNLNTZUVJmitpdwaFz6wLrW2SHpH7gnsQL7RWSVoBrAEuSfgNDEbGAcuB9XJF5QJRodVwv58PZu8tc2YAX0oqrFZFV8JDwD1BLIXhWmBBdJLLXxovh/MTjKckFSpLdzA0F1v6oxqYBy4Jt4f1EpS54JIwObCRkEwCl4SxgY2EZKSkmhxwILSTgBw1s44c8EtoJwHZDW44fB7YSEg+A5eENZyZQ6ITWAmu0HoYWBjWTxBeNbPCcABYBqwIZid7tgKLopOo2izgUeCdMJ4yZRMw08yORR/Eq81dZnY/cC+wJ4C5gaYNtyPn5vwtoECpQut7kj4AbgKuw23hqwKOAt/hdrQuKI4bJLwJfIurio3C9W8nbgvfOjPrLBVUch+jmXUDG/J/PZC0tHfEoOE8M1uOK56Ujc+O1gaPmKxo8AnyScJxn4ZKEN9deiQlTS9vPklIa1PH77Hj1pQ0//QJ8knCZp+GStDUx3ESNvoE+bz+Uw/sJdlep8PAhWb2d17TcLtGJiXQ7AImm1lLpYEVXwn5ScbzlcYV8VKUgLymSD51X+aTAG8kDZe01XMRpDle7o5pmqTVnpq7JaX1Rk5FiRgtaXuFZndI6vNVH0n1kr6uUHOfpEuz7Hux6VGSlkvq7sdot6RVkvpdfpdULWmJpM4yErBW0gVZ9LVfJE2T9Jqk1iKT+yW9Lmmah+YkSa9I2lOkeUDSSkk3DkRfUkHSCEmNkkamqFkrqSFNzTj/AN2OZzrIbRdAAAAAAElFTkSuQmCC" alt="logo"/>
+      <NumberConcurso>{numberConcurso}</NumberConcurso>
+      <NumberId>{concursosId.id}</NumberId>
       </ContainerConcurso>
 
       <ContainerNumbers>
       <DivCard>
         {mapNumbers}
       </DivCard>
+      <Text>Este sorteio é meramente ilustrativo e não possui nenhuma ligação com a CAIXA.</Text>
       </ContainerNumbers>
     </Div>
   );

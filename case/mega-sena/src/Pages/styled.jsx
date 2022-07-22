@@ -1,22 +1,15 @@
 import styled from "styled-components";
 
-export const P = styled.p`
-  margin: 0;
-  font-family: Montserrat;
-  font-size: 30px;
-  font-weight: 700;
-  text-align: left;
-  color: whitesmoke;
-  padding: 70px;
-  margin-left: 20px;
-`;
-
 export const Div = styled.div`
   width: 100vw;
   height: 100vh;
   display: flex;
   background: rgb(239, 239, 239);
-`;
+  @media(max-width: 800px) {
+        flex-direction: column;
+    }
+  `;
+
 const getBackground = (loteria)=> {
    
   switch (loteria){
@@ -44,6 +37,7 @@ const getBackground = (loteria)=> {
   }
 }
 export const ContainerConcurso = styled.div`
+  background: radial-gradient(50% 140% at right, #efefef 50%, ${(p)=>getBackground(p.loteria)} 50.1%);
   background-color:${(p)=>getBackground(p.loteria)};
   width: 38.3125vw;
   height: 100vh;
@@ -51,17 +45,75 @@ export const ContainerConcurso = styled.div`
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-start;
+  @media(max-width: 800px) {
+        width: 100%;
+        background: radial-gradient(100% 10% at bottom, #dcdcdc 50%, ${(p) => getBackground(p.loteria)} 50.1%);
+        padding-right: 0px;
+    }
 `;
 
+export const P = styled.p`
+  margin: 0px 20px;
+  font-family: Montserrat;
+  font-size: 25px;
+  font-weight: 700;
+  text-align: left;
+  color:whitesmoke;
+  padding: 20px;//70   55
+  @media(max-width: 800px) {
+        padding: 30px;
+    }
+
+
+   `;
+
+export const Select = styled.select`
+  background-color: #dcdcdc;
+  height: 36px;
+  font-style: normal;
+  font-weight: 550;
+  margin-left: 20%;
+  border-radius: 20px;
+  width: 50%;
+  padding: 10px;
+  text-transform: uppercase;
+  border: none;
+  outline: transparent;
+  font-family: Montserrat,sans-serif;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  `;
+
+export const Img = styled.img`
+padding-left: 100px;
+margin: 25px 50px;
+`
+
+export const NumberConcurso = styled.p`
+ width: 100vw;
+ text-transform: uppercase;
+ padding-left: 80px;
+ font-weight: bold;
+ 
+ 
+`
+export const NumberId = styled.p`
+  width: 100vw;
+  padding-left: 60px;
+  font-weight: bold;
+  
+   
+`
 export const ContainerNumbers = styled.div`
   display: flex;
   flex-direction: column;
   -webkit-box-align: center;
   align-items: center;
   justify-content: space-evenly;
-  width: 61.6875vw;
+  width: 100vw;
   height: 100vh;
+  
 `;
+
 export const DivCard = styled.div`
   width: 100%;
   height: 6.9375vw;
@@ -70,10 +122,15 @@ export const DivCard = styled.div`
   align-items: center;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  
+   
 `;
 
-export const Select = styled.select`
-  font-style: normal;
-  font-weight: 550;
-  margin-left: 12%;
-`;
+export const Text = styled.p`
+margin-top: 250px;
+@media(max-width: 800px) {
+        line-height: 20px;
+        font-size: 12px;
+        width: 260px;
+    }
+`
