@@ -84,7 +84,7 @@ export const Select = styled.select`//Retorno do endpoint seletor com nomes dos 
   font-weight: 550;
   padding-left: 20%;
   border-radius: 20px;
-  width: 50%;
+  width: 60%;
   padding: 10px;
   text-transform: uppercase;
   border: none;
