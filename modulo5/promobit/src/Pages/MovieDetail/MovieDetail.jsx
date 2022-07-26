@@ -1,13 +1,14 @@
 import react from 'react'
+import Header from '../../Components/Header/Header';
 // import { useNavigate } from "react-router-dom"
 
-const DetailMovie = () => {
+const MovieDetail = () => {
     // const navigate = useNavigate();
   
     return (
         <div>
-            <p>Eu sou Página dos Detalhes Movie</p>
+            <Header/>
         </div>
     )
 }
-export default DetailMovie;
+export default MovieDetail;

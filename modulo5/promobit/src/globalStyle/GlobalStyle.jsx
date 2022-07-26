@@ -11,3 +11,5 @@ const GlobalStyle = createGlobalStyle`
 `;
  
 export default GlobalStyle;
+
+//estilização geral do site
