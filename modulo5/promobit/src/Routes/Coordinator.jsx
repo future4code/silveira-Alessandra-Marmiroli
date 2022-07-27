@@ -9,5 +9,5 @@ export const voltar = (navigate) => {
 }
 
 // Home - aparecem os botões com o genero do filmes 
-// Detalhes - aparecem os detalhes do filmes 
+// Detalhes - aparecem os detalhes do da página Home filmes 
 // voltar (volta uma página)

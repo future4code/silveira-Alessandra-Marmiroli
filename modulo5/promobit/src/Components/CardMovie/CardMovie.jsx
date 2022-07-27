@@ -1,17 +1,22 @@
-import React from "react" 
-import { CardMovieStyled } from "./styled";
+import React from "react";
+import { CardMovieStyled, P } from "./styled";
+import { useNavigate } from 'react-router-dom'
 
 const CardMovie = (props) => {
-    return (
-      <div>
-       <CardMovieStyled>
-        {props.movie}
-        {props.foto}
-        {props.date}
-        </CardMovieStyled>
-      </div>
-    );
+  const navigate = useNavigate()
+
+  const irParaDetalhes = (id) =>{
+    navigate (`/detailMovie/${id}`)
+  }
+  
+  return (
+    <CardMovieStyled onClick={()=>irParaDetalhes(props.id)}>
+      {props.foto}
+      <P>{props.movie}</P>
+      <P>{props.date}</P>
+    </CardMovieStyled>
+  );
 };
 export default CardMovie;
 
-// Este é o Card dos filmes 
+// Este é o Card dos filmes

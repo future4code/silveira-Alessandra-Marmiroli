@@ -5,9 +5,9 @@ import { CardGenreMovie } from "./styled";
 const CardButtonMovie = (props) => {
     return (
       <div>
-        <p>Generos dos filmes </p>
-        <CardGenreMovie>{props.genre}</CardGenreMovie>
+       <CardGenreMovie>{props.genre}</CardGenreMovie>
       </div>
     );
 };
+export default CardButtonMovie;
 //Card dos genero de filmes. 

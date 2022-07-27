@@ -1,80 +1,61 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import CardMovie from '../../Components/CardMovie/CardMovie'
+// import { useNavigate } from "react-router-dom";
+import CardMovie from "../../Components/CardMovie/CardMovie";
 import Header from "../../Components/Header/Header";
-import { base_url, BASE_URL, BASE_URL2 } from "../../Constants/url";
-import { ContainerHeader, DivGeral } from "./styled";
+import { BASE_URL2 } from "../../Constants/url";
+import { ContainerCardMovie, ContainerHeader, DivGeral } from "./styled";
 
-
-// import { useNavigate } from "react-router-dom"
 
 const Movie = () => {
-  // const navigate = useNavigate();
   const [movie, setMovie] = useState([]);
-  const [listMovie, setListMovie] = useState([]);
+   
+  // const navigate = useNavigate();
 
   const getMovie = async () => {
     await axios
       .get(`${BASE_URL2}`) //Endpoint que retorna os filmes
       .then((res) => {
         setMovie(res.data);
-        console.log(res.data);
+        // console.log(res.data.results);
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  // const getDetailMovie = async ()=> {
-  //   await axios
-  //   .get(`${BASE_URL2}`)//Endpoint que retorna os detalhes
-  //     .then((res) => {
-  //       setMovie(res.data);
-  //       console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
-  // const getGenreMovie = async () => {
-  //   await axios
-  //     .get(`${base_url}`)//Endpoint que retorna os lista generos dos filmes
-  //     .then((res) => {
-  //       setListMovie(res.data);
-  //       // console.log(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
-  useEffect(() => {
-    // getGenreMovie();
+   useEffect(() => {
     getMovie();
-    // getDetailMovie()
-  }, []);
-
-  console.log(movie)
+   }, []);
 
   const filmes = movie.results?.map((filme) => {
-    return(
-        <CardMovie 
+    return (
+      <CardMovie
+        id={filme.id}
         key={filme.id}
+        foto={
+          <img
+            component="img"
+            height="200"
+            src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
+            alt="Poster"
+          />
+        }
         movie={filme.title}
-        foto={filme.poster_path}
         date={filme.release_date}
-        ></CardMovie>
-    )
-})
+      />
+    );
+  });
 
   return (
-    <div>
-      <Header/>
-       <div>
-        {filmes}
-      </div>
-    </div>
+    <DivGeral>
+      <ContainerHeader>
+        <Header/>
+        
+      </ContainerHeader>
+
+      <ContainerCardMovie>{filmes}</ContainerCardMovie>
+    </DivGeral>
   );
 };
 export default Movie;

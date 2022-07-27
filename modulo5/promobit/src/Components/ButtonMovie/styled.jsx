@@ -7,12 +7,12 @@ justify-content: center;
 align-items: center;
 padding: 8px 16px;
 gap: 8px;
-position: absolute;
-width: 96px;
+width: 90px;
 height: 40px;
 left: 509px;
 top: 329px;
 background: #FFFFFF;
 border-radius: 4px;
+margin: 5px; 
 `
 //Estilização do CardButtonMovie
