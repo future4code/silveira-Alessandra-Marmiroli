@@ -1,14 +1,15 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { base_url } from "../../Constants/url";
-import { HeaderStyled, H1, DivGenres, P } from "./styled";
+import { HeaderStyled, H1, DivGenres, P, Vetor } from "./styled";
 import CardButtonMovie from '../../Components/ButtonMovie/CardButtonMovie'
 
 
-function Header(props) {
+function Header({setGeneros, generos}) {//invés de props passa o estado por parâmetro para usar 
   const [listGenre, setListGenre] = useState ([])
-  
 
+
+  
   const getGenreMovie = async () => {//Endpoint que retorna os lista generos dos filmes
     await axios
       .get(`${base_url}`)
@@ -17,7 +18,7 @@ function Header(props) {
         console.log(res.data);
       })
       .catch((err) => {
-        console.log(err);
+        alert(err.response.data.status_message);//Tratamento de Erro!
       });
   };
 
@@ -26,9 +27,26 @@ function Header(props) {
    
    }, []);
 
+   const mudancaGenero = (id)=>{//Função que faz a mudança de Genero 
+    
+    const index = generos.indexOf(id)//método indexOf elemento de pesquisa do ponto inicial  
+      const newGeneros = [...generos]//cópia do array retornando um novo array 
+
+      if(index === -1){
+        newGeneros.push(id)//adicionando um elemento em uma lista 
+      }else{
+        newGeneros.splice(index,1)//se clicar ele adiciona se clicar novamente ele tira da lista 
+      }
+      setGeneros(newGeneros)
+    
+   }
+
   const mapListGenres = listGenre.genres?.map((genres)=>{
     return (
       <CardButtonMovie
+      mudancaGenero={mudancaGenero}//Passando a função dentro CardButtonMovie como props  
+      key={genres.id}
+      id={genres.id}//Adicionado depois 
       genre={genres.name}
       />
     )
@@ -36,6 +54,7 @@ function Header(props) {
 
   return (
     <HeaderStyled>
+     <Vetor>TMDB</Vetor>
       <H1>Milhões de filmes, séries e pessoas para descobrir. Explore já!</H1>
       <P>FILTRE POR:</P>
       <DivGenres>
