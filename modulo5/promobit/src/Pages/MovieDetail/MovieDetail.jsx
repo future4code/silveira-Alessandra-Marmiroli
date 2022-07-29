@@ -3,8 +3,9 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CardActor from "../../Components/CardActor/CardActor";
-import { ContainerCardActor, ContainerSinopse, DivGeral, Img } from "./styled";
-import { HeaderStyled } from "../../Components/Header/styled";
+import { ContainerCardActor, ContainerElenco, ContainerSinopse, DivGeral, DivTrailer, ElencoP, HeaderDetailStyled, Img, Infos, InfosFilme, P, Poster, Psinops, TextSinopse, Title, VetorDetail, Vote } from "./styled";
+import { Vetor } from "../../Components/Header/styled";
+// import { HeaderStyled } from "../../Components/Header/styled";
 
 const MovieDetail = () => {
   const [detailMovie, setDetailMovie] = useState([]);
@@ -21,7 +22,7 @@ const MovieDetail = () => {
       )
       .then((res) => {
         setDetailMovie(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -36,7 +37,7 @@ const MovieDetail = () => {
       )
       .then((res) => {
         setDetailActor(res.data);
-        console.log(res.data);
+        // console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -61,26 +62,61 @@ const MovieDetail = () => {
    
   });
 
+  const mapGenreDetail = detailMovie.genres?.map((genres)=>{
+    return (
+    <p>{genres.name}</p>)
+  })
 
-  return (
+   return (
     <DivGeral>
+      <VetorDetail>Alessandra</VetorDetail>
       <ContainerSinopse>
-      <HeaderStyled>
-      Título: {detailMovie.original_title}
-      Data do filme: {detailMovie.release_date}
+      <HeaderDetailStyled>
+        <Poster>
       {
         <Img        
           component="img"
-          height="250"
+          height="400"
           src={`https://image.tmdb.org/t/p/original/${detailMovie.poster_path}`}
-          alt="Poster"
-        />
-      }
-      {/* Média: {detailMovie.vote_average} */}
-      Sinopse: {detailMovie.overview}
-      </HeaderStyled>
+          alt="Poster"/>}
+      </Poster>
+
+
+      <Infos>
+      <Title>{detailMovie.original_title}</Title>
+
+      <InfosFilme> {detailMovie.release_date} - {mapGenreDetail} - {detailMovie.runtime}</InfosFilme>
+            
+     <Vote>{detailMovie.vote_average}</Vote>
+           
+      <TextSinopse>
+      <Psinops>Sinopse: {detailMovie.overview}</Psinops>
+      </TextSinopse>
+      </Infos>
+
+      </HeaderDetailStyled>
+
       </ContainerSinopse>
-      <ContainerCardActor>{mapActor}</ContainerCardActor>
+      
+      <ContainerElenco>
+      <ElencoP>Elenco Original</ElencoP>
+      </ContainerElenco>
+
+      <ContainerCardActor>
+        {mapActor}
+      </ContainerCardActor>
+
+      <DivTrailer>
+        <ElencoP>Trailler</ElencoP>
+        <img component="img" width="900px" src={`https://image.tmdb.org/t/p/original/${detailMovie.backdrop_path}`} alt="Poster" ></img>
+      </DivTrailer>
+
+      <DivTrailer>
+        <ElencoP>Recomendações</ElencoP>
+      <ContainerCardActor>
+        //Card actor depois 
+      </ContainerCardActor>
+      </DivTrailer>
     </DivGeral>
   );
 };

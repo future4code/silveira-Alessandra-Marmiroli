@@ -10,7 +10,16 @@ import { ContainerCardMovie, ContainerHeader, DivGeral } from "./styled";
 const Movie = () => {
   const [movie, setMovie] = useState([]);
   const [generos, setGeneros] = useState([])//Criei um estado de generos 
-  // console.log(generos)
+  // const [pagination, setPagination] = useState([])//Criando o estado da paginação 
+  // const [itensPages, setItensPages] = useState(5)//Numeros de itens por page
+  // const [currentPage, setCurrentPage] = useState(0) //Page atual que esta vendo 
+
+  // const pages = Math.ceil(pagination.lenght / itensPages) // tamanho da paginação / itens 
+  // const start = currentPage * itensPages; // 
+  // const endStart = start + itensPages; //
+  // const currentItens = pagination
+  
+  console.log(movie)
    
   // const navigate = useNavigate();
 
@@ -26,34 +35,35 @@ const Movie = () => {
       });
   };
 
-   useEffect(() => {
-    getMovie();
+    useEffect(() => {
+      getMovie();
    }, []);
 
-  //  const generoFilter = generos?.filter((generos)=>{
-  //    return generos.name === "genres"
-  //  }) PRECISA FAZER O FILTER 
+   const filmes = movie.results?.filter((filme) => {
+    if(generos.length === 0){
+      return filme
+    }else{
+      return generos.every((genero)=>{//Every filtro retorna uma lista onde o usuário vai clicar 
+        return filme.genre_ids.includes(genero)
+      })
+    }
+  })
+  .map((filme) => { return (
+    <CardMovie
+      id={filme.id}
+      key={filme.id}
+      foto={
+        <img
+          component="img"
+          height="200"
+          src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
+          alt="Poster"/>}
+      movie={filme.title}
+      date={filme.release_date}
+    />
+  )});
    
-
-  const filmes = movie.results?.map((filme) => {
-    return (
-      <CardMovie
-        id={filme.id}
-        key={filme.id}
-        foto={
-          <img
-            component="img"
-            height="200"
-            src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
-            alt="Poster"
-          />
-        }
-        movie={filme.title}
-        date={filme.release_date}
-      />
-    );
-  });
-  console.log(generos)
+    
   return (
     <DivGeral>
       <ContainerHeader>
@@ -62,6 +72,10 @@ const Movie = () => {
       </ContainerHeader>
 
       <ContainerCardMovie>{filmes}</ContainerCardMovie>
+      {/* <div>
+        {Array.from(Array(pages), (item, index)=>{
+          return <button>{index}</button>
+        })}</div> */}
     </DivGeral>
   );
 };

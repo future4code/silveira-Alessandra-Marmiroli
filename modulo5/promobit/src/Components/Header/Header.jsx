@@ -8,8 +8,6 @@ import CardButtonMovie from '../../Components/ButtonMovie/CardButtonMovie'
 function Header({setGeneros, generos}) {//invés de props passa o estado por parâmetro para usar 
   const [listGenre, setListGenre] = useState ([])
 
-
-  
   const getGenreMovie = async () => {//Endpoint que retorna os lista generos dos filmes
     await axios
       .get(`${base_url}`)
@@ -35,7 +33,7 @@ function Header({setGeneros, generos}) {//invés de props passa o estado por par
       if(index === -1){
         newGeneros.push(id)//adicionando um elemento em uma lista 
       }else{
-        newGeneros.splice(index,1)//se clicar ele adiciona se clicar novamente ele tira da lista 
+        newGeneros.splice(index,1)//tira um elemento da lista 
       }
       setGeneros(newGeneros)
     
