@@ -3,14 +3,16 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CardActor from "../../Components/CardActor/CardActor";
-import { ContainerCardActor, ContainerElenco, ContainerSinopse, DivGeral, DivTrailer, ElencoP, HeaderDetailStyled, Img, Infos, InfosFilme, P, Poster, Psinops, TextSinopse, Title, VetorDetail, Vote } from "./styled";
+import { ContainerCardActor, ContainerElenco, ContainerRecommendations, ContainerSinopse, ContainerVetor, DivGeral, DivTrailer, ElencoP, HeaderDetailStyled, Img, Information, Infos, InfosFilme, P, Poster, Psinops, TextSinopse, Title, VetorDetail, Vote } from "./styled";
 import { Vetor } from "../../Components/Header/styled";
-// import { HeaderStyled } from "../../Components/Header/styled";
+import CardMovie from '../../Components/CardMovie/CardMovie'
+
+
 
 const MovieDetail = () => {
   const [detailMovie, setDetailMovie] = useState([]);
   const [detailActor, setDetailActor] = useState([]);
- 
+  const [recommendationsMovie, setRecommendationsMovie] = useState([])
 
   const params = useParams();
 
@@ -43,10 +45,26 @@ const MovieDetail = () => {
         console.log(err);
       });
   };
+  const getRecommendationsMovie = async () => {
+    await axios
+      .get(`https://api.themoviedb.org/3/movie/${params.filmes}/recommendations?api_key=ee906153f1e34c7932d8e497d2ebe284`)//Endpoint que retorna os detalhes de cada filmes
+      .then((res) => {
+        setRecommendationsMovie(res.data);
+        console.log('Recomendados', res.data)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+  
+
   useEffect(() => {
     getDetailMovie();
     getDetailActor();
+    getRecommendationsMovie();
   }, []);
+
+  // console.log(recommendationsMovie)
 
   const mapActor = detailActor.cast?.map((actor) => {
     if(actor.order < 10){
@@ -67,10 +85,25 @@ const MovieDetail = () => {
     <p>{genres.name}</p>)
   })
 
+  const mapRecommendations = recommendationsMovie.results?.map((recomenda)=>{
+    return (
+      <CardMovie 
+      key={recomenda.id}
+      foto={<img component="img" height="210" src={`https://image.tmdb.org/t/p/original/${recomenda.poster_path}`}
+      alt="Poster" />}
+      movie={recomenda.title}
+      date={recomenda.release_date}
+      ></CardMovie>
+    )
+  })
+
    return (
     <DivGeral>
-      <VetorDetail>Alessandra</VetorDetail>
-      <ContainerSinopse>
+       <ContainerVetor>
+        <Vetor>TMDB</Vetor>
+       </ContainerVetor>
+
+    <ContainerSinopse>
       <HeaderDetailStyled>
         <Poster>
       {
@@ -81,8 +114,7 @@ const MovieDetail = () => {
           alt="Poster"/>}
       </Poster>
 
-
-      <Infos>
+      <Information>
       <Title>{detailMovie.original_title}</Title>
 
       <InfosFilme> {detailMovie.release_date} - {mapGenreDetail} - {detailMovie.runtime}</InfosFilme>
@@ -92,7 +124,7 @@ const MovieDetail = () => {
       <TextSinopse>
       <Psinops>Sinopse: {detailMovie.overview}</Psinops>
       </TextSinopse>
-      </Infos>
+      </Information>
 
       </HeaderDetailStyled>
 
@@ -113,9 +145,9 @@ const MovieDetail = () => {
 
       <DivTrailer>
         <ElencoP>Recomendações</ElencoP>
-      <ContainerCardActor>
-        //Card actor depois 
-      </ContainerCardActor>
+      <ContainerRecommendations>
+        {mapRecommendations}
+      </ContainerRecommendations>
       </DivTrailer>
     </DivGeral>
   );
