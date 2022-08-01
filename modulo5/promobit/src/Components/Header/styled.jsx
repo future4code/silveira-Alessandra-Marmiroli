@@ -28,7 +28,7 @@ export const H1 = styled.h1`
 export const DivGenres = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
+  width: 80%;
   flex-wrap: wrap;
   justify-content: center;
 `;
@@ -39,8 +39,7 @@ export const P = styled.p`
 export const Vetor = styled.p`
   margin-top: 0px;
   background-color: #5c16c5;
-  width: 100%;
-  height: 56px;
+  height: 56px; 
   left: 0px;
   color: whitesmoke;
   font-size: 20px;

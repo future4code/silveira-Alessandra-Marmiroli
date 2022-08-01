@@ -16,3 +16,8 @@ export const ContainerCardMovie = styled.div`
   width: 100%;
   justify-content: center;
 `;
+
+export const Pagination = styled.div`
+ align-items: center;
+`;
+

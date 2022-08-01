@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { base_url } from "../../Constants/url";
 import { HeaderStyled, H1, DivGenres, P, Vetor } from "./styled";
 import CardButtonMovie from '../../Components/ButtonMovie/CardButtonMovie'
+import { ContainerVetor } from "../../Pages/MovieDetail/styled";
 
 
 function Header({setGeneros, generos}) {//invés de props passa o estado por parâmetro para usar 
@@ -25,7 +26,7 @@ function Header({setGeneros, generos}) {//invés de props passa o estado por par
    
    }, []);
 
-   const mudancaGenero = (id)=>{//Função que faz a mudança de Genero 
+     const mudancaGenero = (id)=>{//Função que faz a mudança de Genero 
     
     const index = generos.indexOf(id)//método indexOf elemento de pesquisa do ponto inicial  
       const newGeneros = [...generos]//cópia do array retornando um novo array 
@@ -38,6 +39,12 @@ function Header({setGeneros, generos}) {//invés de props passa o estado por par
       setGeneros(newGeneros)
     
    }
+  //  const mudancaCor = (id, color) => {
+  //   let element = document.getElementById(id);
+  //   if (element != null) {
+  //     element.style.backgroundColor = active ? color : "#D18000";
+  //   }
+   
 
   const mapListGenres = listGenre.genres?.map((genres)=>{
     return (
@@ -49,10 +56,13 @@ function Header({setGeneros, generos}) {//invés de props passa o estado por par
       />
     )
   });
-
+ 
   return (
     <HeaderStyled>
-     <Vetor>TMDB</Vetor>
+      <ContainerVetor>
+      <Vetor>TMDB</Vetor>
+      </ContainerVetor>
+     
       <H1>Milhões de filmes, séries e pessoas para descobrir. Explore já!</H1>
       <P>FILTRE POR:</P>
       <DivGenres>

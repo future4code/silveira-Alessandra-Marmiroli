@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import CardActor from "../../Components/CardActor/CardActor";
-import { ContainerCardActor, ContainerElenco, ContainerRecommendations, ContainerSinopse, ContainerVetor, DivGeral, DivTrailer, ElencoP, HeaderDetailStyled, Img, Information, Infos, InfosFilme, P, Poster, Psinops, TextSinopse, Title, VetorDetail, Vote } from "./styled";
+import { ContainerCardActor, ContainerElenco, ContainerRecommendations, ContainerSinopse, ContainerVetor, DivGeral, DivTrailer, ElencoP, HeaderDetailStyled, Img, ImgTrailler, Information, Infos, InfosFilme, P, Poster, Psinops, TextSinopse, Title, VetorDetail, Vote } from "./styled";
 import { Vetor } from "../../Components/Header/styled";
 import CardMovie from '../../Components/CardMovie/CardMovie'
 
@@ -85,16 +85,19 @@ const MovieDetail = () => {
     <p>{genres.name}</p>)
   })
 
-  const mapRecommendations = recommendationsMovie.results?.map((recomenda)=>{
-    return (
-      <CardMovie 
-      key={recomenda.id}
-      foto={<img component="img" height="210" src={`https://image.tmdb.org/t/p/original/${recomenda.poster_path}`}
-      alt="Poster" />}
-      movie={recomenda.title}
-      date={recomenda.release_date}
-      ></CardMovie>
-    )
+  const mapRecommendations = recommendationsMovie.results?.map((recomenda, index)=>{
+    if(index <6){
+        return (
+        <CardMovie 
+        key={recomenda.id}
+        foto={<img component="img" height="200" src={`https://image.tmdb.org/t/p/original/${recomenda.poster_path}`}
+        alt="Poster" />}
+        movie={recomenda.title}
+        date={recomenda.release_date}
+        ></CardMovie>
+      )
+    }
+    
   })
 
    return (
@@ -140,7 +143,7 @@ const MovieDetail = () => {
 
       <DivTrailer>
         <ElencoP>Trailler</ElencoP>
-        <img component="img" width="900px" src={`https://image.tmdb.org/t/p/original/${detailMovie.backdrop_path}`} alt="Poster" ></img>
+        <ImgTrailler component="img" width="900px" src={`https://image.tmdb.org/t/p/original/${detailMovie.backdrop_path}`} alt="Poster" ></ImgTrailler>
       </DivTrailer>
 
       <DivTrailer>

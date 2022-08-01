@@ -3,79 +3,123 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import CardMovie from "../../Components/CardMovie/CardMovie";
 import Header from "../../Components/Header/Header";
-import { BASE_URL2 } from "../../Constants/url";
 import { ContainerCardMovie, ContainerHeader, DivGeral } from "./styled";
-
+import PaginationMovie from "../../Pagination/PaginationMovie";
+import Pagination from '@mui/material/Pagination';
 
 const Movie = () => {
   const [movie, setMovie] = useState([]);
-  const [generos, setGeneros] = useState([])//Criei um estado de generos 
-  // const [pagination, setPagination] = useState([])//Criando o estado da paginação 
-  // const [itensPages, setItensPages] = useState(5)//Numeros de itens por page
-  // const [currentPage, setCurrentPage] = useState(0) //Page atual que esta vendo 
+  const [generos, setGeneros] = useState([]); //Criei um estado de generos
+  const [page, setPage] = useState(1);
 
-  // const pages = Math.ceil(pagination.lenght / itensPages) // tamanho da paginação / itens 
-  // const start = currentPage * itensPages; // 
-  // const endStart = start + itensPages; //
-  // const currentItens = pagination
-  
-  console.log(movie)
-   
-  // const navigate = useNavigate();
+  const mudarPage = (event, value) => {
+    setPage(value);
+  };
+
+  // const proximaPage = (page) => {
+  //   setPage(page + 1);
+  // };
+
+  // const anteriorPage = (page) => {
+  //   if (page === 1) {
+  //     setPage(page);
+  //   } else {
+  //     setPage(page - 1);
+  //   }
+  // };
+
+  // const pagination = Array.from(Array(11), (_, index) => {
+  //   if (page <= 11) {
+  //     return index + 1;
+  //   }else if(page <= 20){
+  //     return index + page - 10
+  //   }
+  // });
 
   const getMovie = async () => {
     await axios
-      .get(`${BASE_URL2}`) //Endpoint que retorna os filmes
+      .get(
+        `https://api.themoviedb.org/3/movie/popular/?api_key=ee906153f1e34c7932d8e497d2ebe284&page=${page}`
+      ) //Endpoint que retorna os filmes
       .then((res) => {
-       setMovie(res.data);
-        console.log(res.data.results);
+        setMovie(res.data);
+        console.log(res.data);
       })
       .catch((err) => {
-        alert(err.response.data.status_message);//Tratamento de Erro res endpoint 
+        alert(err.response.data.status_message); //Tratamento de Erro res endpoint
       });
   };
 
-    useEffect(() => {
-      getMovie();
-   }, []);
+  useEffect(() => {
+    getMovie();
+  }, [page]);
 
-   const filmes = movie.results?.filter((filme) => {
-    if(generos.length === 0){
-      return filme
-    }else{
-      return generos.every((genero)=>{//Every filtro retorna uma lista onde o usuário vai clicar 
-        return filme.genre_ids.includes(genero)
-      })
-    }
-  })
-  .map((filme) => { return (
-    <CardMovie
-      id={filme.id}
-      key={filme.id}
-      foto={
-        <img
-          component="img"
-          height="200"
-          src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
-          alt="Poster"/>}
-      movie={filme.title}
-      date={filme.release_date}
-    />
-  )});
-   
-    
+  const filmes = movie.results
+    ?.filter((filme) => {
+      if (generos.length === 0) {
+        return filme;
+      } else {
+        return generos.every((genero) => {
+          //Every filtro retorna uma lista onde o usuário vai clicar
+          return filme.genre_ids.includes(genero);
+        });
+      }
+    })
+    .map((filme) => {
+      return (
+        <CardMovie
+          id={filme.id}
+          key={filme.id}
+          foto={
+            <img
+              component="img"
+              height="200"
+              src={`https://image.tmdb.org/t/p/original/${filme.poster_path}`}
+              alt="Poster"
+            />
+          }
+          movie={filme.title}
+          date={filme.release_date}
+        />
+      );
+    });
+
+  // const mapPagination =
+  //   movie &&
+  //   pagination.map((pagina) => {
+  //     return (
+  //       <PaginationMovie
+  //         key={pagina}
+  //         number={pagina}
+  //         mudarPage={mudarPage}
+  //         pageSelect={pagina === page}
+  //       />
+  //     );
+  //   });
+
   return (
     <DivGeral>
       <ContainerHeader>
-        <Header setGeneros={setGeneros} generos={generos}/>
-        
+        <Header setGeneros={setGeneros} generos={generos} />
       </ContainerHeader>
 
       <ContainerCardMovie>{filmes}</ContainerCardMovie>
+
       {/* <div>
-        {Array.from(Array(pages), (item, index)=>{
-          return <button>{index}</button>
-        })}</div> */}
+        <button onClick={() => anteriorPage(page)}>
+          Anterior
+        </button>
+      </div>
+      {mapPagination}
+      <div>
+
+        <button onClick={() => proximaPage(page)}>
+          Próximo
+        </button>
+      </div> */}
+      
+      <Pagination count={10} page={page} onChange={mudarPage} />
+
     </DivGeral>
   );
 };

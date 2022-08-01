@@ -95,3 +95,7 @@ export const ContainerRecommendations = styled.p`
   display: flex;
   width: 95%;
 `;
+
+export const ImgTrailler = styled.img`
+ 
+`;

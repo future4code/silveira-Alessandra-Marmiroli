@@ -8,11 +8,11 @@ align-items: center;
 padding: 8px 16px;
 gap: 8px;
 width: 90px;
-height: 40px;
+height: 30px;
 left: 509px;
 top: 329px;
-background: #FFFFFF;
 border-radius: 4px;
 margin: 5px; 
 `
+
 //Estilização do CardButtonMovie
