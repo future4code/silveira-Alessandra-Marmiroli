@@ -1,0 +1,67 @@
+# @name criandoUsuario
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{	
+	"email": "Leticia@leticia.com.br",
+    "name": "Leticia",
+	"password": "123456",
+	"role": "ADMIN"
+}
+
+###
+# @name login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+   "email": "Bruna@bruna.com.br",
+   "password": "123456"
+}
+###
+# @name perfilUsuario
+
+@token = {{login.response.body.token}}
+
+GET http://localhost:3003/user/profile
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+# @name PerfilPorID
+
+@token = {{login.response.body.token}}
+
+GET http://localhost:3003/user/068db790-1b2f-4d83-84a0-8b2d17435aa8
+Content-Type: application/json
+Authorization: {{token}}
+
+###
+# @name criandoReceita
+
+POST http://localhost:3003/recipe
+Authorization:  {{token}}
+Content-Type: application/json
+
+{	
+	"titulo": "Caldo",
+	"descricao": "Legumes",
+	"modo_de_preparo": "Em uma panela de pressão, cozinhe 4 batatas médias, um pedaço de mandioca, um pedaço de abóbora paulistinha, uma cenoura, uma cebola 2 folhas de louro, 1 tomate, 1 colher de sopa de páprica e 1 colher de café de açafrão, sal à gosto adicione 250 ml de água filtrada, 20 minutinhos de cozimento bata tudo em um liquidificador menos a folha de louro, leve para uma panela e adicione 1 colher de sopa cheia de manteiga, agora é o tempo da manteiga derreter e seu caldo vai surpreender a família! Bom apetite!"
+}
+
+###
+# @name VerReceita
+
+@token = {{login.response.body.token}}
+
+GET http://localhost:3003/recipe/772825ce-f8b6-4a38-983d-36a1d8e4b212
+Content-Type: application/json
+Authorization: {{token}}
+
+
+
+
+
+
