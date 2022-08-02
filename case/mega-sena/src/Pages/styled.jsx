@@ -49,6 +49,7 @@ export const ContainerConcurso = styled.div`//Div Concurso parte colorida
   justify-content: space-around;
   align-items: center;
   padding-right: 50px;
+ 
   @media(max-width: 800px) {
         height: 80%;
         width: 100%;
@@ -67,14 +68,13 @@ export const P = styled.p`//Aqui retorno do endpoint Concurso Loteria e nome dos
   color:whitesmoke;
   padding: 20px;
   text-shadow: grey 0.1em 0.1em 0.2em;
+  
    @media(max-width: 800px) {
         padding: 30px;
         text-align: center;
         font-size: 35px;
         
     }
-
-
    `;
 
 export const Select = styled.select`//Retorno do endpoint seletor com nomes dos concursos 
@@ -117,7 +117,6 @@ export const NameConcurso = styled.p`//Nome do Concurso
  width: 100%;
  text-transform: uppercase;
  font-weight: bold;
-
  
 `
 export const NumberConcurso = styled.p`//Numero do Concurso 
@@ -133,7 +132,7 @@ export const ContainerNumbers = styled.div`//Parte Cinza do projeto
   justify-content: space-evenly;
   width: 100%;
   padding: 1rem;
-     
+   
 `;
 
 export const DivCard = styled.div`//Div com retorno dos card na tela 
@@ -144,9 +143,6 @@ export const DivCard = styled.div`//Div com retorno dos card na tela
   justify-content: space-evenly;
   flex-wrap: wrap;
   margin-top: 200px;
-
-  
-   
 `;
 
 export const Text = styled.p`//Frase meramente ilustrativa 
