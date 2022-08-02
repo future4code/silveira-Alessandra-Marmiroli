@@ -22,5 +22,5 @@ As cores utilizadas no projeto foram salvas na pasta Constants *colors*.
 
 ### Realizado Por: Alessandra Sandeski Marmiroli
 
-**Link do Surge: ** concurso-loteria.surge.sh
+**Link do Surge: **  concursoloteria-alessandra-sm.surge.sh
 
