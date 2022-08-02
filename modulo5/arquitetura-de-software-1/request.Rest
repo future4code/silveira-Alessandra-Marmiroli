@@ -1,0 +1,23 @@
+# @name createUser
+
+POST http://localhost:3003/user/signUp
+Content-Type: application/json
+
+{	
+	"name": "Matteo",
+    "email": "matteo@gmail.com.br",
+	"password": "123456",
+	"role": "ADMIN"
+}
+
+###
+# @name login
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "matteo@gmail.com.br",
+    "password": "123456"
+}
+
+###
