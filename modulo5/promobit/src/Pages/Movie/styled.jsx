@@ -17,7 +17,9 @@ export const ContainerCardMovie = styled.div`
   justify-content: center;
 `;
 
-export const Pagination = styled.div`
- align-items: center;
+export const ContainerPagination = styled.div`
+display: flex;
+justify-content: center;
+margin-top: 20px;
 `;
 

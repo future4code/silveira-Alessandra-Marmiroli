@@ -2,7 +2,7 @@
 
 ### Projeto *Promobit* 
 
-### Este projeto foi construído em duas Páginas. Na primeira página permite que o usuário consiga através de um filtro selecionar os filmes por gênero e ao clicar em gênero o botão muda de cor permitindo um contato visual de que este gênero ja esteja selecionado. Na segunda página o usuário consegue visualizar os detalhes de cada filme com uma variedade de informações como: imagem do filme, nome do filme, data do filme, trailer do filme (cartaz), elenco e recomendações. 
+### Este projeto foi construído em duas Páginas. Na primeira página permite que o usuário consiga através de um filtro selecionar os filmes por gênero e ao clicar em gênero o botão muda de cor permitindo um contato visual de que este gênero ja esteja selecionado. Priorizei a paginação estilizada com Material UI. Na segunda página o usuário consegue visualizar os detalhes de cada filme com uma variedade de informações como: imagem do filme, nome do filme, data do filme, trailer do filme (cartaz), elenco e recomendações. 
 
 ### Foi possível consumir endpoints:  
 <tr>
@@ -33,5 +33,5 @@
 
 Este projeto foi realizado Alessandra Sandeski Marmiroli. 
 
-*Link do Surge*:  
+*Link do Surge:  promobit.surge.sh*
 

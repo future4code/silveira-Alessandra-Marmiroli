@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import CardMovie from "../../Components/CardMovie/CardMovie";
 import Header from "../../Components/Header/Header";
-import { ContainerCardMovie, ContainerHeader, DivGeral } from "./styled";
+import { ContainerCardMovie, ContainerHeader, ContainerPagination, DivGeral } from "./styled";
 import PaginationMovie from "../../Pagination/PaginationMovie";
 import Pagination from '@mui/material/Pagination';
 
@@ -105,7 +105,16 @@ const Movie = () => {
 
       <ContainerCardMovie>{filmes}</ContainerCardMovie>
 
-      {/* <div>
+      <ContainerPagination>
+      <Pagination count={10} page={page} onChange={mudarPage} />
+      </ContainerPagination>
+
+    </DivGeral>
+  );
+};
+export default Movie;
+
+{/* <div>
         <button onClick={() => anteriorPage(page)}>
           Anterior
         </button>
@@ -117,10 +126,3 @@ const Movie = () => {
           Próximo
         </button>
       </div> */}
-      
-      <Pagination count={10} page={page} onChange={mudarPage} />
-
-    </DivGeral>
-  );
-};
-export default Movie;
