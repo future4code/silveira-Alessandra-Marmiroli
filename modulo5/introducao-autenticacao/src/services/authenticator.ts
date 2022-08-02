@@ -1,0 +1,31 @@
+import * as jwt from "jsonwebtoken"
+import { AuthenticationData } from "../types";
+
+
+const expiresIn = "5min"
+
+export class authenticator {
+     generateToken = (payload: AuthenticationData): string => {
+        const token = jwt.sign(
+            payload
+        ,
+            process.env.JWT_KEY as string,
+            {
+                expiresIn
+            }
+        );
+        return token
+    }
+
+    getTokenData = (token: string) => {
+
+        const tokenData = jwt.verify(
+            token, process.env.JWT_KEY as string
+        )
+        return tokenData as AuthenticationData
+    }
+}
+
+
+
+//Exemplo de uma função que gera o token de autenticação do usuário. 
