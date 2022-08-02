@@ -12,7 +12,7 @@ height: 30px;
 left: 509px;
 top: 329px;
 border-radius: 4px;
-margin: 5px; 
+margin: 5px;
 `
 
 //Estilização do CardButtonMovie

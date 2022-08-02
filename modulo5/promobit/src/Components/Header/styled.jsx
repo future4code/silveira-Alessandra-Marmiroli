@@ -20,17 +20,19 @@ export const H1 = styled.h1`
   font-family: Roboto;
   font-size: 48px;
   line-height: 56px;
-  width: 710px;
-  margin-bottom: 50px;
+  width: 830px;
+  margin-bottom: 30px;
   margin-top: 50px;
 
 `;
 export const DivGenres = styled.div`
   display: flex;
   flex-direction: row;
-  width: 80%;
+  width: 90%;
   flex-wrap: wrap;
   justify-content: center;
+  margin-bottom: 50px;
+
 `;
 export const P = styled.p`
   color: whitesmoke;

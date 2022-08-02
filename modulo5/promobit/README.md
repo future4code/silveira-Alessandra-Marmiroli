@@ -33,5 +33,5 @@
 
 Este projeto foi realizado Alessandra Sandeski Marmiroli. 
 
-*Link do Surge:  promobit.surge.sh*
+*Link do Surge:  projetopromobit-alessandra-sm.surge.sh*
 

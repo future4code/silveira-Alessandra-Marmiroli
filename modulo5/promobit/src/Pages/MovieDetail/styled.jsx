@@ -7,16 +7,20 @@ export const DivGeral = styled.div`
 export const ContainerVetor = styled.div`
   background-color: #5c16c5;
   width: 100%;
-  height: 80px;
+  height: 50px;
 `;
 export const Vetor = styled.p`
   background-color: whitesmoke;
+  margin-top: 0;
+  padding: 15px;
+  font-size: 18px;
 `;
 
 export const ContainerSinopse = styled.div`
   width: 100%;
   color: whitesmoke;
-`;
+ `;
+
 export const HeaderDetailStyled = styled.div`
   display: flex;
   flex-direction: row;
@@ -62,7 +66,7 @@ export const TextSinopse = styled.div`
   font-family: "Roboto", sans-serif;
   font-size: 16px;
   letter-spacing: -0.005em;
-  width: 700px;
+  width: auto;//700px
 `;
 export const Psinops = styled.p`
   font-weight: bold;
@@ -79,11 +83,13 @@ export const ContainerCardActor = styled.div`
   display: flex;
   width: 95%;
   overflow: auto;
+  padding: 20px;
 `;
 export const DivTrailer = styled.p`
   display: flex;
   flex-direction: column;
-  margin: 50px;
+  padding: 30px;
+  /* margin: 50px; */
 `;
 export const ElencoP = styled.p`
   font-weight: bold;
@@ -97,5 +103,7 @@ export const ContainerRecommendations = styled.p`
 `;
 
 export const ImgTrailler = styled.img`
- 
+  width: 383px;
+  height: 574px;
+  border-radius: 8px;
 `;

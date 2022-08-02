@@ -4,7 +4,7 @@ export const CardMovieStyled = styled.div`
   display: flex;
   flex-direction: column;
   width: 150px;
-  height: 280px;
+  height: 300px;
   left: 320px;
   top: 534px;
   background: url(image.png);

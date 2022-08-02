@@ -15,11 +15,13 @@ export const ContainerCardMovie = styled.div`
   flex-direction: row;
   width: 100%;
   justify-content: center;
-`;
+ `;
 
 export const ContainerPagination = styled.div`
 display: flex;
 justify-content: center;
-margin-top: 20px;
+margin-top: 50px;
+margin-bottom: 100px;
+
 `;
 

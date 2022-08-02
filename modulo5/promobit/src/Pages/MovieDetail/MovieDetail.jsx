@@ -110,7 +110,7 @@ const MovieDetail = () => {
       <HeaderDetailStyled>
         <Poster>
       {
-        <Img        
+        <ImgTrailler        
           component="img"
           height="400"
           src={`https://image.tmdb.org/t/p/original/${detailMovie.poster_path}`}
@@ -143,7 +143,7 @@ const MovieDetail = () => {
 
       <DivTrailer>
         <ElencoP>Trailler</ElencoP>
-        <ImgTrailler component="img" width="900px" src={`https://image.tmdb.org/t/p/original/${detailMovie.backdrop_path}`} alt="Poster" ></ImgTrailler>
+        <img component="img" width="900px" src={`https://image.tmdb.org/t/p/original/${detailMovie.backdrop_path}`} alt="Poster" ></img>
       </DivTrailer>
 
       <DivTrailer>
