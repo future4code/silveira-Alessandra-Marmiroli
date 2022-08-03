@@ -14,7 +14,7 @@ export const Div = styled.div`//Div geral
     }
   `;
 
-const getBackground = (loteria)=> {
+const getBackground = (loteria)=> {//Função swicth que faz a mudança de cor na tela 
    
   switch (loteria){
     case "0": 
