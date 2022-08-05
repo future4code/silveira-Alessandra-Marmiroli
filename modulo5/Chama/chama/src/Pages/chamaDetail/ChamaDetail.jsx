@@ -1,6 +1,6 @@
 import React from "react";
 
-const chamaDetail = () => {
+const ChamaDetail = () => {
   return (
     <div>
       <h1>Page Chama Detail</h1>
@@ -8,4 +8,4 @@ const chamaDetail = () => {
     </div>
   );
 };
-export default chamaDetail;
+export default ChamaDetail;
