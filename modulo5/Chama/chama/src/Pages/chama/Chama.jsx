@@ -1,67 +1,70 @@
 import React from "react";
-import {
-  ContainerInfoUser,
-  ContainerMapInfo,
-  DivButton,
-  DivGeral,
-  Form,
-  H1,
-  Img,
-} from "./styled";
+import {ContainerInfoUser,ContainerMapInfo,DivButton,DivGeral,Form,H1,Img} from "./styled";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { useState } from "react";
 import { BASE_URL } from "../../constants/url/url";
 import axios from "axios";
 import { useEffect } from "react";
+import CardUser from "../../components/Card/CardUser";
 // import CardUser from "../../components/Card/CardUser";
 
 const Chama = () => {
   const [user, setUser] = useState([]); //estado do endpoint
-  const [userSingle, setUserSingle] = useState([]);
-
-  // const [input, setInput] = useState([])//estado da função Input
-  // const [value, setValue] = useState([])//estado d função Textfield
-  // console.log(setUser)
-
+  const [input, setInput] = useState("");//controla o que é escrito no input
+  const [inputStore, setInputStore] = useState("")//guarda a informação no estado 
+  
+  
   const getUser = async () => {
     //Endpoint que retorna um alista de usuário do GitHub
     await axios
-      .get(`${BASE_URL}/${userSingle}`) //userSingle novo estado com um usúario único
+      .get(`${BASE_URL}`) //input novo estado com um usúario único
       .then((res) => {
-        console.log(res.data);
+        // console.log('LISTA',res.data);
         setUser(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  console.log(input.avatar_url)
 
-  useEffect(() => {
+  const getUserSingle = async () => {//Não quero dentro do useEffect
+    //Endpoint que retorna um usuário único do GitHub
+    await axios
+      .get(`${BASE_URL}/${input}`) //input novo estado com um usúario único
+      .then((res) => {
+        console.log('UNICO', res.data);
+        setInputStore(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+   useEffect(() => {
     getUser();
+   
   }, []);
-
+  console.log(input)
   // const getAllUser = user?.map((users)=>{
   //   console.log(getAllUser)
   //   return (
-  //     <CardUser
-  //     key={users.id}
-  //     avatar={users.avatar_url}
-  //     bio={users.bio}
-  //     email={users.email}
-  //     name={users.name}
-  //     >
-  //     {users.name}
-  //     </CardUser>
-  //   )
+    //   )
   // });
 
-  const onChangeButton = (event) => {
-    //função que envia informações do usuário
-    setUserSingle(event.target.value);
-  };
+const handleChange = (event) => {// recebendo a informação que usuário digita 
+  setInput(event.target.value)
+}
 
-  return (
+const handleSubmit = (event) => { //envia a informação que o usuário digitou 
+    event.preventDefault();//prevenir a página de ser recarregada (nao deixar atualizar a pagina quando clicar no botao enviar)
+    getUserSingle()
+    setInput("")
+    // console.log('clicou')
+}
+
+return (
     <DivGeral>
       <ContainerInfoUser>
         <div>
@@ -73,23 +76,38 @@ const Chama = () => {
         </div>
         <H1>Projeto Chama</H1>
 
-        
-          <Form>
-            <TextField
-              onChange={onChangeButton}
-              value={userSingle}
-              style={{ background: "#DCDCDC", width: "250px" }}
-              label="Nome do usuário usado no GitHub"
-              variant="filled"
-            />
-            <Button style={{width: "200px", height:"100%" }} variant="contained">Enviar</Button>
-          </Form>
-        
+        <Form onSubmit={handleSubmit}>
+
+          <TextField
+            onChange={handleChange}
+            value={input}
+            type="text"
+            style={{ background: "#DCDCDC", width: "250px" }}
+            label="Nome do usuário usado no GitHub"
+            variant="filled"
+          />
+          <Button
+            type="submit"//propriedade que permite o envio das informações 
+            style={{ width: "200px", height: "100%" }}
+            variant="contained"
+          >
+            Enviar
+          </Button>
+        </Form>
       </ContainerInfoUser>
 
       <ContainerMapInfo>
         <p>Aqui vem as informações do usuário</p>
-        {}
+        
+        <CardUser
+          key={inputStore.id}
+          avatar_url={inputStore.avatar_url}
+          bio={inputStore.bio}
+          email={inputStore.email}
+          name={inputStore.name}
+          login={inputStore.login}
+        ></CardUser>
+
       </ContainerMapInfo>
 
       <DivButton>

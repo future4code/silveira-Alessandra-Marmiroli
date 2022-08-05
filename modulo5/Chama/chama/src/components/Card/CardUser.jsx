@@ -1,19 +1,23 @@
-import React from "react" 
+import React from "react";
 import { CardUserStyled } from "./styled";
 
-const CardUser = (props) => {//Card do Usuário 
-    return (
-      <div>
-        <CardUserStyled>
-          {props.user}
-          {props.avatar_url}
-          {props.bio}
-          {props.email}
-          {props.name}
-        </CardUserStyled>
-      </div>
-    );
+const CardUser = ({ user, avatar_url, bio, email, name, login }) => {
+  //Card do Usuário
+
+  return (
+    <div>
+      <CardUserStyled>
+        {user}
+        {avatar_url?(
+          <img height="180px" src={avatar_url} alt="avatar"></img>
+        ):(<></>)}
+        {bio}
+        {email}
+        {name}
+        {login}
+      </CardUserStyled>
+    </div>
+  );
 };
 
-export default CardUser
-
+export default CardUser;

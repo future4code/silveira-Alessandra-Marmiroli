@@ -13,7 +13,6 @@ export const ContainerInfoUser = styled.div`
   width: 100%;
   height: 400px;
   padding: 0 10px;
-
   z-index: 9999;
 `;
 export const H1 = styled.h1`
@@ -28,15 +27,11 @@ export const H1 = styled.h1`
 `;
 export const ContainerMapInfo = styled.div`
   display: flex;
-
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   width: 100%;
   height: 600px;
   background-color: #dcdcdc;
-
-  /* justify-content: space-between; */
 `;
 
 export const Img = styled.img`
@@ -54,6 +49,6 @@ export const DivButton = styled.div`
 `;
 
 export const Form = styled.form`
-  border: thick solid #190172;
+  border: solid #190172;
   left: 20%;
 `;
