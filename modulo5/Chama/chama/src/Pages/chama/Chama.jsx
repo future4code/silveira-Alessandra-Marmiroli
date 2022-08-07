@@ -1,5 +1,5 @@
 import React from "react";
-import {ContainerInfoUser,ContainerMapInfo,DivButton,DivGeral,Form,H1,Img} from "./styled";
+import {ContainerInfoUser,ContainerMapInfo,DivButton,DivGeral,Form,H1,Img, P} from "./styled";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
 import { useState } from "react";
@@ -7,13 +7,16 @@ import { BASE_URL } from "../../constants/url/url";
 import axios from "axios";
 import { useEffect } from "react";
 import CardUser from "../../components/Card/CardUser";
-// import CardUser from "../../components/Card/CardUser";
+import { useNavigate } from "react-router-dom";
+
 
 const Chama = () => {
   const [user, setUser] = useState([]); //estado do endpoint
   const [input, setInput] = useState("");//controla o que é escrito no input
   const [inputStore, setInputStore] = useState("")//guarda a informação no estado 
+ 
   
+  const navigate = useNavigate()
   
   const getUser = async () => {
     //Endpoint que retorna um alista de usuário do GitHub
@@ -74,7 +77,7 @@ return (
             alt="logo GitHub"
           />
         </div>
-        <H1>Projeto Chama</H1>
+        <H1>Chama</H1>
 
         <Form onSubmit={handleSubmit}>
 
@@ -97,7 +100,7 @@ return (
       </ContainerInfoUser>
 
       <ContainerMapInfo>
-        <p>Aqui vem as informações do usuário</p>
+        <P>Informações do usuário do Github</P>
         
         <CardUser
           key={inputStore.id}

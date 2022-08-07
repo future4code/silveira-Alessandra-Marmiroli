@@ -4,7 +4,7 @@ const ChamaDetail = () => {
   return (
     <div>
       <h1>Page Chama Detail</h1>
-      <button>Mudar para a página inicial</button>
+      <button>Voltar para a página inicial</button>
     </div>
   );
 };

@@ -10,10 +10,10 @@ export const ContainerInfoUser = styled.div`
   justify-content: space-between;
   align-items: center;
   background-color: #5333ed;
-  width: 100%;
+  width: auto;
   height: 400px;
   padding: 0 10px;
-  z-index: 9999;
+  
 `;
 export const H1 = styled.h1`
   display: flex;
@@ -41,14 +41,18 @@ export const Img = styled.img`
 `;
 
 export const DivButton = styled.div`
-  margin-top: 20px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: space-between;
+  background-color:  #dcdcdc;
 `;
 
 export const Form = styled.form`
   border: solid #190172;
   left: 20%;
+`;
+
+export const P = styled.p`
+  font-size: 17px;
 `;
