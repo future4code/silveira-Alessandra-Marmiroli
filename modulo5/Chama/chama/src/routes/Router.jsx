@@ -8,7 +8,7 @@ export const Router = () => {
         <BrowserRouter>
           <Routes>
             <Route index element={ < Chama/>} />
-            <Route path="detail" element={ < ChamaDetail />} />
+            <Route path="ChamaDetail" element={ < ChamaDetail />} />
           </Routes>
         </BrowserRouter>
       </div>

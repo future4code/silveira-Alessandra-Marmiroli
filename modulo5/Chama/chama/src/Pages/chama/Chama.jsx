@@ -8,12 +8,14 @@ import axios from "axios";
 import { useEffect } from "react";
 import CardUser from "../../components/Card/CardUser";
 import { useNavigate } from "react-router-dom";
+import { irParaDetail } from "../../routes/Coordinator";
 
 
 const Chama = () => {
   const [user, setUser] = useState([]); //estado do endpoint
   const [input, setInput] = useState("");//controla o que é escrito no input
   const [inputStore, setInputStore] = useState("")//guarda a informação no estado 
+  console.log(input, inputStore)
  
   
   const navigate = useNavigate()
@@ -32,7 +34,7 @@ const Chama = () => {
   };
   console.log(input.avatar_url)
 
-  const getUserSingle = async () => {//Não quero dentro do useEffect
+  const getUserSingle = async () => {//Não quero dentro do useEffect, pois ele não precisa ser renderizado assim que a página é inicializada. 
     //Endpoint que retorna um usuário único do GitHub
     await axios
       .get(`${BASE_URL}/${input}`) //input novo estado com um usúario único
@@ -66,6 +68,8 @@ const handleSubmit = (event) => { //envia a informação que o usuário digitou
     setInput("")
     // console.log('clicou')
 }
+
+
 
 return (
     <DivGeral>
@@ -114,7 +118,7 @@ return (
       </ContainerMapInfo>
 
       <DivButton>
-        <Button color="primary" variant="contained">
+        <Button onClick={()=> irParaDetail(navigate)} color="primary" variant="contained">
           Ir para página de detalhes
         </Button>
       </DivButton>

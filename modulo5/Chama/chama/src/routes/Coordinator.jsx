@@ -1,5 +1,5 @@
 export const irParaDetail = (navigate) => {
-    navigate("/chamaDetail");
+    navigate("/ChamaDetail");
 }
 
 export const voltar = (navigate) => {

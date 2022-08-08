@@ -24,13 +24,14 @@ export const H1 = styled.h1`
   font-family: Roboto;
   font-size: 48px;
   line-height: 56px;
+  color: whitesmoke;
 `;
 export const ContainerMapInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
-  height: 600px;
+  height: 100vh;
   background-color: #dcdcdc;
 `;
 
@@ -46,6 +47,7 @@ export const DivButton = styled.div`
   flex-direction: column;
   justify-content: space-between;
   background-color:  #dcdcdc;
+  
 `;
 
 export const Form = styled.form`
