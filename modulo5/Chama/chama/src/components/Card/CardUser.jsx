@@ -1,5 +1,5 @@
 import React from "react";
-import { CardUserStyled } from "./styled";
+import { CardHistoricoImg, CardHistoricoP, CardUserStyled } from "./styled";
 
 const CardUser = ({ user, avatar_url, bio, email, name, login }) => {
   //Card do Usuário
@@ -7,15 +7,15 @@ const CardUser = ({ user, avatar_url, bio, email, name, login }) => {
   return (
     <div>
       <CardUserStyled>
-        <p>{user}
+        <CardHistoricoP>{user}
         {avatar_url?(
-          <img height="180px" src={avatar_url} alt="avatar"></img>
-        ):(<></>)}</p>
-        <p>Biografia: {bio}</p>
-        <p>E-mail: {email}</p>
-        <p>Nome: {name}</p>
-        <p>Github: {login}</p>
-       </CardUserStyled>
+          <CardHistoricoImg height="180px" src={avatar_url} alt="avatar"></CardHistoricoImg>
+        ):(<></>)}</CardHistoricoP>
+        <CardHistoricoP>Nome: {name}</CardHistoricoP>
+        <CardHistoricoP>Github: {login}</CardHistoricoP>
+        <CardHistoricoP>Biografia: {bio}</CardHistoricoP>
+        <CardHistoricoP>E-mail: {email}</CardHistoricoP>
+      </CardUserStyled>
     </div>
   );
 };
