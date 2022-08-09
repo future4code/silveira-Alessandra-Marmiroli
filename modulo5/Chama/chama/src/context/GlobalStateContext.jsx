@@ -1,12 +1,7 @@
-// import { createGlobalStyle } from 'styled-components';
+import React from "react";
 
-// const GlobalStyle = createGlobalStyle`
-//   body {
-//     margin: 0;
-//     padding: 0;
-//     box-sizing: border-box;
-//     font-family: Open-Sans, Helvetica, Sans-Serif;
-//   }
-// `;
+const GlobalStateContext = React.createContext();
 
-// export default GlobalStyle;
+export default GlobalStateContext;
+
+//Aqui se inicia o estado Global 

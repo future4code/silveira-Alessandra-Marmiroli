@@ -1,76 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import {ContainerInfoUser,ContainerMapInfo,DivButton,DivGeral,Form,H1,Img, P} from "./styled";
 import Button from "@mui/material/Button";
 import { TextField } from "@mui/material";
-import { useState } from "react";
-import { BASE_URL } from "../../constants/url/url";
-import axios from "axios";
-import { useEffect } from "react";
 import CardUser from "../../components/Card/CardUser";
 import { useNavigate } from "react-router-dom";
 import { irParaDetail } from "../../routes/Coordinator";
+import GlobalStateContext from "../../context/GlobalStateContext";
 
 
 const Chama = () => {
-  const [user, setUser] = useState([]); //estado do endpoint
-  const [input, setInput] = useState("");//controla o que é escrito no input
-  const [inputStore, setInputStore] = useState("")//guarda a informação no estado 
-  console.log(input, inputStore)
- 
-  
   const navigate = useNavigate()
+  const {states, setters, requests} = useContext(GlobalStateContext)
+
+
   
-  const getUser = async () => {
-    //Endpoint que retorna um alista de usuário do GitHub
-    await axios
-      .get(`${BASE_URL}`) //input novo estado com um usúario único
-      .then((res) => {
-        // console.log('LISTA',res.data);
-        setUser(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-  console.log(input.avatar_url)
-
-  const getUserSingle = async () => {//Não quero dentro do useEffect, pois ele não precisa ser renderizado assim que a página é inicializada. 
-    //Endpoint que retorna um usuário único do GitHub
-    await axios
-      .get(`${BASE_URL}/${input}`) //input novo estado com um usúario único
-      .then((res) => {
-        console.log('UNICO', res.data);
-        setInputStore(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-   useEffect(() => {
-    getUser();
-   
-  }, []);
-  console.log(input)
-  // const getAllUser = user?.map((users)=>{
-  //   console.log(getAllUser)
-  //   return (
-    //   )
-  // });
-
-const handleChange = (event) => {// recebendo a informação que usuário digita 
-  setInput(event.target.value)
-}
-
-const handleSubmit = (event) => { //envia a informação que o usuário digitou 
-    event.preventDefault();//prevenir a página de ser recarregada (nao deixar atualizar a pagina quando clicar no botao enviar)
-    getUserSingle()
-    setInput("")
-    // console.log('clicou')
-}
-
-
-
+  const handleChange = (event) => {// recebendo a informação que usuário digita 
+    setters.setInput(event.target.value)
+  }
+  
+  const handleSubmit = (event) => { //envia a informação que o usuário digitou 
+      event.preventDefault();//prevenir a página de ser recarregada (nao deixar atualizar a pagina quando clicar no botao enviar)
+      requests.getUserSingle(event.target.userGitHub.value)
+      setters.setInput("")
+      setters.setHistorico([...states.historico, states.input])//inserir GlobalState, aparecer nos cards as informações 
+      
+  }
 return (
     <DivGeral>
       <ContainerInfoUser>
@@ -86,8 +40,9 @@ return (
         <Form onSubmit={handleSubmit}>
 
           <TextField
+            name={"userGitHub"}
             onChange={handleChange}
-            value={input}
+            value={states.input}
             type="text"
             style={{ background: "#DCDCDC", width: "250px" }}
             label="Nome do usuário usado no GitHub"
@@ -104,15 +59,15 @@ return (
       </ContainerInfoUser>
 
       <ContainerMapInfo>
-        <P>Informações do usuário do Github</P>
+        <P>Informações do usuário Github</P>
         
         <CardUser
-          key={inputStore.id}
-          avatar_url={inputStore.avatar_url}
-          bio={inputStore.bio}
-          email={inputStore.email}
-          name={inputStore.name}
-          login={inputStore.login}
+          key={states.inputStore.id}
+          avatar_url={states.inputStore.avatar_url}
+          bio={states.inputStore.bio}
+          email={states.inputStore.email}
+          name={states.inputStore.name}
+          login={states.inputStore.login}
         ></CardUser>
 
       </ContainerMapInfo>

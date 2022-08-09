@@ -56,5 +56,11 @@ export const Form = styled.form`
 `;
 
 export const P = styled.p`
-  font-size: 17px;
-`;
+  font-size: 18px;
+  background-color: #2cd4d9;
+  border-radius: 18px;
+  padding: 5px;
+  box-shadow: 2px 2px 2px 2px Black;
+  margin-top: 30px;
+
+ `;

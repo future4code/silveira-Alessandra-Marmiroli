@@ -1,5 +1,5 @@
 import React from "react";
-// import { CardUserStyled } from "./styled";
+import { CardHistoricoStyled } from "./styled";
 
 const CardHistorico = (props) => {
   //Card Historico
@@ -7,10 +7,9 @@ const CardHistorico = (props) => {
   return (
     <div>
       <CardHistoricoStyled>
-        <ol>
-          <li>{props.historico}</li>
-          <button>Clique aqui para ver este perfil novamente</button>
-        </ol>
+        <button onClick={() => props.pesquisaDnv(props.name)}>
+           <p>{props.historico}</p>Clique aqui para ver este perfil novamente
+        </button>
       </CardHistoricoStyled>
     </div>
   );
