@@ -14,19 +14,5 @@ export const ScreenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 55px;
-  width: 100vw;
+  width: auto;
 `;
-
-export const LogoImage = styled.img`
-    width: 15vw;
-    max-width: 350px;
-    padding-top: 6px;
-    margin-bottom: 15px;
-`
-export const Button = styled.button`
-    margin-top: 5px;
-`;
-
-// export const Button = styled.button`
-//     margin-top: 5px;
-// `;
