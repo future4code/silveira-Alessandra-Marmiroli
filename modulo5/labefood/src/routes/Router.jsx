@@ -9,6 +9,8 @@ const Router = () => {
         <Routes>
           <Route index element={<Login />} />
           <Route path="signup" element={< Signup />} />
+          {/* <Route path="registerpage" element={}/>
+          <Route path="listRestaurant" element={}/> */}
         </Routes>
       </BrowserRouter>
     </div>

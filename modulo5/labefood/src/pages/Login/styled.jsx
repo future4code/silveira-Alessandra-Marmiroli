@@ -15,4 +15,4 @@ export const ScreenContainer = styled.div`
   align-items: center;
   margin-top: 55px;
   width: auto;
-`;
+ `;
