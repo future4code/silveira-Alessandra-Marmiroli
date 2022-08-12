@@ -9,11 +9,6 @@ export const goToLogin = (navigate) => {
  
 }
 //página de login 
-export const goToRegisterPage = (navigate) => {
-    navigate("/registerpage");
- 
-}
-
 export const goToListRestaurant = (navigate) => {
     navigate("/listRestaurant");
 }

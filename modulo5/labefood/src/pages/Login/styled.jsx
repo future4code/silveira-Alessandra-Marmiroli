@@ -6,7 +6,7 @@ flex-direction: column;
 max-width: 450px;
 align-items: center;
 margin-bottom: 20px;
-width: 80vw;
+width: 40vw;
 `;
 
 export const ScreenContainer = styled.div`

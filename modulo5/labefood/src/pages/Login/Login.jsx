@@ -2,13 +2,14 @@ import React from "react";
 import { TextField, Typography, Button } from "@mui/material";
 import { InputsContainer, ScreenContainer } from "../Signup/styled";
 import { useNavigate } from "react-router-dom";
-import { goToSignup } from "../../routes/Coordinator";
+import { goToListRestaurant, goToSignup } from "../../routes/Coordinator";
 import useForm from "../../hooks/useForm";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { BASE_URL } from "../../constants/url";
+
 import axios from "axios";
 import { useState } from "react";
+import { BASE_URL } from "../../constants/url";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -28,8 +29,20 @@ const Login = () => {
     await axios
       .post(`${BASE_URL}`, bodyForm)
       .then((res) => {
-        console.log(res.data);
-        setInputForm(res.data);
+        console.log(res)
+        localStorage.setItem('TOKEN', res.data.token);//pqw setItem?
+        if (res.data.user.hasAddress === false) {
+          alert(
+            `${res.data.user.name}, you do not have an account. We will redirect you...`
+          );
+          goToSignup(navigate);
+        } else {
+          alert("Welcome!")
+          goToListRestaurant(navigate);
+        }
+        clear();
+        console.log(localStorage)
+        setInputForm(res.data.token);
       })
       .catch((erro) => {
         console.log(erro);
@@ -46,15 +59,16 @@ const Login = () => {
 
   return (
     <ScreenContainer>
-      <Typography sx={{ color: "black", marginTop: 25, fontWeight: "bold" }}>
+      <Typography sx={{ color: "black", marginTop: 10, fontWeight: "bold" }}>
         Entrar
       </Typography>
 
       <InputsContainer>
-        <form>
+        <form onSubmit={formLogin}>
           <TextField
             name={"email"}
             value={inputForm.email}
+            onChange={OnChangeInput}
             placeholder="email@email.com"
             variant={"outlined"}
             // color={"primary"}
@@ -66,6 +80,7 @@ const Login = () => {
           <TextField
             name={"password"}
             value={inputForm.password}
+            onChange={OnChangeInput}
             placeholder="Senha"
             type="password"
             variant={"outlined"}
@@ -74,7 +89,7 @@ const Login = () => {
             margin={"normal"}
             label={"Senha"}
             required
-            minLength="8"
+            minLength="6"
           />
           {passwordLogin === "password" ? (
             <VisibilityOffIcon className="eye" onClick={password} />

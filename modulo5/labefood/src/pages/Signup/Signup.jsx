@@ -2,11 +2,11 @@ import { TextField, Typography, Button } from "@mui/material";
 import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { BASE_URL } from "../../constants/url";
 import useForm from "../../hooks/useForm";
 import { InputsContainer, ScreenContainer } from "./styled";
 import axios from "axios";
-import { goToRegisterPage } from "../../routes/Coordinator";
+import { goToListRestaurant, goToRegisterPage } from "../../routes/Coordinator";
+import { base_url } from "../../constants/url";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -28,11 +28,12 @@ const Signup = () => {
     event.preventDefault();
     if (inputForm.password === recordPassword) {
       await axios
-        .post(`${BASE_URL}/signup`, inputForm)
-        .then((resp) => {
-          localStorage.setItem("token", resp.data.token);
+        .post(`${base_url}`, inputForm)
+         .then((res) => {
+          localStorage.setItem("token", res.data.token);
+          console.log(res.data.token)
           alert("Usuario criado com sucesso!");
-          goToRegisterPage(navigate);
+          // goToListRestaurant(navigate);Não será aqui na cadastro de endereço 
         })
         .catch((erro) => {
           console.log(erro.data);
@@ -42,11 +43,11 @@ const Signup = () => {
       alert("Sua senha esta incorreta!");
     }
   };
-
+  console.log(signupPassword)
   return (
     <ScreenContainer>
       <Typography
-        sx={{ color: "black", "margin-top": "15px", fontWeight: "bold" }}
+        sx={{ color: "black", fontWeight: "bold" }}
       >
         Cadastrar
       </Typography>
@@ -111,6 +112,7 @@ const Signup = () => {
           />
           <TextField
             placeholder="Confirme a senha"
+
             name="password"
             value={recordPassword}
             onChange={onChangePassword}
@@ -121,14 +123,14 @@ const Signup = () => {
             fullWidth
             margin={"normal"}
             label={"Confirme sua senha"}
-            minLength="8"
+            minLength="6"
           />
           <Button
             type="submit"
             variant="contained"
             fullWidth
             color={"primary"}
-            sx={{ color: "black", "margin-top": "15px" }}
+            sx={{ color: "black", marginTop: "15px" }}
           >
             Criar
           </Button>
