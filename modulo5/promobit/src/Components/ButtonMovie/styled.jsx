@@ -13,6 +13,7 @@ left: 509px;
 top: 329px;
 border-radius: 4px;
 margin: 5px;
+cursor: pointer;
 `
 
 //Estilização do CardButtonMovie

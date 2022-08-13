@@ -13,6 +13,7 @@ export const CardMovieStyled = styled.div`
   margin: 20px 20px;
   border-radius: 10px;
   box-shadow: 5px 5px 5px black;
+  cursor: pointer;
 `;
 
 export const P = styled.p`
