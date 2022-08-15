@@ -2,7 +2,11 @@ import React from "react";
 import { TextField, Typography, Button } from "@mui/material";
 import { InputsContainer, ScreenContainer } from "../Signup/styled";
 import { useNavigate } from "react-router-dom";
-import { goToListRestaurant, goToSignup } from "../../routes/Coordinator";
+import {
+  goToAdress,
+  goToRestaurant,
+  goToSignup,
+} from "../../routes/Coordinator";
 import useForm from "../../hooks/useForm";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -14,8 +18,8 @@ import { BASE_URL } from "../../constants/url";
 const Login = () => {
   let navigate = useNavigate();
 
-  const [passwordLogin, setPasswordLogin] = useState('password')
- 
+  const [passwordLogin, setPasswordLogin] = useState("password");
+
   const { inputForm, OnChangeInput, clear, setInputForm } = useForm({
     email: "",
     password: "",
@@ -27,21 +31,21 @@ const Login = () => {
 
     //Essa requisição esta relacionada ao token
     await axios
-      .post(`${BASE_URL}`, bodyForm)
+      .post(`${BASE_URL}/login`, bodyForm)
       .then((res) => {
-        console.log(res)
-        localStorage.setItem('TOKEN', res.data.token);//pqw setItem?
+        console.log(res);
+        localStorage.setItem("TOKEN", res.data.token);
         if (res.data.user.hasAddress === false) {
           alert(
             `${res.data.user.name}, you do not have an account. We will redirect you...`
           );
-          goToSignup(navigate);
+          goToSignup(navigate); //Aqui inserir a função que levará para page Adress
         } else {
-          alert("Welcome!")
-          goToListRestaurant(navigate);
+          alert("Welcome!");
+          goToRestaurant(navigate); //Aqui inserir a função caso o usuário tenha endereço cadastrado page Restaurant
         }
         clear();
-        console.log(localStorage)
+        console.log(localStorage);
         setInputForm(res.data.token);
       })
       .catch((erro) => {
@@ -90,6 +94,8 @@ const Login = () => {
             label={"Senha"}
             required
             minLength="6"
+            // VisibilityIcon={password}
+            // VisibilityOffIcon={password}
           />
           {passwordLogin === "password" ? (
             <VisibilityOffIcon className="eye" onClick={password} />

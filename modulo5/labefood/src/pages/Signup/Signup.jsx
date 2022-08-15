@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
 import { InputsContainer, ScreenContainer } from "./styled";
 import axios from "axios";
-import { goToListRestaurant, goToRegisterPage } from "../../routes/Coordinator";
-import { base_url } from "../../constants/url";
+import { BASE_URL, base_url } from "../../constants/url";
+import { goToAddress, goToAdress } from "../../routes/Coordinator";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -28,12 +28,12 @@ const Signup = () => {
     event.preventDefault();
     if (inputForm.password === recordPassword) {
       await axios
-        .post(`${base_url}`, inputForm)
+        .post(`${BASE_URL}/signup`, inputForm)
          .then((res) => {
           localStorage.setItem("token", res.data.token);
           console.log(res.data.token)
           alert("Usuario criado com sucesso!");
-          // goToListRestaurant(navigate);Não será aqui na cadastro de endereço 
+          goToAddress(navigate);
         })
         .catch((erro) => {
           console.log(erro.data);
@@ -61,7 +61,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"Nome e sobrenome"}
             required
           />
@@ -73,7 +73,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"E-mail"}
             required
           />
@@ -86,7 +86,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"CPF"}
             inputProps={{
               inputMode: "numeric",
@@ -105,7 +105,7 @@ const Signup = () => {
             variant={"outlined"}
             // color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"Senha"}
             required
             minLength="8"
@@ -121,7 +121,7 @@ const Signup = () => {
             variant={"outlined"}
             color={"primary"}
             fullWidth
-            margin={"normal"}
+            margin={"dense"}
             label={"Confirme sua senha"}
             minLength="6"
           />
