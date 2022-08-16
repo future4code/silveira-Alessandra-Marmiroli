@@ -5,15 +5,45 @@ import GlobalStateContext from "./GlobalStateContext";
 
 const GlobalState = (props) => {
   
+  const token = window.localStorage.getItem("token");
+    const headers = {
+      headers: {
+          auth: token
+      }
+  }
+
+  const [restaurants, setRestaurants] = useState([]);
+  const [restaurantDetail, setRestaurantDetail] = useState([]);
   
-  
+  const getRestaurants = async () => {
+    await axios.get(`${BASE_URL}/restaurants`, headers)
+      .then((res)=>{
+      console.log('RESPOSTA', res)
+      setRestaurants(res.data.restaurants)
+    })
+    .catch((erro) => {
+      alert("Erro!");
+    });
+  };
+  const getRestaurantDetail = (id) => {
+    axios
+        .get(`${BASE_URL}/restaurants/${id}`, headers)
+        .then((res) => {
+            console.log(res.data.restaurant)
+            setRestaurantDetail(res.data.restaurant)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
  
-  const states = {};
-  const setters = {};
-  const requests = {};
+  const states = {restaurants, restaurantDetail};
+  const setters = {setRestaurants, setRestaurantDetail};
+  const requests = {getRestaurants, getRestaurantDetail};
+  const values = {token, headers}
 
   return (
-    <GlobalStateContext.Provider value={{ states, setters, requests }}>
+    <GlobalStateContext.Provider value={{ states, setters, requests, values }}>
       {props.children}
     </GlobalStateContext.Provider>
   );

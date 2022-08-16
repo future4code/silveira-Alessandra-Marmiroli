@@ -10,9 +10,7 @@ import { goToAddress, goToAdress } from "../../routes/Coordinator";
 
 const Signup = () => {
   const navigate = useNavigate();
-
   const [recordPassword, setRecordPassword] = useState("");
-
   const { inputForm, OnChangeInput, clear } = useForm({
     name: "",
     email: "",
@@ -47,7 +45,7 @@ const Signup = () => {
   return (
     <ScreenContainer>
       <Typography
-        sx={{ color: "black", fontWeight: "bold" }}
+        sx={{ color: "black", marginTop: 15, fontWeight: "bold" }}
       >
         Cadastrar
       </Typography>

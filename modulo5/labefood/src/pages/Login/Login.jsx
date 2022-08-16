@@ -34,7 +34,7 @@ const Login = () => {
       .post(`${BASE_URL}/login`, bodyForm)
       .then((res) => {
         console.log(res);
-        localStorage.setItem("TOKEN", res.data.token);
+        localStorage.setItem('token', res.data.token);
         if (res.data.user.hasAddress === false) {
           alert(
             `${res.data.user.name}, you do not have an account. We will redirect you...`

@@ -17,6 +17,8 @@ export const goToRestaurant = (navigate) => {
     navigate("/restaurant");
 }
 //Essa página devera ser construída após Adress!
-
+export const goToDetailRestaurant = (navigate, id) => {
+    navigate(`/detailRestaurant/${id}`);
+};
 
 

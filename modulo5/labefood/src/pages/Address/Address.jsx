@@ -1,5 +1,5 @@
 import { Button, TextField, Typography } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import useForm from "../../hooks/useForm";
@@ -9,18 +9,10 @@ import { addAddress } from "../../context/GlobalState";
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 
+
 const Address = () => {
   const token = window.localStorage.getItem("token");
-
-  const header = {
-    headers: {
-      auth: token,
-    },
-  };
-
   const navigate = useNavigate();
-
-  const [address, setAddress] = useState({});
 
   const { inputForm, OnChangeInput, clear } = useForm({
     street: "",
@@ -31,29 +23,27 @@ const Address = () => {
     complement: "",
   });
 
-  const getAddress = async (setInputForm) => {
-    await axios
-      .get(`${BASE_URL}/profile/address`, header)
+  const putAddress = async () => {
+    await axios.put(`${BASE_URL}/address`, inputForm, {
+          headers: {
+          auth: token,
+        }
+      })
       .then((res) => {
-        setAddress(res.data);
-        setInputForm({
-          neighbouhood: res.data.address.neighbouhood,
-          number: res.data.address.number,
-          city: res.data.address.city,
-          apartament: res.data.address.apartament,
-          state: res.data.address.state,
-          street: res.data.address.street,
-        });
+        console.log(res)
+        localStorage.setItem('token', res.data.token)
+        alert ("Endereço cadastrado com sucesso!");
       })
       .catch((erro) => {
-        alert("Crie seu cadastro com o endereço para navegar!");
+        alert("Erro ao cadastrar endereço!");
       });
   };
+  console.log(putAddress)
 
   const onSubmitAddress = (event) => {
     event.preventDefault();
-    getAddress(inputForm);
-    clear();
+    putAddress(inputForm);
+    clear(inputForm);
     goToRestaurant(navigate);
   };
   return (
