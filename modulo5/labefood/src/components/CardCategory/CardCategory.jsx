@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CardStyleCategory } from "./styled";
 
 const CardCategory = (props) =>{
+    
     return(
         <CardStyleCategory>
             <p>{props.category}</p>

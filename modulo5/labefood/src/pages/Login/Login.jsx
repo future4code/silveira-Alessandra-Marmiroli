@@ -14,6 +14,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { useState } from "react";
 import { BASE_URL } from "../../constants/url";
+import { LogoImage, P, } from "./styled";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -63,7 +64,8 @@ const Login = () => {
 
   return (
     <ScreenContainer>
-      <Typography sx={{ color: "black", marginTop: 10, fontWeight: "bold" }}>
+      <LogoImage src={"https://raw.githubusercontent.com/future4code/Silveira-labe-food1/master/src/assets/Logo.png"}/>
+      <Typography sx={{ color: "black", fontWeight: "bold" }}>
         Entrar
       </Typography>
 
@@ -117,7 +119,7 @@ const Login = () => {
           onClick={() => goToSignup(navigate)}
           sx={{ color: "black", "margin-top": "15px" }}
         >
-          <strong>Não possui cadastro? Clique aqui.</strong>
+          <P><strong>Não possui cadastro? Clique aqui.</strong></P>
         </Button>
       </InputsContainer>
     </ScreenContainer>
@@ -125,4 +127,4 @@ const Login = () => {
 };
 export default Login;
 
-//
+

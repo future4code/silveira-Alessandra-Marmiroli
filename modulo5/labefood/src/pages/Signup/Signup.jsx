@@ -3,10 +3,12 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-import { InputsContainer, ScreenContainer } from "./styled";
+import { InputsContainer, ScreenContainer, Logo} from "./styled";
 import axios from "axios";
-import { BASE_URL, base_url } from "../../constants/url";
-import { goToAddress, goToAdress } from "../../routes/Coordinator";
+import { BASE_URL} from "../../constants/url";
+import { goToAddress} from "../../routes/Coordinator";
+import Reppi4 from '../../assets/Reppi4.png'
+
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -44,10 +46,11 @@ const Signup = () => {
   console.log(signupPassword)
   return (
     <ScreenContainer>
+      <Logo src={Reppi4} width={"150px"}/>
       <Typography
-        sx={{ color: "black", marginTop: 15, fontWeight: "bold" }}
+        sx={{ color: "black", marginTop:"5px", fontWeight: "bold" }}
       >
-        Cadastrar
+        Cadastro
       </Typography>
       <InputsContainer>
         <form onSubmit={signupPassword}>

@@ -5,9 +5,7 @@ export const ScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
-  
-`;
+ `;
 
 export const InputsContainer = styled.div`
 display: flex;
@@ -16,12 +14,8 @@ max-width: 400px;
 align-items: center;
 `;
 
-
-// export const LogoImage = styled.img`
-//     width: 15vw;
-//     max-width: 350px;
-//     padding-top: 6px;
-//     margin-bottom: 15px;
-// `
+export const Logo = styled.img`
+  padding-top: 15px;
+`;
 
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { CardP, P } from "./styled";
+import { CardP, CardStyleRestaurant, Img, P, Restaurant, Services, } from "./styled";
 
 const CardRestaurant = (props) => {
   const navigate = useNavigate();
@@ -11,11 +11,15 @@ const CardRestaurant = (props) => {
 
   return (
     <CardStyleRestaurant onClick={() => goToDetail(props.id)}>
-      <img src={props.logoUrl} alt="logo" />
+      <Img src={props.logoUrl} alt="logo" />
       <CardP>
-        <P>{props.name}</P>
-        <P>{props.deliveryTime} min</P>
+        <Restaurant>
+          <P>{props.name}</P>
+        </Restaurant>
+        <Services>
+        <P>{props.deliveryTime} min </P>
         <P> Frete: R${props.shipping}</P>
+        </Services>
       </CardP>
     </CardStyleRestaurant>
   );
