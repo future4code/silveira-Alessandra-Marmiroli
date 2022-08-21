@@ -5,7 +5,6 @@ export const ScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px; 
 `;
 
 export const InputsContainer = styled.div`
@@ -40,4 +39,18 @@ export const ContainerCategory = styled.div`
 
 export const ContainerRestaurant = styled.div`
  
-`
+`;
+
+export const ContainerImage = styled.div`
+ margin: 0;
+ display: flex;
+ justify-content: flex-end;
+ align-items: flex-end;
+ flex-wrap: wrap;
+ width: 90vw;
+ height: 5vh;
+`;
+
+export const Img = styled.img`
+margin: 15px;
+`;

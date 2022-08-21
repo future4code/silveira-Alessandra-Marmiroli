@@ -3,12 +3,11 @@ import React from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useForm from "../../hooks/useForm";
-import { InputsContainer, ScreenContainer, Logo} from "./styled";
+import { InputsContainer, ScreenContainer, Logo } from "./styled";
 import axios from "axios";
-import { BASE_URL} from "../../constants/url";
-import { goToAddress} from "../../routes/Coordinator";
-import Reppi4 from '../../assets/Reppi4.png'
-
+import { BASE_URL } from "../../constants/url";
+import { goToAddress } from "../../routes/Coordinator";
+import Reppi4 from "../../assets/Reppi4.png";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -24,32 +23,30 @@ const Signup = () => {
     setRecordPassword(event.target.value);
   };
 
-  const signupPassword = async (event) => {
+  const signupPassword = (event) => {
     event.preventDefault();
     if (inputForm.password === recordPassword) {
-      await axios
+      axios
         .post(`${BASE_URL}/signup`, inputForm)
-         .then((res) => {
+        .then((res) => {
           localStorage.setItem("token", res.data.token);
-          console.log(res.data.token)
+          console.log(res.data.token);
           alert("Usuario criado com sucesso!");
           goToAddress(navigate);
         })
         .catch((erro) => {
-          console.log(erro.data);
+          console.log(erro);
           alert("Erro ao criar usuário!");
         });
     } else {
-      alert("Sua senha esta incorreta!");
+      alert("Sua senha esta divergente!");
     }
   };
-  console.log(signupPassword)
+
   return (
     <ScreenContainer>
-      <Logo src={Reppi4} width={"150px"}/>
-      <Typography
-        sx={{ color: "black", marginTop:"5px", fontWeight: "bold" }}
-      >
+      <Logo src={Reppi4} width={"150px"} />
+      <Typography sx={{ color: "black", marginTop: "5px", fontWeight: "bold" }}>
         Cadastro
       </Typography>
       <InputsContainer>
@@ -113,7 +110,6 @@ const Signup = () => {
           />
           <TextField
             placeholder="Confirme a senha"
-
             name="password"
             value={recordPassword}
             onChange={onChangePassword}

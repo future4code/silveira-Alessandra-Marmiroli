@@ -11,10 +11,10 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route index element={<Login />} />
-          <Route path="signup" element={< Signup />} />
-          <Route path="address" element={ < Address />}/>
-          <Route path="restaurant" element={ < Restaurant />}/>
-          <Route path="detailRestaurant/:id" element={< DetailRestaurant/>}/>
+          <Route path="/signup" element={< Signup />} />
+          <Route path="/address" element={ < Address />}/>
+          <Route path="/restaurant" element={ < Restaurant />}/>
+          <Route path="/detailRestaurant/:id" element={< DetailRestaurant/>}/>
         </Routes>
       </BrowserRouter>
     </div>
@@ -22,3 +22,5 @@ const Router = () => {
 };
 
 export default Router
+
+//Sempre utilizar / em path 

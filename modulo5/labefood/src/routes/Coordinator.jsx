@@ -5,7 +5,7 @@ export const goToSignup = (navigate) => {
 //página de cadatro leva para a página de endereço Adress
 
 export const goToLogin = (navigate) => {
-    navigate("/login");
+    navigate("/");
  
 }
 //página de login para fazer o login o cadastro deve existir e o endereço 

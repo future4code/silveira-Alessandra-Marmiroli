@@ -5,12 +5,8 @@ import { CardP, CardStyleRestaurant, Img, P, Restaurant, Services, } from "./sty
 const CardRestaurant = (props) => {
   const navigate = useNavigate();
 
-  const goToDetail = (id) => {
-    navigate(`/detailRestaurant/${id}`);
-  };
-
-  return (
-    <CardStyleRestaurant onClick={() => goToDetail(props.id)}>
+ return (
+    <CardStyleRestaurant onClick={props.onClick}>
       <Img src={props.logoUrl} alt="logo" />
       <CardP>
         <Restaurant>

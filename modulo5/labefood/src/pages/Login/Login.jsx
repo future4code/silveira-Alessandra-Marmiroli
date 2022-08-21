@@ -2,11 +2,7 @@ import React from "react";
 import { TextField, Typography, Button } from "@mui/material";
 import { InputsContainer, ScreenContainer } from "../Signup/styled";
 import { useNavigate } from "react-router-dom";
-import {
-  goToAdress,
-  goToRestaurant,
-  goToSignup,
-} from "../../routes/Coordinator";
+import { goToRestaurant, goToSignup } from "../../routes/Coordinator";
 import useForm from "../../hooks/useForm";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -14,7 +10,7 @@ import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import axios from "axios";
 import { useState } from "react";
 import { BASE_URL } from "../../constants/url";
-import { LogoImage, P, } from "./styled";
+import { LogoImage, P } from "./styled";
 
 const Login = () => {
   let navigate = useNavigate();
@@ -26,16 +22,16 @@ const Login = () => {
     password: "",
   });
   // Informo as variáveis do useForm e informo os campos à serem preenchido na page Login.
-  const formLogin = async (event) => {
+  const formLogin = (event) => {
     event.preventDefault(); //preventDefault previne que a informação no ato da digitação seja enviada(ou seja ele vai aguardar você digitar toda a informação para depois enviar)
     const bodyForm = inputForm;
 
     //Essa requisição esta relacionada ao token
-    await axios
+    axios
       .post(`${BASE_URL}/login`, bodyForm)
       .then((res) => {
         console.log(res);
-        localStorage.setItem('token', res.data.token);
+        localStorage.setItem("token", res.data.token);
         if (res.data.user.hasAddress === false) {
           alert(
             `${res.data.user.name}, you do not have an account. We will redirect you...`
@@ -46,7 +42,6 @@ const Login = () => {
           goToRestaurant(navigate); //Aqui inserir a função caso o usuário tenha endereço cadastrado page Restaurant
         }
         clear();
-        console.log(localStorage);
         setInputForm(res.data.token);
       })
       .catch((erro) => {
@@ -64,7 +59,11 @@ const Login = () => {
 
   return (
     <ScreenContainer>
-      <LogoImage src={"https://raw.githubusercontent.com/future4code/Silveira-labe-food1/master/src/assets/Logo.png"}/>
+      <LogoImage
+        src={
+          "https://raw.githubusercontent.com/future4code/Silveira-labe-food1/master/src/assets/Logo.png"
+        }
+      />
       <Typography sx={{ color: "black", fontWeight: "bold" }}>
         Entrar
       </Typography>
@@ -96,8 +95,6 @@ const Login = () => {
             label={"Senha"}
             required
             minLength="6"
-            // VisibilityIcon={password}
-            // VisibilityOffIcon={password}
           />
           {passwordLogin === "password" ? (
             <VisibilityOffIcon className="eye" onClick={password} />
@@ -119,12 +116,12 @@ const Login = () => {
           onClick={() => goToSignup(navigate)}
           sx={{ color: "black", "margin-top": "15px" }}
         >
-          <P><strong>Não possui cadastro? Clique aqui.</strong></P>
+          <P>
+            <strong>Não possui cadastro? Clique aqui.</strong>
+          </P>
         </Button>
       </InputsContainer>
     </ScreenContainer>
   );
 };
 export default Login;
-
-

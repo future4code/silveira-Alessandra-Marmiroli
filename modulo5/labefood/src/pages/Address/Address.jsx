@@ -1,11 +1,10 @@
 import { Button, TextField, Typography } from "@mui/material";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import GlobalStateContext from "../../context/GlobalStateContext";
 import useForm from "../../hooks/useForm";
 import { goToRestaurant } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "./styled";
-import { addAddress } from "../../context/GlobalState";
+
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 
@@ -23,29 +22,29 @@ const Address = () => {
     complement: "",
   });
 
-  const putAddress = async () => {
-    await axios.put(`${BASE_URL}/address`, inputForm, {
+  const putAddress = () => {//se for usar async colocar await funções assincronas then e catch faz a mesma coisa nunca usar os dois 
+    axios.put(`${BASE_URL}/address`, inputForm, {
           headers: {
           auth: token,
         }
       })
       .then((res) => {
-        console.log(res)
         localStorage.setItem('token', res.data.token)
         alert ("Endereço cadastrado com sucesso!");
+        clear(inputForm);
+        goToRestaurant(navigate);
       })
       .catch((erro) => {
         alert("Erro ao cadastrar endereço!");
       });
   };
-  console.log(putAddress)
-
+  
   const onSubmitAddress = (event) => {
     event.preventDefault();
     putAddress(inputForm);
-    clear(inputForm);
-    goToRestaurant(navigate);
+   
   };
+
   return (
     <ScreenContainer>
       <Typography sx={{ color: "black", fontWeight: "bold" }}>
@@ -124,7 +123,7 @@ const Address = () => {
           />
           <TextField
             name="state"
-            value={inputForm.city}
+            value={inputForm.state}
             onChange={OnChangeInput}
             placeholder="Estado"
             label={"Estado"}
@@ -142,6 +141,7 @@ const Address = () => {
             fullWidth
             color={"primary"}
             sx={{ "margin-top": "10px" }}
+            
           >
             Salvar Endereço
           </Button>
