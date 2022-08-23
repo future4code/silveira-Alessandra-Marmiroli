@@ -1,25 +1,17 @@
 import React from "react";
-import { Address, CardP, CardStyleDetail, Img, Restaurant, Services} from "./styled";
+import {
+  Address,
+  CardP,
+  CardStyleDetail,
+  Category,
+  Img,
+  P,
+  Restaurant,
+  Services,
+} from "./styled";
 
 const CardResultRestaurant = (props) => {
-  // const [modal, setModal] = useState(false);
-  // const [addButton, setAddButton] = useState(true);
-
-  // const { states, setters, requests } = useContext(GlobalStateContext);
-  // const { cart } = states
-  // const { setCart } = setters;
-  // const {removeProduct} = requests;
- 
-  // const showModal = () => {
-  //   setModal(true);
-  // }
-
-  // const setRemoveButton = () => {
-  //   setAddButton(true)
-  // }
-
-
-  //ESTE É O CARD DO INÍCIO DA PAGE DETAIL 
+  //ESTE É O CARD GRANDE DO INÍCIO DA PAGE DETAIL
   return (
     <CardStyleDetail>
       <Img src={props.logoUrl} alt="logo" />
@@ -27,12 +19,13 @@ const CardResultRestaurant = (props) => {
         <Restaurant>
           <p>{props.name}</p>
         </Restaurant>
+        <Category>{props.category}</Category>
         <Services>
-          <p>{props.deliveryTime}</p>
-          <p>{props.shipping}</p>
+          <p>Tempo de Entrega: {props.deliveryTime} min</p>
+          <p>Frete: R$ {props.shipping},00</p>
         </Services>
         <Address>
-          <p>{props.address}</p>
+          <P>{props.address}</P>
         </Address>
       </CardP>
     </CardStyleDetail>
@@ -40,4 +33,4 @@ const CardResultRestaurant = (props) => {
 };
 export default CardResultRestaurant;
 
-//Este Card será o grande Inicial 
+//Este Card será o grande Inicial

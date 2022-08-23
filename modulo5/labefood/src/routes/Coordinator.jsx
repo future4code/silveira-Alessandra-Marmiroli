@@ -21,4 +21,13 @@ export const goToDetailRestaurant = (navigate, id) => {
     navigate(`/detailRestaurant/${id}`);
 };
 
+export const goToEditProfile = (navigate) => {
+    navigate("/editProfile");
+};
+
+//Rota para página de Address
+export const goToEditAddress = (navigate) => {
+    navigate("/editAddress");
+};
+
 
