@@ -14,7 +14,7 @@ export const InputsContainer = styled.div`
   max-width: 400px;
   align-items: center;
   margin-bottom: 20px;
-  /* background-color: orange; */
+  
 `;
 
 export const Line = styled.hr`

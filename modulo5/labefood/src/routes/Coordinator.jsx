@@ -21,13 +21,17 @@ export const goToDetailRestaurant = (navigate, id) => {
     navigate(`/detailRestaurant/${id}`);
 };
 
-export const goToProfilePage = (navigate) => {
+export const goToProfile = (navigate) => {
     navigate("/profile")
 }
 
-export const goToEditProfile = (navigate) => {
-    navigate("/editProfile");
+export const goToEditProfile = (navigate, id) => {
+    navigate(`/editProfile/${id}`);
 };
+
+export const goToCart = (navigate) => {
+    navigate(`/cart`)
+}
 
 //Rota para página de Address
 export const goToEditAddress = (navigate) => {

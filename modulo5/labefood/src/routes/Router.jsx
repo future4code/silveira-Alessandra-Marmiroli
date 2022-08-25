@@ -7,6 +7,8 @@ import DetailRestaurant from "../pages/DetailRestaurant/DetailRestaurant";
 import EditAddress from "../pages/EditAddress/EditAddress";
 import EditProfile from "../pages/EditProfile/EditProfile";
 import Profile from "../pages/Profile/Profile";
+import Error from "../pages/Error/Error";
+import Cart from "../pages/Cart/Cart";
 
 const Router = () => {
   return (
@@ -19,8 +21,10 @@ const Router = () => {
           <Route path="/restaurant" element={ < Restaurant />}/>
           <Route path="/detailRestaurant/:id" element={< DetailRestaurant/>}/>
           <Route path="profile" element={<Profile />} />
-          <Route path="/editProfile" element={<EditProfile/>}/>
+          <Route path="/editProfile/:id" element={<EditProfile/>}/>
+          <Route path="cart" element={<Cart />} />
           <Route path="/editAddress" element={<EditAddress/>}/>
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>

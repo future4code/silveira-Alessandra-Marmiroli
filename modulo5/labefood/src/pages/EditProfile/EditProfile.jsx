@@ -1,25 +1,32 @@
 import { Button, TextField, Typography } from "@mui/material";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import useForm from "../../hooks/useForm";
+import { goToProfile } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "./styled";
 
 export default function EditProfile() {
-  const { states, requests } = useContext(GlobalStateContext);
+  const { states, setters,  requests } = useContext(GlobalStateContext);
   const navigate = useNavigate();
 
-  const { inputForm, OnChangeInput, clear } = useForm({
-    // name: states.inputForm.name,
-    // email: states.inputForm.email,
-    // cpf: states.inputForm.cpf,
+  useEffect(()=>{
+    requests.getProfile()
+    requests.upDateProfile()
+  },[])
+ 
+  // console.log(states.profile)
+ const { inputForm, OnChangeInput, clear } = useForm({
+    name: states.profile.user && states.profile.user.name,
+    email: states.profile.user && states.profile.user.email,
+    cpf: states.profile.user && states.profile.user.cpf,
   });
 
-  const onSubmitEditProfile = (event) => {
+ const onSubmitEditProfile = (event) => {
     event.preventDefault();
-    // requests.editProfile(inputForm)//Fazer este endpoint no GLOBAL 
+    requests.upDateProfile();//aqui chamo o endpoint de atualizar os dados do cadastro!
     clear();
-    //navigate 
+    goToProfile()
   };
 
   return (
@@ -31,34 +38,31 @@ export default function EditProfile() {
         <form onSubmit={onSubmitEditProfile}>
           <TextField
             name="name"
-            value={inputForm.name}
-            onChange={OnChangeInput}
+            value={states.profile.user && states.profile.user.name}//retornando na tela dados para edição. 
+            onChange={""}
             variant={"outlined"}
             color={"primary"}
             fullWidth
             margin={"normal"}
-            label={"Nome e sobrenome"}
-          />
+           />
           <TextField
             name="email"
-            value={inputForm.email}
-            onChange={OnChangeInput}
+            value={states.profile.user && states.profile.user.email}
+            onChange={""}
             variant={"outlined"}
             color={"primary"}
             fullWidth
             margin={"normal"}
-            label={"E-mail"}
-          />
+            />
           <TextField
             name="cpf"
-            value={inputForm.cpf}
-            onChange={OnChangeInput}
+            value={states.profile.user && states.profile.user.cpf}
+            onChange={""}
             type="text"
             variant={"outlined"}
             color={"primary"}
             fullWidth
             margin={"normal"}
-            label={"CPF"}
             pattern={
               "([0-9]{2}[.]?[0-9]{3}[.]?[0-9]{3}[/]?[0-9]{4}[-]?[0-9]{2})|([0-9]{3}[.]?[0-9]{3}[.]?[0-9]{3}[-]?[0-9]{2})"
             }

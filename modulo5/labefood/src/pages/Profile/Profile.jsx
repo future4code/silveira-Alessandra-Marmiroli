@@ -2,10 +2,10 @@ import { IconButton, Typography } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
+import useProtectedPage from "../../hooks/useProtectedPage"
 import {
   BoxAddress,
   ContainerAddress,
-  DivLine,
   HistoryContainer,
   InputsContainer,
   Line,
@@ -14,10 +14,16 @@ import {
   ScreenContainer,
 } from "./styled";
 import EditIcon from "@mui/icons-material/Edit";
+import { useRequestData } from "../../hooks/useRequestData";
+import { BASE_URL } from "../../constants/url";
+import { goToEditProfile } from "../../routes/Coordinator";
 
 export default function Profile() {
+  useProtectedPage()//USANDO PROTECTED PARA PAGE COM DADOS SENSÍVEIS 
   const { states, requests } = useContext(GlobalStateContext);
   const navigate = useNavigate();
+
+  // const profileEdit = useRequestData({},`${BASE_URL}/profile}`)
 
   useEffect(() => {
     //FAZER ENDPOINTS NO GLOBAL DE GET PROFILE E GET ORDER HISTORY E PASSAR AQUI!!!
@@ -39,15 +45,19 @@ export default function Profile() {
           <p>{}</p>
         </Perfil>
         <IconButton
-          onClick={""}
+          onClick={goToEditProfile(navigate)}
           color="primary"
-          sx={{ color: "black", position: "relative", bottom: "25px" }}
+          sx={{ color: "black", bottom: "25px" }}
         />
         <EditIcon />
       </InputsContainer>
 
       <BoxAddress>
-        <Typography variant="h6" color="primary" sx={{ color: "#8E8E93" }}>
+        <Typography
+          variant="h6"
+          color="primary"
+          sx={{ color: "#8E8E93", height: "20px" }}
+        >
           Endereço Cadastrado
         </Typography>
 
@@ -55,19 +65,14 @@ export default function Profile() {
           <div>
             <p>{""}</p>
           </div>
-          <IconButton
-            onClick={""}
-            sx={{ color: "black", position: "relative", bottom: "25px"}}
-          >
+          <IconButton onClick={""} sx={{ color: "black", bottom: "25px" }}>
             <EditIcon />
           </IconButton>
         </ContainerAddress>
       </BoxAddress>
-      <Typography varivant="h6" sx={{ color: "black", textAlign: "center" }}>
+      <Typography varivant="h6" sx={{ color: "black"}}>
         Histórico de pedidos:
-        <DivLine>
-          <Line />
-        </DivLine>
+        <Line />
         <HistoryContainer>
           <h4>Você não realizou nenhum pedido</h4>
         </HistoryContainer>

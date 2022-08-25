@@ -5,7 +5,7 @@ export const ScreenContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
-  width: 100vw;
+  width: auto;
 `;
 
 export const LineHeader = styled.hr`
@@ -18,7 +18,7 @@ export const InputsContainer = styled.div`
   max-width: 450px;
   align-items: center;
   margin-bottom: 20px;
-  width: 94vw;
+  width: 84vw;
   height: 15vh;
   line-height: 9px;
   margin-top: -20px;
@@ -36,7 +36,7 @@ export const Perfil = styled.div`
 
 export const BoxAddress = styled.div`
   width: 100%;
-  height: 10vh;
+  height: 15vh;
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -48,16 +48,12 @@ export const BoxAddress = styled.div`
 export const ContainerAddress = styled.div`
   display: flex;
   flex-direction: row;
-  max-width: 450px;
+  max-width: 85vw;
   align-items: center;
   justify-content: space-around;
   position: relative;
   right: 12px;
   width: 100vw;
-`;
-
-export const DivLine = styled.div`
-  width: 100%;
 `;
 
 export const Line = styled.hr`

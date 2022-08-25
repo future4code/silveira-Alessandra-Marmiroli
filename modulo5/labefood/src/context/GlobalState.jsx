@@ -9,7 +9,25 @@ const GlobalState = (props) => {
   const [restaurantDetail, setRestaurantDetail] = useState([]);
   const [cardapio, setCardapio] = useState([]);
   const [buttonAdd, setButtonAdd] = useState(false); //criando estado para o button
-  const [address, setAddress] = useState({})
+  const [address, setAddress] = useState({});
+  const [profile, setProfile] = useState({});
+  const [upProfile, setUpProfile] = useState({});
+  const [cart, setCart] = useState([]);
+  const [order, setOrder] = useState ([]);
+  const [history, setHistory] = useState ([]);
+
+  //Criando estados que receberão as novas informações do Usuário isso deve ser informado dentro do Endpoint PUT de atualização
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [cpf, setCpf] = useState("");
+
+  // setName(states.profile.user && states.profile.user.name)
+  // setEmail(states.profile.user && states.profile.user.email)
+  // setCpf(states.profile.user && states.profile.user.cpf)
+
+  // setName(states.profile.user && states.profile.user.name)
+  // setEmail(states.profile.user && states.profile.user.email)
+  // setCpf(states.profile.user && states.profile.user.cpf)
 
   const token = window.localStorage.getItem("token");
   const headers = {
@@ -24,7 +42,7 @@ const GlobalState = (props) => {
     axios
       .get(`${BASE_URL}/profile/address`, headers)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setAddress(res.data.address);
       })
       .catch((erro) => {
@@ -35,7 +53,7 @@ const GlobalState = (props) => {
   //ENDPOINT QUE ATUALIZA O ENDEREÇO!
   const editAddress = (body) => {
     axios
-      .put(`${BASE_URL}/address`, body, headers, )
+      .put(`${BASE_URL}/address`, body, headers)
       .then((resp) => {
         localStorage.setItem("token", resp.data.token);
         alert("Endereço cadastrado");
@@ -61,7 +79,7 @@ const GlobalState = (props) => {
     axios
       .get(`${BASE_URL}/restaurants/${id}`, headers)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setRestaurantDetail(res.data.restaurant);
         setCardapio(res.data.restaurant.products);
       })
@@ -70,15 +88,98 @@ const GlobalState = (props) => {
       });
   };
 
-  const states = { restaurants, restaurantDetail, cardapio, buttonAdd, address };
+  //ENDPOINT QUE PERMITE PEGAR UM USUÁRIO EXISTENTE E EDITAR O PERFIL E GUARDAR EM UM NOVO STATE.
+  const getProfile = () => {
+    axios
+      .get(`${BASE_URL}/profile`, headers)
+      .then((res) => {
+        console.log(res);
+        setProfile(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  //ENDPOINT DE UPDATE EM PROFILE
+
+  const upDateProfile = (body) => {
+    axios
+      .put(`${BASE_URL}/profile`, body, headers)
+      .then((res) => {
+        console.log(res.data);
+        setUpProfile(res.data);
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  const placeOrder = (id) => {
+    axios
+      .post(`${BASE_URL}/restaurants/${id}`, headers)
+      .then((res) => {
+        // console.log(res);
+        setCart(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const activeOrder = () => {
+    axios
+      .get(`${BASE_URL}/active-order`, headers)
+      .then((res) => {
+        setOrder(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const ordersHistory = () => {
+    axios
+      .get(`${BASE_URL}/orders/history`, headers)
+      .then((res) => {
+        setOrder(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+
+
+  const states = {
+    restaurants,
+    restaurantDetail,
+    cardapio,
+    buttonAdd,
+    address,
+    profile,
+    upProfile,
+  };
   const setters = {
     setRestaurants,
     setRestaurantDetail,
     setCardapio,
     setButtonAdd,
     setAddress,
+    setProfile,
+    setUpProfile,
   };
-  const requests = { getRestaurants, getRestaurantDetail, getAllAddress, editAddress };
+  const requests = {
+    getRestaurants,
+    getRestaurantDetail,
+    getAllAddress,
+    editAddress,
+    getProfile,
+    upDateProfile,
+    placeOrder,
+    activeOrder,
+    ordersHistory
+  };
   const values = { token, headers };
 
   return (
