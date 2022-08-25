@@ -1,0 +1,61 @@
+# @name CriandoUsuário
+
+POST http://localhost:3003/user/signup
+Content-Type: application/json
+
+{
+    "email": "Alessandra@hotmail.com",
+    "name": "Alessandra",
+    "password": "123456",
+    "role": "ADMIN"
+}
+
+###
+
+# @name Login
+
+POST http://localhost:3003/user/login
+Content-Type: application/json
+
+{
+    "email": "Alessandra@hotmail.com",
+    "password": "123456"
+}
+
+###
+
+# @name CriandoPost  
+
+POST http://localhost:3003/post/create
+Content-Type: application/json
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjNjZiNzcwLTc3YmUtNDc3Zi1hY2U1LTczOTI1YmJjNTQ0NSIsImlhdCI6MTY1NzIxMzc1NywiZXhwIjoxNjU3MjE2NzU3fQ._QZ0KLiLzmcxWdf1qQ0nLchBorPj7M9cMPQlcUz4kQY
+
+{
+    "photo": "https://tse4.mm.bing.net/th?id=OIP.l5n7Zsr7d0aau1-UTd5GmQHaEc&pid=Api&P=0&w=271&h=162",
+    "description": "Foto praia",
+    "creationDate": "2022-07-07",
+    "type": "NORMAL"
+}
+
+###
+# @name PostId 
+
+GET http://localhost:3003/post
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjNjZiNzcwLTc3YmUtNDc3Zi1hY2U1LTczOTI1YmJjNTQ0NSIsImlhdCI6MTY1NzIxMzc1NywiZXhwIjoxNjU3MjE2NzU3fQ._QZ0KLiLzmcxWdf1qQ0nLchBorPj7M9cMPQlcUz4kQY
+
+{
+    "id":"b81b9add-b226-4039-bf2c-e3130bbde75e"
+}
+
+###
+
+#@ name 
+
+
+
+
+
+
+
+
