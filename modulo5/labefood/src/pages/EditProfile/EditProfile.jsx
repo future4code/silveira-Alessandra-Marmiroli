@@ -5,28 +5,50 @@ import GlobalStateContext from "../../context/GlobalStateContext";
 import useForm from "../../hooks/useForm";
 import { goToProfile } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "./styled";
+import axios from 'axios'
+import { BASE_URL } from "../../constants/url";
 
 export default function EditProfile() {
-  const { states, setters,  requests } = useContext(GlobalStateContext);
+  const { states, setters, requests } = useContext(GlobalStateContext);
   const navigate = useNavigate();
+  
+  const token = window.localStorage.getItem("token");
+  const headers = {
+    headers: {
+      auth: token,
+    },
+  };
 
-  useEffect(()=>{
-    requests.getProfile()
-    requests.upDateProfile()
-  },[])
- 
-  // console.log(states.profile)
- const { inputForm, OnChangeInput, clear } = useForm({
-    name: states.profile.user && states.profile.user.name,
-    email: states.profile.user && states.profile.user.email,
-    cpf: states.profile.user && states.profile.user.cpf,
+  const { inputForm, OnChangeInput, clear, setInputForm } = useForm({
+    name: "",
+    email: "",
+    cpf: "",
   });
 
- const onSubmitEditProfile = (event) => {
+  const getProfile = () => {
+    axios
+      .get(`${BASE_URL}/profile`, headers)
+      .then((res) => {
+        console.log(res);
+        setInputForm({ name: res.data.user.name, email: res.data.user.email, cpf: res.data.user.cpf });
+      })
+      .catch((err) => {
+        console.log(err.response);
+      });
+  };
+
+  useEffect(() => {
+    getProfile();
+    requests.upDateProfile();
+  }, []);
+
+  // console.log(states.profile)
+
+  const onSubmitEditProfile = (event) => {
     event.preventDefault();
-    requests.upDateProfile();//aqui chamo o endpoint de atualizar os dados do cadastro!
+    requests.upDateProfile(); //aqui chamo o endpoint de atualizar os dados do cadastro!
     clear();
-    goToProfile()
+    goToProfile();
   };
 
   return (
@@ -38,26 +60,26 @@ export default function EditProfile() {
         <form onSubmit={onSubmitEditProfile}>
           <TextField
             name="name"
-            value={states.profile.user && states.profile.user.name}//retornando na tela dados para edição. 
-            onChange={""}
+            value={inputForm.name} //retornando na tela dados para edição.
+            onChange={OnChangeInput}
             variant={"outlined"}
             color={"primary"}
             fullWidth
             margin={"normal"}
-           />
+          />
           <TextField
             name="email"
-            value={states.profile.user && states.profile.user.email}
-            onChange={""}
+            value={inputForm.email}
+            onChange={OnChangeInput}
             variant={"outlined"}
             color={"primary"}
             fullWidth
             margin={"normal"}
-            />
+          />
           <TextField
             name="cpf"
-            value={states.profile.user && states.profile.user.cpf}
-            onChange={""}
+            value={inputForm.cpf}
+            onChange={OnChangeInput}
             type="text"
             variant={"outlined"}
             color={"primary"}

@@ -3,7 +3,7 @@ import { Modal } from '@mui/material';
 import { BoxModal, ButtonAddCart, SelectQuantity, TitleModal } from './styled';
 
 
-const ModalSelectQuantity = (open, setOpen) => { //  foi feita uma desistruturação open setOpen
+const ModalSelectQuantity = ({open, setOpen}) => { //  foi feita uma desistruturação open setOpen
     return (
         <>
             <Modal

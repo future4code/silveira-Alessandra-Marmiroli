@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+![header](https://qgdocelular.com/wp-content/uploads/2019/10/aplicativos-para-pedir-comida-online-3-810x456.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Projeto Labefood
 
-## Available Scripts
+Esse site foi desenvolvido por <em>Alessandra Sandeski Marmiroli</em>.
 
-In the project directory, you can run:
+Ele é um projeto de criação de um site de pedidos de comida inspirado em aplicativos existentes no mercado.!
 
-### `npm start`
+O site é dividido em 11 páginas:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<li>Home</li>
+<li>Login</li>
+<li>Signup</li>
+<li>Address</li>
+<li>Edit Address</li>
+<li>Profile</li>
+<li>Edit Profile</li>
+<li>Restaurant</li>
+<li>Detail</li>
+<li>Carrinho</li>
+<li>Error</li>
+<br>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A página <strong>Home</strong> é a tela inicial dos restaurantes onde todos são renderizados e visualizados na Tela. O usuário pode filtrar por nome ou tipo de culinária. Ao clicar em um Card do Restaurante o usuário é direcionado para uma página de Detalhes visualizando as comidas por gênero. 
 
-### `npm test`
+Para ter acesso ao site é preciso que o usuário esteja logado, caso não tenha cadastro o mesmo é direcionado através de um link para a página de Cadastro a partir desse momento ele é transferido para a página <strong>Restaurante</strong?>. O usuário tem acesso  para ver e editar seus dados cadastrais, além de poder visualizar os pedidos passados..
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+ Ao finalizar suas escolhas, pode ir para a página de <strong>Carrinho</strong> visualizando o sub-total e frete. Caso o usuário tente fazer um pedido enquanto um pedido ainda está ativo, receberá uma mensagem de erro explicando que só poderá realizar outro pedido quando o primeiro for finalizado. 
 
-### `npm run build`
+O usuário tem a opção de transitar entre as páginas através do <strong>Footer</strong>.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<strong><em>LINK DO SURGE: [Labefood](labefood-alesandeski.surge.sh)</em></strong>

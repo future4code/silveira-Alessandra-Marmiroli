@@ -9,7 +9,7 @@ export const ScreenContainer = styled.div`
 
 export const BoxAddress = styled.div`
   width: 100%;
-  height: 15vh;
+  height: 40vh;//alterei provisório
   align-items: center;
   display: flex;
   flex-direction: column;

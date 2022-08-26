@@ -17,6 +17,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { useRequestData } from "../../hooks/useRequestData";
 import { BASE_URL } from "../../constants/url";
 import { goToEditProfile } from "../../routes/Coordinator";
+import HomeFooter from "../../components/Footer/HomeFooter";
 
 export default function Profile() {
   useProtectedPage()//USANDO PROTECTED PARA PAGE COM DADOS SENSÍVEIS 
@@ -77,6 +78,7 @@ export default function Profile() {
           <h4>Você não realizou nenhum pedido</h4>
         </HistoryContainer>
       </Typography>
+      <HomeFooter/>
     </ScreenContainer>
   );
 }

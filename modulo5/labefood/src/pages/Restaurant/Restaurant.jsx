@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardCategory from "../../components/CardCategory/CardCategory";
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
-import Footer from "../../components/Footer/Footer";
+import HomeFooter from "../../components/Footer/HomeFooter";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import { goToDetailRestaurant, goToLogin } from "../../routes/Coordinator";
 import {
@@ -96,7 +96,7 @@ const Restaurant = () => {
       <ContainerCategory>{mapCategory}</ContainerCategory>
 
       <ContainerRestaurant>{mapRestaurant}</ContainerRestaurant>
-      {/* <Footer/> */}
+      <HomeFooter/>
     </ScreenContainer>
   );
 };

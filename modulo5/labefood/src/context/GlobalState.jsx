@@ -12,9 +12,11 @@ const GlobalState = (props) => {
   const [address, setAddress] = useState({});
   const [profile, setProfile] = useState({});
   const [upProfile, setUpProfile] = useState({});
+
   const [cart, setCart] = useState([]);
   const [order, setOrder] = useState ([]);
   const [history, setHistory] = useState ([]);
+  const [quantity, setQuantity] = useState ([]);//criando state para receber a quantidade do modal
 
   //Criando estados que receberão as novas informações do Usuário isso deve ser informado dentro do Endpoint PUT de atualização
   // const [name, setName] = useState("");
@@ -68,6 +70,7 @@ const GlobalState = (props) => {
     axios
       .get(`${BASE_URL}/restaurants`, headers)
       .then((res) => {
+        console.log(res)
         setRestaurants(res.data.restaurants);
       })
       .catch((erro) => {
@@ -115,9 +118,9 @@ const GlobalState = (props) => {
       });
   };
 
-  const placeOrder = (id) => {
+  const placeOrder = (id, body) => {
     axios
-      .post(`${BASE_URL}/restaurants/${id}`, headers)
+      .post(`${BASE_URL}/restaurants/${id}/order`, body, headers)
       .then((res) => {
         // console.log(res);
         setCart(res.data);
@@ -159,6 +162,10 @@ const GlobalState = (props) => {
     address,
     profile,
     upProfile,
+    cart, 
+    order,
+    history,
+    quantity
   };
   const setters = {
     setRestaurants,
@@ -168,6 +175,10 @@ const GlobalState = (props) => {
     setAddress,
     setProfile,
     setUpProfile,
+    setCart, 
+    setOrder, 
+    setHistory,
+    setQuantity
   };
   const requests = {
     getRestaurants,
