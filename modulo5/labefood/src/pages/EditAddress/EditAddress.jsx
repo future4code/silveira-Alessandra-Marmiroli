@@ -1,35 +1,66 @@
 import { Button, TextField, Typography } from "@mui/material";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import useForm from "../../hooks/useForm";
 import { InputsContainer, ScreenContainer } from "./styled";
-import { goToRestaurant } from "../../routes/Coordinator"
+import { goToProfile, goToRestaurant } from "../../routes/Coordinator"
+import axios from "axios";
+import { BASE_URL } from "../../constants/url";
+import useProtectedPage from "../../hooks/useProtectedPage";
 
 export default function EditAddress() {
-  const { states, requests } = useContext(GlobalStateContext);
+  useProtectedPage()
+  const { requests } = useContext(GlobalStateContext);
   const navigate = useNavigate();
+  
+  const token = window.localStorage.getItem("token");
+  const headers = {
+    headers: {
+      auth: token,
+    },
+  };
+
+
+//NO USEFECCT QUANDO MUDA ELE DE LUGAR APARECEM AS INFORMAÇÕES SALVO NO STATE MAS AO ATUALIZAR A PAGINA PERDE-SE OS DADOS
+  const { inputForm, OnChangeInput, clear, setInputForm } = useForm({
+    neighbourhood: "",
+    number: "",
+    city: "",
+    complement: "",
+    state: "",
+    street: "",
+  });
+
+  const getAllAddress = () => {
+    axios
+      .get(`${BASE_URL}/profile/address`, headers)
+      .then((res) => {
+        // console.log("getAllAddress", res.data);
+        setInputForm({
+          neighbourhood: res.data.address.neighbourhood, 
+          number: res.data.address.number, 
+          city: res.data.address.city, 
+          complement: res.data.address.complement, 
+          state: res.data.address.state, 
+          street: res.data.address.street});
+      })
+      .catch((erro) => {
+        console.log(erro);
+      });
+  };
 
   useEffect(() => {
-    localStorage.getItem('token') !== null ? requests.getAllAddress() : goToRestaurant(navigate)
+    getAllAddress();
   }, []);
-//NO USEFECCT QUANDO MUDA ELE DE LUGAR APARECEM AS INFORMAÇÕES SALVO NO STATE MAS AO ATUALIZAR A PAGINA PERDE-SE OS DADOS
-  const { inputForm, OnChangeInput, clear} = useForm({
-    neighbourhood: states.address.neighbourhood,
-    number: states.address.number,
-    city: states.address.city,
-    apartament: states.address.complement,
-    state: states.address.state,
-    street: states.address.street,
-  });
 
     const onSubmitEditAddress = (event) => {
     event.preventDefault();
-    requests.editAddress(inputForm)
+    requests.editAddress(inputForm);//Passar como parâmetro o estado que recebe a mudança!
     clear();
-    //navigate 
+    goToProfile()
   };
-  //Dentro do submit precisa passar rota para navegar e função que seta o estado
+  //Dentro do submit precisa passar rota para navegar
 
   return (
     <ScreenContainer>

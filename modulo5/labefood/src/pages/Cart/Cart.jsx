@@ -9,17 +9,15 @@ import {
   Pay,
   ScreenContainer,
   Subtotal,
-  SubValor,
-} from "./styled";
+  } from "./styled";
 import { useNavigate } from "react-router-dom";
-import CardBigRestaurant from "../../components/CardBigRestaurant/CardBigRestaurant"
+import CardBigRestaurant from "../../components/CardBigRestaurant/CardBigRestaurant";
 import HomeFooter from "../../components/Footer/HomeFooter";
-import useProtectedPage from "../../hooks/useProtectedPage";
+
 
 export default function Cart() {
-  const navigate = useNavigate();
-//   useProtectedPage(navigate)
-  const { states, setters, values, requests } = useContext(GlobalStateContext);
+    const { states, requests } = useContext(GlobalStateContext);
+    const navigate = useNavigate();
 
   const [payment, setPayment] = useState([]);
   const [paymentMethod, setPaymentMethod] = useState({
@@ -33,10 +31,24 @@ export default function Cart() {
     requests.getRestaurantDetail();
   }, []);
 
+  const onChangePayment = (event) => {
+    //função responsável pelo método de pagamento
+    const newCheck = { ...paymentMethod };
+    newCheck[event.target.name] = event.target.checked;
+
+    const result = Object.keys(newCheck).filter((pay) => {
+      if (newCheck[pay]) {
+        return [pay, ...payment];
+      }
+    });
+    setPayment(result);
+    setPaymentMethod(newCheck);
+  };
+
   return (
     <ScreenContainer>
       <Typography
-        sx={{ color: "black", marginTop: "15px", fontWeight: "bold" }}
+        sx={{ color: "black", fontWeight: "bold" }}
       >
         Meu Carrinho
       </Typography>
@@ -61,29 +73,46 @@ export default function Cart() {
             );
           })
         ) : (
-          <div></div>
+          <p>Carrinho Vazio</p>
         )}
       </div>
+      <Frete>
+        Frete {new Intl.NumberFormat("pt-BR", {
+          styled: "currency",
+          currency: "BRL",
+        }).format(6)}
+      </Frete>
 
-      <Frete>Frete: R$ 0,00 </Frete>
       <Subtotal>
-        SUBTOTAL
-        {/* <SubValor> R$ {subtotal.toFixed(2)}</SubValor> */}
+        <p>SUBTOTAL</p>
+        <p> {new Intl.NumberFormat("pt-BR", {
+            styled: "currency",
+            currency: "BRL",
+          }).format(10)}
+        </p>
       </Subtotal>
       <Pay>Forma de Pagamento</Pay>
       <Line />
       <br></br>
       <Form>
-        <form action="/action_page.php" onChange={""}>
-          <input type="radio" id="din" name="pagamento" value="money" />
-          <label for="din">Dinheiro</label>
-          <br></br>
-          <input type="radio" id="css" name="pagamento" value="creditcard" />
-          <label for="cartao">Cartão de Crédito</label>
-          <Button>Confirmar</Button>
-        </form>
+        {Object.keys(paymentMethod).map((key) => {
+          const checked = paymentMethod[key];
+          return (
+            <div key={key}>
+              <input
+                checked={checked}
+                name={key}
+                id={key}
+                type={"checkbox"}
+                onChange={onChangePayment}
+              />
+              <label>{key}</label>
+            </div>
+          );
+        })}
+        <Button>Confirmar</Button>
       </Form>
-      <HomeFooter/>
+      <HomeFooter />
     </ScreenContainer>
   );
 }

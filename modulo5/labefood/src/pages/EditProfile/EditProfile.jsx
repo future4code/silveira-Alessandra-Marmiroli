@@ -8,8 +8,9 @@ import { InputsContainer, ScreenContainer } from "./styled";
 import axios from 'axios'
 import { BASE_URL } from "../../constants/url";
 
+
 export default function EditProfile() {
-  const { states, setters, requests } = useContext(GlobalStateContext);
+  const { requests } = useContext(GlobalStateContext);
   const navigate = useNavigate();
   
   const token = window.localStorage.getItem("token");
@@ -29,26 +30,27 @@ export default function EditProfile() {
     axios
       .get(`${BASE_URL}/profile`, headers)
       .then((res) => {
-        console.log(res);
-        setInputForm({ name: res.data.user.name, email: res.data.user.email, cpf: res.data.user.cpf });
+        setInputForm({ 
+          name: res.data.user.name, 
+          email: res.data.user.email, 
+          cpf: res.data.user.cpf });
       })
       .catch((err) => {
         console.log(err.response);
       });
   };
 
+  //ENVIAR UMA MENSAGEM DE USUÁRIO ATUALIZADO COM SUCESSO FALTA ISSO ANTES DE IR PARA A PRÓXIMA PAGE!
+
   useEffect(() => {
     getProfile();
-    requests.upDateProfile();
   }, []);
-
-  // console.log(states.profile)
 
   const onSubmitEditProfile = (event) => {
     event.preventDefault();
-    requests.upDateProfile(); //aqui chamo o endpoint de atualizar os dados do cadastro!
+    requests.upDateProfile(inputForm); //aqui chamo o endpoint de atualizar os dados do cadastro!
     clear();
-    goToProfile();
+    goToProfile()
   };
 
   return (
@@ -90,7 +92,7 @@ export default function EditProfile() {
             }
             minLength="11"
           />
-          <Button type="submit" variant="contained" fullWidth color={"primary"}>
+          <Button  type="submit" variant="contained" fullWidth color={"primary"}>
             Salvar
           </Button>
         </form>

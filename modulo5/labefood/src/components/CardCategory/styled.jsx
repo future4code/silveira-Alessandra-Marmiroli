@@ -6,6 +6,7 @@ export const CardStyleCategory = styled.div`
   flex-direction: wrap;
   align-items: center;
   margin: 20px;
- `;
-
-
+  :hover {
+  cursor:pointer;
+  }
+`;

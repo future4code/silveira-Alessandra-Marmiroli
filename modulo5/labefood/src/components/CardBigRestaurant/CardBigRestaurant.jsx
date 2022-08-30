@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import GlobalStateContext from "../../context/GlobalStateContext";
 import ModalSelectQuantity from "../ModalSelectQuantity/ModalSelectQuantity";
 import {
   ButtonAdd,
@@ -12,12 +13,19 @@ import {
 } from "./styled";
 
 const CardBigRestaurant = (props) => {
- const [modal, setModal] = useState();
+  const { states, requests } = useContext(GlobalStateContext);
+  
+ const [modal, setModal] = useState(false);
+ const {addToCart, removeCart} = requests
+// const addToCart = requests
 
-  // const onClickButtonAdd = () => {
-  //   states.setButtonAdd()
-  // }
-  //Criar a lógica de mudar o botão de Adicionar! 
+const choiceQuantity = (quantity) => {
+  setModal(false)
+  if (addToCart.length > 0) {
+    return addToCart(product, quantity, restaurant)
+  }
+}
+
   
 
   return (
@@ -31,10 +39,10 @@ const CardBigRestaurant = (props) => {
           <P>{props.description}</P>
         </Services>
         <Price>
-          <P>Preço: R$ {props.price}</P>
-          <ButtonAdd onClick={()=> setModal(true)}>Adicionar</ButtonAdd>
+          <P>Preço: R$ {new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(props.price)}</P>
+          <ButtonAdd onClick={()=> setModal(true)}>Remover</ButtonAdd>
         </Price>
-        <ModalSelectQuantity open={modal} setOpen={setModal} />
+        <ModalSelectQuantity open={modal} setOpen={setModal} choiceQuantity={choiceQuantity}/>
       </CardP>
     </CardBigStyle>
   );

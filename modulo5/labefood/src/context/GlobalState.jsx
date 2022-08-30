@@ -12,24 +12,11 @@ const GlobalState = (props) => {
   const [address, setAddress] = useState({});
   const [profile, setProfile] = useState({});
   const [upProfile, setUpProfile] = useState({});
-
-  const [cart, setCart] = useState([]);
   const [order, setOrder] = useState ([]);
   const [history, setHistory] = useState ([]);
+
   const [quantity, setQuantity] = useState ([]);//criando state para receber a quantidade do modal
-
-  //Criando estados que receberão as novas informações do Usuário isso deve ser informado dentro do Endpoint PUT de atualização
-  // const [name, setName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [cpf, setCpf] = useState("");
-
-  // setName(states.profile.user && states.profile.user.name)
-  // setEmail(states.profile.user && states.profile.user.email)
-  // setCpf(states.profile.user && states.profile.user.cpf)
-
-  // setName(states.profile.user && states.profile.user.name)
-  // setEmail(states.profile.user && states.profile.user.email)
-  // setCpf(states.profile.user && states.profile.user.cpf)
+  const [product, setProduct] = useState([]);
 
   const token = window.localStorage.getItem("token");
   const headers = {
@@ -56,10 +43,11 @@ const GlobalState = (props) => {
   const editAddress = (body) => {
     axios
       .put(`${BASE_URL}/address`, body, headers)
-      .then((resp) => {
-        localStorage.setItem("token", resp.data.token);
+      .then((res) => {
+        // console.log("editAddress", res.data);
+        localStorage.setItem("token", res.data.token);
         alert("Endereço cadastrado");
-        console.log(resp);
+        
       })
       .catch((erro) => {
         alert(erro.data.message);
@@ -110,7 +98,7 @@ const GlobalState = (props) => {
     axios
       .put(`${BASE_URL}/profile`, body, headers)
       .then((res) => {
-        console.log(res.data);
+        // console.log("upDateProfile", res.data);
         setUpProfile(res.data);
       })
       .catch((err) => {
@@ -118,19 +106,20 @@ const GlobalState = (props) => {
       });
   };
 
-  const placeOrder = (id, body) => {
+  const placeOrder = (id, body) => {//REALIZA O PEDIDO!!!
     axios
       .post(`${BASE_URL}/restaurants/${id}/order`, body, headers)
       .then((res) => {
-        // console.log(res);
-        setCart(res.data);
+        console.log('placeOrder', res);
+        setProduct(res.data);
+        setQuantity(res.data)
       })
       .catch((err) => {
         console.log(err);
       });
   };
 
-  const activeOrder = () => {
+  const activeOrder = () => {//RETORNA PEDIDO ATIVO 
     axios
       .get(`${BASE_URL}/active-order`, headers)
       .then((res) => {
@@ -141,18 +130,16 @@ const GlobalState = (props) => {
       });
   };
 
-  const ordersHistory = () => {
+  const ordersHistory = () => {//LISTA DE PEDIDOS FINALIZADOS!!!
     axios
       .get(`${BASE_URL}/orders/history`, headers)
       .then((res) => {
-        setOrder(res.data);
+        // setHistory(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   };
-
-
 
   const states = {
     restaurants,
@@ -162,7 +149,7 @@ const GlobalState = (props) => {
     address,
     profile,
     upProfile,
-    cart, 
+    product, 
     order,
     history,
     quantity
@@ -175,7 +162,7 @@ const GlobalState = (props) => {
     setAddress,
     setProfile,
     setUpProfile,
-    setCart, 
+    setProduct, 
     setOrder, 
     setHistory,
     setQuantity

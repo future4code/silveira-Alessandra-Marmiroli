@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CardCategory from "../../components/CardCategory/CardCategory";
 import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 import HomeFooter from "../../components/Footer/HomeFooter";
+import Header from "../../components/Header/Header";
 import GlobalStateContext from "../../context/GlobalStateContext";
 import { goToDetailRestaurant, goToLogin } from "../../routes/Coordinator";
 import {
@@ -23,6 +24,12 @@ const Restaurant = () => {
   const [filterFood, setFilterFood] = useState(false);
   const [category, setCategory] = useState(true);//Estado das Categorias 
   const [collor, setCollor] = useState("#FF9500");
+
+  
+  const logout = () => {
+    localStorage.clear("Token");
+    navigate('/')
+  }
 
   useEffect(() => {
     localStorage.getItem("token") !== null ? requests.getRestaurants() : goToLogin(navigate);
@@ -55,10 +62,6 @@ const Restaurant = () => {
     );
   });
 
-  const logout = () => {
-    localStorage.clear("Token");
-    navigate('/')
-  }
 
 //   const logout = () => {
 //     localStorage.removeItem("Token");
@@ -67,26 +70,18 @@ const Restaurant = () => {
   
   return (
     <ScreenContainer>
-
-      <ContainerImage>
-        <Img 
-        width="50px" 
-        src="https://raw.githubusercontent.com/future4code/Silveira-labe-food1/master/src/assets/iconelogout.png"
-        onClick={logout}
-        />
-        </ContainerImage>
-
-      <Typography sx={{ padding: "15px" }}>Rappi4</Typography>
-      <Line />
-      <InputsContainer>
+      <Header 
+      title={"Rappi4"}
+      padding={"15px"}
+      />
+       <InputsContainer>
         <TextField
           variant="outlined"
-          //  color='primary'
           type="text"
           margin="normal"
           label="Restaurante"
           placeholder="Restaurante"
-          fullWidth
+          width="100%"
           value={filterRestaurants}
           onChange={(event) => setFilterRestaurants(event.target.value)}
           sx={{ position: "relative", bottom: "15px", width: "95vw" }}

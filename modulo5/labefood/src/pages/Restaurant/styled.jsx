@@ -17,11 +17,6 @@ export const InputsContainer = styled.div`
   
 `;
 
-export const Line = styled.hr`
-  width: 100%;
-  border: 1px solid black;
-`;
-
 export const ContainerCategory = styled.div`
   display: flex;
   flex-direction: row;
@@ -38,17 +33,6 @@ export const ContainerCategory = styled.div`
  `;
 
 export const ContainerRestaurant = styled.div`
- 
-`;
-
-export const ContainerImage = styled.div`
- margin: 0;
- display: flex;
- justify-content: flex-end;
- align-items: flex-end;
- flex-wrap: wrap;
- width: 90vw;
- height: 5vh;
 `;
 
 export const Img = styled.img`

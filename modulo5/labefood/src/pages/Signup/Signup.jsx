@@ -8,6 +8,7 @@ import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import { goToAddress } from "../../routes/Coordinator";
 import Reppi4 from "../../assets/Reppi4.png";
+import Header from "../../components/Header/Header";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ const Signup = () => {
 
   return (
     <ScreenContainer>
+      <Header back={true}/>
       <Logo src={Reppi4} width={"150px"} />
       <Typography sx={{ color: "black", marginTop: "5px", fontWeight: "bold" }}>
         Cadastro
