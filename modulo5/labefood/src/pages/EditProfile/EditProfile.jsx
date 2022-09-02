@@ -7,6 +7,7 @@ import { goToProfile } from "../../routes/Coordinator";
 import { InputsContainer, ScreenContainer } from "./styled";
 import axios from 'axios'
 import { BASE_URL } from "../../constants/url";
+import Header from "../../components/Header/Header";
 
 
 export default function EditProfile() {
@@ -55,6 +56,7 @@ export default function EditProfile() {
 
   return (
     <ScreenContainer>
+      <Header back={true}/>
       <Typography variant="h6" sx={{ color: "black" }}>
         Editar Perfil
       </Typography>

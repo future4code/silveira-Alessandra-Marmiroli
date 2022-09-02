@@ -8,16 +8,16 @@ import {
   Img,
   P,
   Price,
+  QuantityProduct,
   Restaurant,
   Services,
 } from "./styled";
 
-const CardBigRestaurant = (props) => {
+const CardBigRestaurant = ({product, restaurant}) => {
   const { states, requests } = useContext(GlobalStateContext);
-  
- const [modal, setModal] = useState(false);
- const {addToCart, removeCart} = requests
-// const addToCart = requests
+  const [modal, setModal] = useState(false);
+  const {addToCart, removeCart} = requests
+
 
 const choiceQuantity = (quantity) => {
   setModal(false)
@@ -26,21 +26,28 @@ const choiceQuantity = (quantity) => {
   }
 }
 
-  
+const productInCart = states.cart.find((productCart) => productCart.id === product.id)
 
   return (
     <CardBigStyle>
-      <Img src={props.photoUrl} alt="logo" />
+      <Img src={product.photoUrl} alt="logo" />
       <CardP>
         <Restaurant>
-          <P>{props.name}</P>
+          <P>{product.name}</P>
+          {productInCart && <QuantityProduct>{productInCart.quantity}</QuantityProduct>}
         </Restaurant>
         <Services>
-          <P>{props.description}</P>
+          <P>{product.description}</P>
         </Services>
         <Price>
-          <P>Preço: R$ {new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(props.price)}</P>
-          <ButtonAdd onClick={()=> setModal(true)}>Remover</ButtonAdd>
+          <P>Preço: R$ {new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(product.price)}</P>
+          { productInCart ?
+          <ButtonAdd onClick={()=> removeCart(product.id)}>Remover</ButtonAdd>
+          :
+          <ButtonAdd onClick={() => setModal(true)}>
+                Adicionar
+              </ButtonAdd>
+          }
         </Price>
         <ModalSelectQuantity open={modal} setOpen={setModal} choiceQuantity={choiceQuantity}/>
       </CardP>

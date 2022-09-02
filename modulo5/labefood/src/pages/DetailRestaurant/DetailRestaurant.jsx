@@ -4,31 +4,34 @@ import { ContainerCardDetail, ScreenContainer } from "./styled";
 import CardBigRestaurant from "../../components/CardBigRestaurant/CardBigRestaurant";
 import { useParams } from "react-router-dom";
 import CardResultRestaurant from "../../components/CardResultRestaurant/CardResultRestaurant";
+import Header from "../../components/Header/Header";
+import HomeFooter from "../../components/Footer/HomeFooter";
 
 const DetailRestaurant = () => {
-  const { states, setters, values, requests } = useContext(GlobalStateContext);
+  const { states, requests } = useContext(GlobalStateContext);
   const params = useParams(); //toda vezz que usar o id precisa usar o params
 
   useEffect(() => {
     requests.getRestaurantDetail(params.id);
   }, []);
 
-  const mapDetailRestaurant = states.cardapio?.map((rest) => {
+  //Map que envia um produto para 
+  const mapDetailRestaurant = states.cardapio?.map((product) => {
     return (
-      <CardBigRestaurant
-        key={rest.id}
-        photoUrl={rest.photoUrl}
-        name={rest.name}
-        description={rest.description}
-        price={rest.price}
-      />
+      //   <CardBigRestaurant
+      //   product={product}
+      //   key={product.id}
+      //   restaurant={states.restaurantDetail}
+      // ></CardBigRestaurant>
+      <CardBigRestaurant product={product} key={product.id} restaurant={states.restaurantDetail}></CardBigRestaurant>
     );
   });
 
   return (
     <ScreenContainer>
+      <Header back={true}/>
       <ContainerCardDetail>
-          <CardResultRestaurant
+        <CardResultRestaurant
           key={states.restaurantDetail.id}
           logoUrl={states.restaurantDetail.logoUrl}
           name={states.restaurantDetail.name}
@@ -39,6 +42,7 @@ const DetailRestaurant = () => {
         />
       </ContainerCardDetail>
       <div>{mapDetailRestaurant}</div>
+      <HomeFooter/>
     </ScreenContainer>
   );
 };

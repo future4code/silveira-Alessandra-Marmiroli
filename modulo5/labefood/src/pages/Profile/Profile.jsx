@@ -2,9 +2,12 @@ import { IconButton, Typography } from "@mui/material";
 import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import GlobalStateContext from "../../context/GlobalStateContext";
-import useProtectedPage from "../../hooks/useProtectedPage"
+import useProtectedPage from "../../hooks/useProtectedPage";
+import Header from "../../components/Header/Header";
 import {
+  Adrress,
   BoxAddress,
+  BoxHistory,
   ContainerAddress,
   HistoryContainer,
   InputsContainer,
@@ -16,41 +19,39 @@ import {
 import EditIcon from "@mui/icons-material/Edit";
 import { useRequestData } from "../../hooks/useRequestData";
 import { BASE_URL } from "../../constants/url";
-import { goToEditProfile } from "../../routes/Coordinator";
+import { goToEditAddress, goToEditProfile } from "../../routes/Coordinator";
 import HomeFooter from "../../components/Footer/HomeFooter";
 
 export default function Profile() {
-  useProtectedPage()//USANDO PROTECTED PARA PAGE COM DADOS SENSÍVEIS 
+  useProtectedPage(); //USANDO PROTECTED PARA PAGE COM DADOS SENSÍVEIS
   const { states, requests } = useContext(GlobalStateContext);
   const navigate = useNavigate();
 
   // const profileEdit = useRequestData({},`${BASE_URL}/profile}`)
 
   useEffect(() => {
-    //FAZER ENDPOINTS NO GLOBAL DE GET PROFILE E GET ORDER HISTORY E PASSAR AQUI!!!
-    //requests.getProfile()
+    requests.getProfile();
     //requests.getOrderHistory()
   }, []);
 
   return (
     <ScreenContainer>
-      <Typography variant="h6" sx={{ color: "black" }}>
-        Meu Perfil
-      </Typography>
-      <LineHeader />
-      <br></br>
+      <Header title={"Meu perfil"} padding={"15px"} />
       <InputsContainer>
         <Perfil>
-          <p>{}</p>
-          <p>{}</p>
-          <p>{}</p>
+          <p style={{ textTransform: "capitalize" }}>
+            {states.profile.user && states.profile.user.name}
+          </p>
+          <p>{states.profile.user && states.profile.user.email}</p>
+          <p>{states.profile.user && states.profile.user.cpf}</p>
         </Perfil>
         <IconButton
-          onClick={goToEditProfile(navigate)}
+          onClick={() => goToEditProfile(navigate)}
           color="primary"
           sx={{ color: "black", bottom: "25px" }}
-        />
-        <EditIcon />
+        >
+        <EditIcon sx={{ margin: "20px" }} />
+        </IconButton>
       </InputsContainer>
 
       <BoxAddress>
@@ -63,22 +64,32 @@ export default function Profile() {
         </Typography>
 
         <ContainerAddress>
-          <div>
-            <p>{""}</p>
-          </div>
-          <IconButton onClick={""} sx={{ color: "black", bottom: "25px" }}>
-            <EditIcon />
+          <Adrress>
+            <p style={{ textTransform: "capitalize", margin: 0 }}>
+              {states.profile.user && states.profile.user.address}
+            </p>
+          </Adrress>
+
+          <IconButton
+            onClick={() => goToEditAddress(navigate)}
+            sx={{ color: "black", bottom: "25px" }}
+          >
+            <EditIcon sx={{margin:'20px' }}/>
           </IconButton>
         </ContainerAddress>
       </BoxAddress>
-      <Typography varivant="h6" sx={{ color: "black"}}>
+      <BoxHistory>
+      <Typography varivant="h6" sx={{ color: "black" }}>
         Histórico de pedidos:
-        <Line />
+        </Typography>
+        
         <HistoryContainer>
-          <h4>Você não realizou nenhum pedido</h4>
+          <p style={{ display: "flex", justifyContent: "center" }}>
+            Você não realizou nenhum pedido
+          </p>
         </HistoryContainer>
-      </Typography>
-      <HomeFooter/>
+     </BoxHistory>
+      <HomeFooter />
     </ScreenContainer>
   );
 }

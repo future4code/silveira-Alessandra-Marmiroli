@@ -4,67 +4,61 @@ export const ScreenContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 20px;
   width: auto;
+  font-size: 'Roboto', sans-serif; 
 `;
 
-export const LineHeader = styled.hr`
-  width: 100%;
-`;
+
 
 export const InputsContainer = styled.div`
   display: flex;
   flex-direction: row;
-  max-width: 450px;
   align-items: center;
-  margin-bottom: 20px;
-  width: 84vw;
-  height: 15vh;
-  line-height: 9px;
-  margin-top: -20px;
-  margin-bottom: -2px;
+  width: 100%;
+  line-height: 15px;
   justify-content: space-between;
+  font-weight: bold;
+  font-size: 16px;
 `;
 
-
 export const Perfil = styled.div`
-  width: 70%;
-  height: 75%;
-  position: relative;
-  top: 0;
+ margin: 10px 20px 10px 20px;
 `;
 
 export const BoxAddress = styled.div`
-  width: 100%;
-  height: 15vh;
-  align-items: center;
+ width: 100%;
   display: flex;
   flex-direction: column;
   background-color: #efeff4;
-  margin-bottom: 20px;
   font-size: 15px;
-  padding: 10px 0 0 30px;
+  font-weight: bold;
+  font-size: 16px;
 `;
+
 export const ContainerAddress = styled.div`
   display: flex;
   flex-direction: row;
-  max-width: 85vw;
   align-items: center;
-  justify-content: space-around;
-  position: relative;
-  right: 12px;
-  width: 100vw;
+  justify-content: space-between;
 `;
 
-export const Line = styled.hr`
+export const Adrress = styled.div`
+  margin: 0 20px 0 20px;
+`
+
+export const BoxHistory = styled.div`
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  border: 1px solid black;
-`;
+  font-weight: bold;
+  font-size: 16px;
+`
 
 export const HistoryContainer = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
-  width: 80vw;
+  width: 100%;
   border-radius: 12px;
+  margin: 20px 20px 0 20px;
+
 `;

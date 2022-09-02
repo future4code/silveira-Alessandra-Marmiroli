@@ -8,6 +8,7 @@ import { goToProfile, goToRestaurant } from "../../routes/Coordinator"
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
 import useProtectedPage from "../../hooks/useProtectedPage";
+import Header from "../../components/Header/Header";
 
 export default function EditAddress() {
   useProtectedPage()
@@ -64,6 +65,7 @@ export default function EditAddress() {
 
   return (
     <ScreenContainer>
+      <Header back={true}/>
       <Typography variant="h6" sx={{ color: "black" }}>
        Editar meu endereço:
       </Typography>

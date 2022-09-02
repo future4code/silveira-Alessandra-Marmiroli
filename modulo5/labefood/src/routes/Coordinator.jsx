@@ -8,6 +8,7 @@ export const goToLogin = (navigate) => {
     navigate("/");
  
 }
+
 //página de login para fazer o login o cadastro deve existir e o endereço 
 export const goToAddress = (navigate) => {
     navigate("/address");

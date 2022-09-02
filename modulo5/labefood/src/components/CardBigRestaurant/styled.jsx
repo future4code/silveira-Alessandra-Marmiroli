@@ -10,6 +10,7 @@ export const CardBigStyle = styled.div`
   border-radius: 10px;
   box-shadow: 1px 1px 1px 1px #8e8e93;
   font-family: "Roboto", sans-serif;
+    
 `;
 
 export const Img = styled.img`
@@ -26,17 +27,22 @@ export const CardP = styled.div`
   margin-bottom: 10px;
   color: #d1d1d6;
   font-size: 16px;
+  
 `;
 
 export const Restaurant = styled.div`
   color: #e86e5a;
+  display: flex;//alteração de janaylla 
+  justify-content: space-between;//alteração de janaylla 
+  display: flex;
+  justify-content: space-between;
+   
 `;
 
 export const P = styled.p`
-  margin: 0px;
-  display: flex;
-  font-size: 12px;
-  padding: 8px;
+  font-size: 16px;
+  margin: 3px;
+  padding:5px;
 `;
 
 export const Services = styled.div`
@@ -49,7 +55,8 @@ export const Price = styled.div`
   justify-content: space-between;
   color: black;
   font-weight: bold;
-  width: 300px;
+  width: 340px;
+  
 `;
 
 export const ButtonAdd = styled.button`
@@ -57,64 +64,20 @@ export const ButtonAdd = styled.button`
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 15px;
-  /* margin-left: 200px; */
+  font-size: 16px;//estava 15
   cursor: pointer;
   background-color: white;
   color: black;
   border: 2px solid #000000;
    `;
 
-// export const ButtonRem = styled.button`
-//   border-radius: 15px 0px 15px 0px;
-//   // padding: 15px 32px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 16px;
-//   // margin: 4px 2px;
-//   cursor: pointer;
-//   background-color: white;
-//   color: #e86e5a;
-//   border: 2px solid #e86e5a;
-//   width: 25%;
-//   height: 25%;
-//   position: absolute;
-//   bottom: 0;
-//   right: 0;
-// `;
-
-//Estilização do Modal!
-
-// export const ButtonAdd = styled.button`
-//   border-radius: 15px 0px 15px 0px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 16px;
-//   cursor: pointer;
-//   background-color: white;
-//   color: black;
-//   border: 2px solid #000000;
-//   height: 25%;
-//   position: absolute;
-//   bottom: 0;
-//   right: 0;
-// `;
-
-// export const ButtonRem = styled.button`
-//   border-radius: 15px 0px 15px 0px;
-//   text-align: center;
-//   text-decoration: none;
-//   display: inline-block;
-//   font-size: 16px;
-//   cursor: pointer;
-//   background-color: white;
-//   color: #e86e5a;
-//   border: 2px solid #e86e5a;
-//   width: 25%;
-//   height: 25%;
-//   position: absolute;
-//   bottom: 0;
-//   right: 0;
-// `;
+export const QuantityProduct = styled.div`//Este é o botão que aparece no canto superior com a quantidade de produto dentro 
+  display: flex; 
+  justify-content:center;
+  align-items: center;
+  border: solid 1px red; 
+  width: 2.063rem;
+  height: 2.063rem;
+  border-radius: 8px 0 8px 0;
+  color: red; 
+`

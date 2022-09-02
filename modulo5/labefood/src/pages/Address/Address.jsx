@@ -7,6 +7,7 @@ import { InputsContainer, ScreenContainer } from "./styled";
 
 import axios from "axios";
 import { BASE_URL } from "../../constants/url";
+import Header from "../../components/Header/Header";
 
 
 const Address = () => {
@@ -47,6 +48,7 @@ const Address = () => {
 
   return (
     <ScreenContainer>
+      <Header back={true}/>
       <Typography sx={{ color: "black", fontWeight: "bold" }}>
         Endereço
       </Typography>

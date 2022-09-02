@@ -1,4 +1,4 @@
-import { TextField, Typography } from "@mui/material";
+import { TextField } from "@mui/material";
 import React, { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CardCategory from "../../components/CardCategory/CardCategory";
@@ -6,75 +6,68 @@ import CardRestaurant from "../../components/CardRestaurant/CardRestaurant";
 import HomeFooter from "../../components/Footer/HomeFooter";
 import Header from "../../components/Header/Header";
 import GlobalStateContext from "../../context/GlobalStateContext";
-import { goToDetailRestaurant, goToLogin } from "../../routes/Coordinator";
+import { goToDetailRestaurant } from "../../routes/Coordinator";
 import {
   InputsContainer,
   ScreenContainer,
-  Line,
-  ContainerCategory,
-  ContainerRestaurant,
-  ContainerImage,
-  Img,
+  Menu,
+  MenuItem,
 } from "./styled";
+import Image from "../../assets/image.png";
 
 const Restaurant = () => {
   const navigate = useNavigate();
-  const { states, setters, values, requests } = useContext(GlobalStateContext);
-  const [filterRestaurants, setFilterRestaurants] = useState("");
-  const [filterFood, setFilterFood] = useState(false);
-  const [category, setCategory] = useState(true);//Estado das Categorias 
-  const [collor, setCollor] = useState("#FF9500");
+  const { states, requests } = useContext(GlobalStateContext);
+  const [inputText, setInputText] = useState("");
+  const [buttonCategory, setButtonCategory] = useState("");
 
-  
-  const logout = () => {
-    localStorage.clear("Token");
-    navigate('/')
-  }
 
+  const restaurantsFilter = states.restaurants.filter((restaurant) =>
+      inputText
+        ? restaurant.name.toLowerCase().includes(inputText.toLocaleLowerCase())
+        : true
+    )
+    .filter((restaurant) =>
+      buttonCategory
+        ? restaurant.category
+            .toLowerCase()
+            .includes(buttonCategory.toLowerCase())
+        : true
+    )
+    .map((rest) => {
+      console.log(rest)
+      return (
+        <CardRestaurant
+          key={rest.id}
+          logoUrl={rest.logoUrl}
+          name={rest.name}
+          deliveryTime={rest.deliveryTime}
+          shipping={rest.shipping}
+          onClick={() => goToDetailRestaurant(navigate, rest.id)}
+        />
+      );
+    });
+
+    
   useEffect(() => {
-    localStorage.getItem("token") !== null ? requests.getRestaurants() : goToLogin(navigate);
+    requests.getRestaurants();
+    requests.activeOrder();
   }, []);
 
-  useEffect(() => {
-    setCategory((state) => (category ? "#e32636" : "#FF9500 "));
-  }, [category]);
 
- const mapCategory = states.restaurants?.map((cat) => {
-    return (
-      <CardCategory
-        onClick={() => { setCategory((state) => !state)}}
-        key={cat.id}
-        category={cat.category}
-      />
-    );
-  });
-    
-  const mapRestaurant = states.restaurants?.map((rest) => {
-    return (
-      <CardRestaurant
-        key={rest.id}
-        logoUrl={rest.logoUrl}
-        deliveryTime={rest.deliveryTime}
-        name={rest.name}
-        shipping={rest.shipping}
-        onClick={()=>goToDetailRestaurant(navigate, rest.id)}
-      />
-    );
-  });
+  const onChangeInputText = (event) => {
+    setInputText(event.target.value);
+  };
 
+  //   const logout = () => {
+  //     localStorage.removeItem("Token");
+  //     navigate('/')
+  // }//Esse formato também funciona o logout
 
-//   const logout = () => {
-//     localStorage.removeItem("Token");
-//     navigate('/')
-// }//Esse formato também funciona o logout 
-  
   return (
     <ScreenContainer>
-      <Header 
-      title={"Rappi4"}
-      padding={"15px"}
-      />
-       <InputsContainer>
+     <Header title={"Rappi4"} padding={"15px"} />
+      <InputsContainer>
         <TextField
           variant="outlined"
           type="text"
@@ -82,16 +75,30 @@ const Restaurant = () => {
           label="Restaurante"
           placeholder="Restaurante"
           width="100%"
-          value={filterRestaurants}
-          onChange={(event) => setFilterRestaurants(event.target.value)}
+          value={inputText}
+          onChange={onChangeInputText}
           sx={{ position: "relative", bottom: "15px", width: "95vw" }}
         />
+        <Menu>
+          <MenuItem onClick={() => setButtonCategory("")}>
+            Todos
+          </MenuItem>
+          {states.categoryRestaurant.map((category) => {
+            return (
+              <CardCategory
+                key={category.id}
+                select={false}
+                onClick={() => setButtonCategory(category.category)}
+                category={category.category}
+              >
+                {category}
+              </CardCategory>
+            );
+          })}
+        </Menu>
       </InputsContainer>
-
-      <ContainerCategory>{mapCategory}</ContainerCategory>
-
-      <ContainerRestaurant>{mapRestaurant}</ContainerRestaurant>
-      <HomeFooter/>
+      <div>{restaurantsFilter}</div>
+      <HomeFooter />
     </ScreenContainer>
   );
 };

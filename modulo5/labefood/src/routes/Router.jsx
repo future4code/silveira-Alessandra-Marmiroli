@@ -10,6 +10,8 @@ import Profile from "../pages/Profile/Profile";
 import Error from "../pages/Error/Error";
 import Cart from "../pages/Cart/Cart";
 
+
+
 const Router = () => {
   return (
     <div>

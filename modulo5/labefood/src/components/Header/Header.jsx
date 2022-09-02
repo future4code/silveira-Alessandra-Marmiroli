@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { ContainerHeader, Img, Title } from "./styled";
+import { ContainerHeader, DivLogout, DivTitle, Title } from "./styled";
 
 const Header = ({ title }) => {
   const navigate = useNavigate();
@@ -13,13 +13,16 @@ const Header = ({ title }) => {
 
   return (
     <ContainerHeader>
+      <DivTitle>
         <Title>{title}</Title>
-        <Img
+      </DivTitle>
+      <DivLogout>
+          <img
           width="20px"
-          margin="60px"
           src="https://raw.githubusercontent.com/future4code/Silveira-labe-food1/master/src/assets/iconelogout.png"
           onClick={logOut}
         />
+      </DivLogout>
     </ContainerHeader>
   );
 };
