@@ -1,31 +1,35 @@
 import React from "react";
-import { TextField, Typography, Button } from "@mui/material";
-import { InputsContainer, ScreenContainer } from "../Signup/styled";
+import { Typography, Button, IconButton, TextField} from "@mui/material";
+import { InputsContainer, ScreenContainer} from "../Signup/styled";
 import { useNavigate } from "react-router-dom";
 import { goToRestaurant, goToSignup } from "../../routes/Coordinator";
 import useForm from "../../hooks/useForm";
-import VisibilityIcon from "@mui/icons-material/Visibility";
-import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-
 import axios from "axios";
 import { useState } from "react";
 import { BASE_URL } from "../../constants/url";
-import { LogoImage, P } from "./styled";
+import { ButtonAddress, DivPassword, Form, InputMaterial, LogoImage, P } from "./styled";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const Login = () => {
   let navigate = useNavigate();
 
   const [passwordLogin, setPasswordLogin] = useState("password");
+  const [showPassword, setShowPassword] = useState(true)//mudei aqui
 
   const { inputForm, OnChangeInput, clear, setInputForm } = useForm({
     email: "",
     password: "",
   });
   // Informo as variáveis do useForm e informo os campos à serem preenchido na page Login.
+
+  const handleClickShowPassword = () => {
+      setShowPassword(!showPassword)
+  }
+
   const formLogin = (event) => {
     event.preventDefault(); //preventDefault previne que a informação no ato da digitação seja enviada(ou seja ele vai aguardar você digitar toda a informação para depois enviar)
     const bodyForm = inputForm;
-
+    
     //Essa requisição esta relacionada ao token
     axios
       .post(`${BASE_URL}/login`, bodyForm)
@@ -34,11 +38,11 @@ const Login = () => {
         localStorage.setItem("token", res.data.token);
         if (res.data.user.hasAddress === false) {
           alert(
-            `${res.data.user.name}, you do not have an account. We will redirect you...`
+            `Bem vindo. ${res.data.user.name}`
           );
           goToSignup(navigate); //Aqui inserir a função que levará para page Adress
         } else {
-          alert("Welcome!");
+          alert("Bem vindo!");
           goToRestaurant(navigate); //Aqui inserir a função caso o usuário tenha endereço cadastrado page Restaurant
         }
         clear();
@@ -80,14 +84,17 @@ const Login = () => {
             fullWidth
             margin={"normal"}
             label={"E-mail"}
+            type={'email'}
             required
           />
-          <TextField
+
+          <DivPassword>
+          <InputMaterial
             name={"password"}
             value={inputForm.password}
             onChange={OnChangeInput}
-            placeholder="Senha"
-            type="password"
+            placeholder={'Mínimo de 6 caracteres'}//informações adicionais
+            type={showPassword ? 'password' : 'text'}//informações adicionais
             variant={"outlined"}
             // color={"primary"}
             fullWidth
@@ -95,12 +102,23 @@ const Login = () => {
             label={"Senha"}
             required
             minLength="6"
-          />
-          {passwordLogin === "password" ? (
-            <VisibilityOffIcon className="eye" onClick={password} />
-          ) : (
-            <VisibilityIcon className="eye" onClick={password} />
-          )}
+            float="rigth"
+           />
+          <IconButton
+          aria-label="toogle password visibility"
+          onClick={handleClickShowPassword}
+          edge="end"
+          // sx={{ position:"absolute", top:"0", right:"0",
+          //   zindex:"10",
+          //   border:"none",
+          //   background:"transparent",
+          //   outline:"none", background:"transparent", outline:"none" }}
+          
+          >
+            {showPassword ? <VisibilityOff/> : <Visibility/>}
+          </IconButton>
+          </DivPassword>
+
           <Button
             variant="contained"
             type="submit"
@@ -111,7 +129,7 @@ const Login = () => {
           </Button>
         </form>
 
-        <Button
+        <ButtonAddress
           fullWidth
           onClick={() => goToSignup(navigate)}
           sx={{ color: "black", "margin-top": "15px" }}
@@ -119,7 +137,7 @@ const Login = () => {
           <P>
             <strong>Não possui cadastro? Clique aqui.</strong>
           </P>
-        </Button>
+        </ButtonAddress>
       </InputsContainer>
     </ScreenContainer>
   );
